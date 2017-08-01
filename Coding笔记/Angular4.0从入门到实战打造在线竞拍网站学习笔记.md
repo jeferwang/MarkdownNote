@@ -771,5 +771,32 @@ IOC着重描述目的；DI着重描述实现的方法，即如何去实现控制
 
 接下来，对生成的服务进行编辑（由于当前没有对这个服务进行注册，显然不会生效）
 
+```typescript
+import {Injectable} from '@angular/core';
 
+@Injectable()
+export class ProductService {
 
+  constructor() { }
+
+  getProduct(): Product {
+    return new Product(1, '小米Mix', 3999, '很666的手机');
+  }
+
+}
+
+/**
+ * 定义一个Product商品类
+ */
+export class Product {
+  constructor(public id: number, public title: string, public price: number, public desc: string) { }
+}
+```
+
+下面，进入app.module，注册服务
+
+```typescript
+...
+  providers: [ProductService],
+...
+```
