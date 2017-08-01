@@ -599,11 +599,19 @@ export class AppComponent {
 
 `{path:'xxx',component:XxxComponent,outlet:'fuzhu'}`
 
-`<a [routerLink]=['/home',{outlets:{fuzhu:'xxx'}}]>链接</a>`
+`<a [routerLink]=['/home',{outlets:{fuzhu:'xxx'}}]>链接</a>`或`<a [routerLink]=[{outlets:{primary:'home',fuzhu:'xxx'}}]>链接</a>`
 
 当点击链接的时候，主插座会显示home组件的内容，fuzhu插座会显示xxx路由匹配到的Xxx组件
 
+`<a [routerLink]=[{outlets:{fuzhu:'xxx'}}]>链接</a>`
+
+当点击链接的时候，主插座不变，fuzhu插座会显示xxx路由匹配到的Xxx组件
+
 辅助路由允许你在同一个组件中定义多个插座，并定义每个插座显示的内容
+
+
+
+
 
 
 
