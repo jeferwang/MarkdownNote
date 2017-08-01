@@ -649,6 +649,25 @@ export class LoginGuard implements CanActivate {
 	return isLogin;
 }
 ```
+```typescript
+import {LoginGuard} from "./guard/login.guard";
+
+{path:'product/:id',component:ProductComponent,children:[......],canActivate:[LoginGuard]}
+
+...
+
+@NgModule({
+	imports:[...],
+	exports:[...],
+	providers:[LoginGuard]
+})
+```
+
+这样，我们就是先了一个简单的路由守卫，当我们试图导航到这个路由的时候，会判断守卫返回的Boolean值，为True则通过。
+
+> ！还有这种操作？！在学Angular的时候顺便学了TypeScript~
+
+
 
 
 
