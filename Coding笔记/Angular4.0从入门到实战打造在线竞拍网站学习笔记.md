@@ -629,7 +629,7 @@ export class AppComponent {
 
 现在，在路由对象里我们有多了一个新的参数：canActivate，该参数是数组格式，也就是说，一条路由允许接收多个守卫
 
-那么如何编写守卫呢？
+**那么如何编写守卫呢？**
 
 在`src`目录中建立一个存放守卫的目录`guard`，新建路由守卫TypeScript文件，例如`login.guard.ts`，下面展示一个简单的Demo：
 
@@ -667,8 +667,16 @@ import {LoginGuard} from "./guard/login.guard";
 
 > ！还有这种操作？！在学Angular的时候顺便学了TypeScript~
 
+同理，我们能很轻易地区是先一个canDeactivate守卫，区别在于canDeactivate守卫在是先接口的时候需要制定一个泛型（也就是需要保护的组件），算了，直接上代码吧：
 
+```typescript
+import {CanDeactivate} from "@angular/router";
+import {ProductComponent} from "../product/product.component";
 
+export class UnsavedGuard implements CanDeactivate<ProductComponent>{
+	
+}
+```
 
 
 
