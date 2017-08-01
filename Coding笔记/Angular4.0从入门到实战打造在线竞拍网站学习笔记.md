@@ -639,14 +639,16 @@ export class AppComponent {
 import {canActivate} from "@angular/router";
 
 export class LoginGuard implements CanActivate {
-	// 假设随机数小于0.5就代表已经登录
-	let isLogin:boolean = Math.random()<0.5;
-	
-	if(!isLogin){
-		console.log("未登录");
+	canActivate(){
+		// 假设随机数小于0.5就代表已经登录
+		let isLogin:boolean = Math.random()<0.5;
+
+		if(!isLogin){
+			console.log("未登录");
+		}
+
+		return isLogin;
 	}
-	
-	return isLogin;
 }
 ```
 ```typescript
@@ -671,7 +673,7 @@ import {LoginGuard} from "./guard/login.guard";
 
 ```typescript
 import {CanDeactivate} from "@angular/router";
-import {ProductComponent} from "../product/product.component";
+import {ProductComponent} from "../product/";
 
 export class UnsavedGuard implements CanDeactivate<ProductComponent>{
 	
