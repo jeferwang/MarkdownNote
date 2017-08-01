@@ -613,6 +613,45 @@ export class AppComponent {
 
 辅助路由允许你在同一个组件中定义多个插座，并定义每个插座显示的内容
 
+## 路由守卫
+
+### 简介
+
+所谓的路由守卫，也就是在满足一定条件的时候才允许进入或退出某一个路由。例如：
+- 在用户登录之前，不允许进入个人中心页面
+- 在某个表单的执行流程中，只有用户完成了上一步的任务之后，才能进入下一步的环节
+- 当用户没有执行保存操作而试图离开某一个路由的时候，阻止离开并进行提示
+
+路由守卫主要有三种类型：
+- CanActivate 是否能进入到某个路由
+- CanDeactivate 是否能离开某个路由
+- Resolve 在路由激活之前获取数据
+
+现在，在路由对象里我们有多了一个新的参数：canActivate，该参数是数组格式，也就是说，一条路由允许接收多个守卫
+
+那么如何编写守卫呢？
+
+在`src`目录中建立一个存放守卫的目录`guard`，新建路由守卫TypeScript文件，例如`login.guard.ts`，下面展示一个简单的Demo：
+
+（为了便于演示，不去做真正的登录服务，只是生成一个随机数来判断是否已经登录）
+
+```typescript
+import {canActivate} from "@angular/router";
+
+export class LoginGuard implements CanActivate {
+	// 假设随机数小于0.5就代表已经登录
+	let isLogin:boolean = Math.random()<0.5;
+	
+	if(!isLogin){
+		console.log("未登录");
+	}
+	
+	return isLogin;
+}
+```
+
+
+
 
 
 
