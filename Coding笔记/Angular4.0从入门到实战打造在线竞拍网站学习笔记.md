@@ -676,7 +676,13 @@ import {CanDeactivate} from "@angular/router";
 import {ProductComponent} from "../product/";
 
 export class UnsavedGuard implements CanDeactivate<ProductComponent>{
-	
+	/*
+	需要实现一个方法
+	因为是需要离开，那么这里需要根据组件里的某些状态来判定
+	*/
+	canDeactivate(component:ProductComponent){
+		return window.confirm("您还没保存，确定要离开吗？");
+	}
 }
 ```
 
