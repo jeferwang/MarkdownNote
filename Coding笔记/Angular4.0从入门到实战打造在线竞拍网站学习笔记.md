@@ -631,6 +631,8 @@ export class AppComponent {
 
 **那么如何编写守卫呢？**
 
+### canActivate守卫
+
 在`src`目录中建立一个存放守卫的目录`guard`，新建路由守卫TypeScript文件，例如`login.guard.ts`，下面展示一个简单的Demo：
 
 （为了便于演示，不去做真正的登录服务，只是生成一个随机数来判断是否已经登录）
@@ -669,6 +671,8 @@ import {LoginGuard} from "./guard/login.guard";
 
 > ！还有这种操作？！在学Angular的时候顺便学了TypeScript~
 
+### canDeactivate守卫
+
 同理，我们能很轻易地区是先一个canDeactivate守卫，区别在于canDeactivate守卫在是先接口的时候需要制定一个泛型（也就是需要保护的组件），算了，直接上代码吧：
 
 ```typescript
@@ -685,6 +689,80 @@ export class UnsavedGuard implements CanDeactivate<ProductComponent>{
 	}
 }
 ```
+
+### Resolve守卫
+
+Resolve守卫常用于解决数据预加载问题，如果使用路由中传递的参数，在进入某一个组件之后发出Http请求去获取所需要的数据，那么在刚进入这个组件的时候，所有使用插值表达式的位置都是空的，这样用户体验会很差。这时候可以使用Resolve守卫来解决，在进入之前先获取数据，进入之后立即使用并显示出来
+
+```typescript
+import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
+import {Product} from '../product/product.component';
+import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+
+@Injectable() // 装饰器，允许注入
+export class ProductResolve implements Resolve<Product> {
+  // 注入路由对象
+  constructor(private router: Router) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Product | Observable<Product> | Promise<Product> {
+    const productId: number = route.params['id'];
+    if (productId === 1) {
+      return new Product(1, '小米6', 2999, 5, '很不错的手机', ['数码'])
+    } else {
+      this.router.navigate(['/home']);
+      return undefined;
+    }
+  }
+
+}
+```
+
+在路由中我们有遇到了一个新的参数：`resolve`，接收一个数组（Resolve守卫）
+
+```typescript
+{path:'product/:id',component:ProductComponent,resolve:{product:ProductResolve}}
+```
+
+同样需要在providers里声明一下。
+
+那么如何取出Resolve守卫传入的数据呢？
+
+同样可以使用参数订阅的方式：
+
+```typescript
+// routeInfo:ActivatedRoute
+this.routeInfo.data.subscribe((data:{product:Product})=>{
+	this.productId=data.product.id;
+});
+```
+
+好了，路由的知识点到现在就告一段落，但是Angular的学习之路仍未完待续......
+
+# 依赖注入（Dependency Injection） & 控制反转（Inversion Of Control）
+
+正常情况下，我们写的代码应该是这样子的：
+
+```typescript
+let product = new Product();	// 实例化一个对象
+createOrder(product);	// 调用方法传入商品对象，生成订单
+```
+createOrder方法依赖product类，但是createOrder方法自身并不知道也不能去创建一个product对象。我们把方法所需的对象实例化并当做参数传入，这个过程就成为把参数注入给这个方法。在此你可能看不出什么，但是如果依赖的对象比较多了呢？我们需要反复去new，反复去生成对象，然后传入到方法中......想想就是噩梦。
+
+那么，能不能让某人替我们创建createOrder所依赖的对象和对象所依赖的其他对象呢？如果可以的话，那么，我们只需要写一句方法的调用即可，对象都将会呗自动创建好，并当做参数传递进去（想想就很美妙，懒人必备啊）。
+
+也就是说，对象A只需要声明，我需要一个B类型的对象，那么这个对象就会从外部注入进来，这就是依赖注入要解决的问题。
+
+与依赖注入经常同时出现的另一个概念叫做控制反转，简称IOC
+
+我们常见的一般就是如上的模式，实例化对象，然后当做参数传入方法中使用&处理。
+
+
+**但是，如果学不会控制反转和依赖注入，不能写出可重用的组件，就不能说你学会了Angular。**
+
+下面简单了解一下
+
+## 依赖注入（Dependency Injection）简称DI
 
 
 
