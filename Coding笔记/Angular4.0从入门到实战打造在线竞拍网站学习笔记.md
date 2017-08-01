@@ -800,3 +800,9 @@ export class Product {
   providers: [ProductService],
 ...
 ```
+
+在使用的时候（需要获取product对象的时候，直接在构造函数中声明需要Product类型的变量，即可完成注入。
+
+```typescript
+constructor (product:Product){  }
+```
