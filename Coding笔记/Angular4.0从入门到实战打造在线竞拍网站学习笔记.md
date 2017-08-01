@@ -806,3 +806,8 @@ export class Product {
 ```typescript
 constructor (product:Product){  }
 ```
+
+> 这时候，注入提供器声明在了模块中，也可以在组件的@component()中添加providers属性，这时候，作用域就变成了当前组件，并且组件中声明的提供器比模块的优先级更高
+
+
+
