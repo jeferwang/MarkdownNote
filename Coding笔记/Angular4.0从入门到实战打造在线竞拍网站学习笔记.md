@@ -1,15 +1,18 @@
 ---
-title: Angular4学习笔记
+title: Angular4.0从入门到实战打造在线竞拍网站学习笔记
 tags: JavaScript,Angular
 grammar_cjkRuby: true
 ---
 
+
 [TOC]
 
-最近搞到手了一部Angular4的视频教程,这几天正好有时间变学了一下,可以用来做一些前后端分离的网站,也可以直接去打包web app。
+最近搞到手了一部Angular4的视频教程(是不是感觉和慕课的那个很像...没错),这几天正好有时间变学了一下,可以用来做一些前后端分离的网站,也可以直接去打包web app。
 
 # 环境&版本信息声明
+
 运行`ng -v`
+
 ```
 @angular/cli: 1.2.0
 node: 8.1.2
@@ -221,19 +224,19 @@ footer{
 ```html
 <form role="form" name="searchForm">
   <div class="form-group">
-    <label for="productTitle" class="control-label">商品名称 : </label>
+    <label for="productTitle" class="control-label">商品名称：</label>
     <input id="productTitle" type="text" class="form-control" placeholder="商品名称">
   </div>
   <div class="form-group">
-    <label for="productPrice" class="control-label">商品价格 : </label>
+    <label for="productPrice" class="control-label">商品价格：</label>
     <input id="productPrice" type="number" class="form-control" placeholder="商品价格">
   </div>
   <div class="form-group">
-    <label for="productCategory" class="control-label">商品类别 : </label>
+    <label for="productCategory" class="control-label">商品类别：</label>
     <select id="productCategory" class="form-control"></select>
   </div>
   <div class="form-group">
-    <label for="productTitle" class="control-label">商品名称 : </label>
+    <label for="productTitle" class="control-label">商品名称：</label>
     <input type="submit" class="btn btn-primary btn-block" value="搜索">
   </div>
 </form>
@@ -352,7 +355,7 @@ export class ProductComponent implements OnInit {
 </div>
 ```
 
-> ngFor可以理解为在html中对一个数组进行循环遍历,同时循环这个html标签......就类似PHP那样,慢慢理解吧,挺简单的额,稍后也会讲到
+> ngFor可以理解为在html中对一个数组进行循环遍历,同时循环这个html标签……就类似PHP那样,慢慢理解吧,挺简单的额,稍后也会讲到
 > 但是这个指令反映出来的思想很重要,Angular的数据绑定,也叫作数据驱动
 
 然后,从开始搞事情以来第一个比较难的地方已经过去了(以后你回头看的时候还会发现...其实好简单的哦)
@@ -361,7 +364,7 @@ export class ProductComponent implements OnInit {
 
 别看这个组件很小不起眼,但是星际评分组件是当前所有组件里最复杂的一个(相对复杂...)
 
-主要使用了 : 
+主要使用了：
 
 > `*ngFor`指令
 > `class`绑定
@@ -399,7 +402,7 @@ export class StarsComponent implements OnInit {
 
 如何注入呢?上面有一个装饰器`@Input()`标识着rating变量是外部注入的
 
-那么,在实例化`star component`的位置......
+那么,在实例化`star component`的位置……
 
 就是这里!!!
 
@@ -427,7 +430,7 @@ export class StarsComponent implements OnInit {
 
 代码只要稍微细心看就能看懂,主要就在于样式绑定,根据数组中不同的字符串绑定不同的星星样式
 
-就这样,我们的基本组件已经实现了大部分了,等有空了进行下一章的学习......
+就这样,我们的基本组件已经实现了大部分了,等有空了进行下一章的学习……
 
 # 路由
 
@@ -593,4 +596,18 @@ export class AppComponent {
 ## 辅助路由
 
 形式：`<router-outlet name="fuzhu"></router-outlet>`
+
+`{path:'xxx',component:XxxComponent,outlet:'fuzhu'}`
+
+`<a [routerLink]=['/home',{outlets:{fuzhu:'xxx'}}]>链接</a>`
+
+当点击链接的时候，主插座会显示home组件的内容，fuzhu插座会显示xxx路由匹配到的Xxx组件
+
+辅助路由允许你在同一个组件中定义多个插座，并定义每个插座显示的内容
+
+
+
+
+
+
 
