@@ -927,19 +927,138 @@ doOnClick(event:any){
 
 又是一个经典的例子，不难理解，上面两个方法实现的效果是完全一致的，事实上，这两个方法没有优劣之分，你只需要按照自己的喜好去选择即可
 
-### HTML属性绑定
+## HTML属性绑定
 
 1. 基本HTMl属性绑定
+
 ```html
 <td [attr.colspan]="value"></td>
 ```
+
 2. class绑定
+
 ```html
 <div class="aaa bbb" [class]="val"></div>	// 这种情况会覆盖原先的class
-<div [class.aaa]="booleanVal"></div>	// 通过一个Boolean值开关来控制是否启用某一个class名
-<div [ngClass]="{aaa:isA,bbb:isB}"></div>	// 通过对象的形式开控制多个class的开关
+<div [class.aaa]="booleanVal"></div>	// 通过一个Boolean值开关来控制是否启用某一个class名，适合管理单一class名
+<div [ngClass]="{aaa:isA,bbb:isB}"></div>	// 通过对象的形式开控制多个class的开关，适合同时管理多个className
 ```
+
 3. 样式绑定
+
 和class绑定类似，只不过绑定的对象为style属性
 
+```html
+<button [style.color]="isRed?'red':'green'">Red</button>
+<div [ngStyle]="{color:red,'font-style':bool?'italic':'normal'}"></div>
+```
 
+## 双向绑定
+
+双向绑定即视图和模型保持同步，无论视图和模型哪一方改变，另一方都一起同步改变。
+
+前面所学到的事件绑定是从视图到模型，把模板中元素的事件绑定到控制器中的方法；属性绑定的方向是从控制器到模板，使用方括号讲组件控制器的属性绑定到模板。
+
+```html
+<input [value]="name" (input)="doOnInput($event)" />
+```
+```typescript
+export class BindComponent implements OnInit {
+	name: string;
+	
+	doOnInput(event){
+		this.name=event.target.value;
+	}
+}
+```
+这样就实现了一个双向绑定，当input内容变化的时候，出发事件，修改模型中的属性值，当模型中的属性值改变的时候，优惠在视图中表现出来。
+
+当然，Angular肯定提供了内置的双向绑定支持：
+
+```html
+<input [(ngModel)]="name" />
+```
+
+由于`[(ngModel)]`用在input元素上，默认绑定的是`input`事件。双向绑定最常用的用途就是表单处理。
+
+> 当然，双向绑定本来就应该用于input系列元素上，因为这些元素允许你去修改这些值，并显示出来。
+
+将会在表单处理章节更详细讲。
+
+# 管道
+
+举个例子，例如我要在页面上显示我的生日信息，假设现在从服务器获取到的日期是一个Date对象，那么把它直接输出到页面上肯定是用户体验很不好的（一大串乱七八糟的字符串）。管道就是用来处理数据的，从原始值到你所需要的值，这一个过程。
+
+使用实例：
+
+```html
+<p>{{birthday | date | uppercase}}</p>
+```
+
+上面例子中我们就使用了两个内置的管道，第一个是获取到Date对象的日期信息，第二个是把小写字母转换成大写。
+
+## 内置管道
+
+常用的管道：
+- uppercase 大写
+- lowercase 小写
+
+**date日期管道**
+
+> 日期管道符可以接受参数，用来规定输出日期的格式。
+> `<p>现在的时间是{{today | date:'yyyy-MM-dd HH:mm:ss'}}</p>`
+
+**number 数字处理管道**
+
+> 接收的参数格式为{最少整数位数}.{最少小数位数}-{最多小数位数} 
+> 其中最少整数位数默认为1 
+> 最少小数位数默认为0 
+> 最多小数位数默认为3 
+> 当小数位数少于规定的{最少小数位数}时，会自动补0 
+> 当小数位数多于规定的{最多小数位数}时，会四舍五入
+
+## 自定义管道
+
+1. 生成管道：`ng g pipe pipe/multiple`，此处用来做Demo的管道作用是扒一个数放大n倍，也就是乘法……
+
+生成的管道代码：
+
+```typescript
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'multiple'
+})
+export class MultiplePipe implements PipeTransform {
+
+  transform(value: any, args?: any): any {
+    return null;
+  }
+
+}
+```
+
+可以看出，管道是一个实现了PipeTransform并且带有@Pipe装饰器的类，用于把源数据根据参数和方法定义处理成想要的结果。
+
+> 但是，当你打开`app.modules.ts`的时候，你会发现在declaration数组里多出来了一个MultiplePipe的声明，也就是说，管道也是需要声明的，只是命令行工具自动添加进去了。
+
+其中value是管道前端的原始值，args是一个可选参数，也就是管道的参数，最终管道把处理结果返回出去即可。
+
+如下，我们很轻易地创建了一个管道：
+
+```typescript
+import {Pipe, PipeTransform} from '@angular/core';
+
+@Pipe({
+  name: 'multiple'
+})
+export class MultiplePipe implements PipeTransform {
+
+  transform(value: number, args?: number): number {
+    if (!args) {
+      args = 1;
+    }
+    return value * args;
+  }
+
+}
+```
