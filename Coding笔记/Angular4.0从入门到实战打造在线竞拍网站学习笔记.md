@@ -927,5 +927,19 @@ doOnClick(event:any){
 
 又是一个经典的例子，不难理解，上面两个方法实现的效果是完全一致的，事实上，这两个方法没有优劣之分，你只需要按照自己的喜好去选择即可
 
-**模板绑定是通过DOM属性和事件来工作的，而不是HTML属性**
+### HTML属性绑定
+
+1. 基本HTMl属性绑定
+```html
+<td [attr.colspan]="value"></td>
+```
+2. class绑定
+```html
+<div class="aaa bbb" [class]="val"></div>	// 这种情况会覆盖原先的class
+<div [class.aaa]="booleanVal"></div>	// 通过一个Boolean值开关来控制是否启用某一个class名
+<div [ngClass]="{aaa:isA,bbb:isB}"></div>	// 通过对象的形式开控制多个class的开关
+```
+3. 样式绑定
+和class绑定类似，只不过绑定的对象为style属性
+
 
