@@ -739,7 +739,7 @@ this.routeInfo.data.subscribe((data:{product:Product})=>{
 
 好了，路由的知识点到现在就告一段落，但是Angular的学习之路仍未完待续......
 
-# 依赖注入（Dependency Injection） & 控制反转（Inversion Of Control）
+# 依赖注入（Dependency Injection）
 
 正常情况下，我们写的代码应该是这样子的：
 
@@ -753,7 +753,7 @@ createOrder方法依赖product类，但是createOrder方法自身并不知道也
 
 也就是说，对象A只需要声明，我需要一个B类型的对象，那么这个对象就会从外部注入进来，这就是依赖注入要解决的问题。
 
-与依赖注入经常同时出现的另一个概念叫做控制反转，简称IOC。
+与依赖注入经常同时出现的另一个概念叫做控制反转（Inversion Of Control），简称IOC。
 
 控制反转是指将依赖的控制权从代码的内部转移到代码的外部，如上代码所示，方法所需的依赖是由方法的内部所决定的，如果需要改变依赖，就需要修改方法内部的代码，外面不管是传入Product的实例，还是传入Product子类的实例，是有方法外部决定的。
 
@@ -762,6 +762,8 @@ IOC着重描述目的；DI着重描述实现的方法，即如何去实现控制
 ## 实现依赖注入
 
 那么如何在Angular中实现以来注入呢？
+
+### 定义提供器
 
 首先，使用命令行工具生成一个`service`，用于提供注入服务。
 
@@ -809,5 +811,81 @@ constructor (product:Product){  }
 
 > 这时候，注入提供器声明在了模块中，也可以在组件的@component()中添加providers属性，这时候，作用域就变成了当前组件，并且组件中声明的提供器比模块的优先级更高
 
+#### 使用工厂声明提供器
 
+如果在实例化类的时候需要传递参数，或需要进行一些操作去得到一个注入对象，那么使用工厂声明一个提供器是更好的解决办法。
+
+```typescript
+providers: [{
+    provide: ProductService,
+    useFactory: () => {
+      const dev = Math.random() > 0.5;
+      if (dev) {
+        return new Product(1, '小米6', 2999, '很6的手机');
+      } else {
+        return new Product(2, '小米mix', 3999, '很美的手机');
+      }
+    }
+  }],
+```
+
+那么，如果工厂方法依赖一个LoggerService，我们如何去解耦合并把loggerServices注入到工厂方法呢？需要使用第三个参数：
+
+```typescript
+providers: [{
+    provide: ProductService,
+    useFactory: (logger:LoggerService) => {
+      const dev = Math.random() > 0.5;
+      if (dev) {
+        return new Product(1, '小米6', 2999, '很6的手机');
+      } else {
+        return new Product(2, '小米mix', 3999, '很美的手机');
+      }
+    },
+    deps:[LoggerService]
+  },LoggerService],
+```
+
+如此，即可实现工厂方法的依赖注入
+
+### 使用具体的值定义提供器
+
+```typescript
+providers: [{
+    provide: ProductService,
+    useFactory: (logger:LoggerService,appConfig) => {
+      if (appConfig.isDev) {
+        return new Product(1, '小米6', 2999, '很6的手机');
+      } else {
+        return new Product(2, '小米mix', 3999, '很美的手机');
+      }
+    },
+    deps:[LoggerService,"APP_CONFIG"]
+  },LoggerService,{
+  	provide:"APP_CONFIG",
+	useValue:{isDev:false}
+  }],
+```
+
+注意，被注入的类都需要有一个`@Injectable()`装饰器，这样才能被注入
+
+> 那么你可能会疑惑了，angular组件控制器的类并没有`@Injecdtable()`装饰器，但是构造函数却能被注入，这是因为`@component()`装饰器的实现一键集成了`@Injectable()`
+
+
+为了更容易理解，接下来实现一下手工注入：
+
+```typescript
+import {Injector} from '@angular/core';
+
+export class ProductComponent implements OnInit {
+
+  private product: ProductService;
+
+  constructor(private injector: Injector) {
+    this.product = injector.get(ProductService);
+  }
+}
+```
+
+> Angular的依赖注入只有一个注入点，也就是构造函数。
 
