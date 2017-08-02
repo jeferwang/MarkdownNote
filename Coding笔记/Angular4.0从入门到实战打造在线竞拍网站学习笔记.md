@@ -1062,3 +1062,24 @@ export class MultiplePipe implements PipeTransform {
 
 }
 ```
+
+在实战项目中，我们队管道有了新的用法，根据传入的参数来过滤商品列表：
+
+```typescript
+import {Pipe, PipeTransform} from '@angular/core';
+import {Product} from '../shared/product.service';
+
+@Pipe({
+  name: 'productFilter'
+})
+export class ProductFilterPipe implements PipeTransform {
+
+  transform(productList: Product[], filterField: string, keyword: string): any {
+    if (!filterField || !keyword) {
+      return productList;
+    }
+    return productList.filter((product: Product) => product[filterField].indexOf(keyword) >= 0);
+  }
+
+}
+```
