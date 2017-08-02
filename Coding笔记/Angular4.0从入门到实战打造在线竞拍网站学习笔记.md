@@ -889,3 +889,11 @@ export class ProductComponent implements OnInit {
 
 > Angular的依赖注入只有一个注入点，也就是构造函数。
 
+# 数据绑定
+
+数据绑定允许你将组件控制器的属性和方法与组件的模板连接起来，大大降低了开发时的编码量。
+
+常见的表现形式有：
+- 插值表达式：`<h1>{{title}}</h1>`，即把属性|表达式插入到HTML标签中
+- 属性绑定：`<img [src]="imgUrl" />`，也就是将属性|表达式绑定到HTML标签的属性上
+- 事件绑定：`<button (click)="show()"></button>`，讲组件控制器的一个方法绑定到模板元素的事件上
