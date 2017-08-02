@@ -1063,7 +1063,7 @@ export class MultiplePipe implements PipeTransform {
 }
 ```
 
-在实战项目中，我们队管道有了新的用法，根据传入的参数来过滤商品列表：
+在实战项目中，我们对管道有了新的用法，根据传入的参数来过滤商品列表：
 
 ```typescript
 import {Pipe, PipeTransform} from '@angular/core';
