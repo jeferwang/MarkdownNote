@@ -1121,3 +1121,5 @@ export class OrderComponent implements OnInit {
 
 如此，便实现了父组件和子组件的解耦合。
 
+> 这里的属性绑定也是单向的，也就是说，子组件对应的属性变化不会影响到父组件
+
