@@ -1202,6 +1202,6 @@ buy:EventEmitter<PriceQuote> = new EventEmitter();
 
 // （点击之后）执行发射事件的方法
 buyStock(event){
-	this.buy.emit(PriceQuote);
+	this.buy.emit(new PriceQuote(this.stockCode,this.price));
 }
 ```
