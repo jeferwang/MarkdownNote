@@ -1109,3 +1109,15 @@ export class OrderComponent implements OnInit {
 	amount: number;	// 购买数量
 }
 ```
+
+上述代码是组件`app-order`的控制器，在父组件中使用的时候输入数据的方式如下：
+
+```html
+// 与父组件的stock属性进行双向绑定
+<input type="text" placeholder="请输入股票代码" [(ngModel)]="stock" />
+// 双向绑定之后的属性stock作为子组件<app-order></app-order>的参数传入
+<app-order [stockCode]="stock" [amount]="100"></app-order>
+```
+
+如此，便实现了父组件和子组件的解耦合。
+
