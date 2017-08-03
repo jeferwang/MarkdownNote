@@ -1083,3 +1083,6 @@ export class ProductFilterPipe implements PipeTransform {
 
 }
 ```
+
+# 组件间通信
+
