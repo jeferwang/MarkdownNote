@@ -1250,3 +1250,5 @@ export class OrderComponent implements OnInit {
 
 学到这里之后。感觉豁然开朗，原来如此呵呵...
 
+> 报价组件、订单组件之间，在不知道彼此的情况下，完成了下单的操作，成功地实现了解耦合。
+
