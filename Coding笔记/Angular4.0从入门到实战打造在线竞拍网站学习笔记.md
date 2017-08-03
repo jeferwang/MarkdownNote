@@ -1134,12 +1134,14 @@ export class OrderComponent implements OnInit {
 结合上面的例子，我们定义一个股票报价对象，包含两个属性：股票代码和最新价格。
 
 ```typescript
+import {Emitter} from "@angular/core";
+
 export class PriceQuoteComponent implements OnInit{
 	stockCode: string='IBM';
 	price: number;
 	
-	// 抛出事件
-	@Output()
+	// 定义事件抛出者
+	@Output()	// 括号中可以自定义抛出的事件的名称
 	lastPrice=EventEmitter<ProductQuote> = new ProductEmitter();	// 定义事件抛出装置
 	
 	constructor () {
@@ -1151,6 +1153,7 @@ export class PriceQuoteComponent implements OnInit{
 		);
 	}
 }
+
 export class PriceQuote {
 	constructor (
 		public stockCode: string,
@@ -1159,3 +1162,5 @@ export class PriceQuote {
 	}
 }
 ```
+
+事件抛出之后
