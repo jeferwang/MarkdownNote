@@ -1205,3 +1205,5 @@ buyStock(event){
 	this.buy.emit(new PriceQuote(this.stockCode,this.price));
 }
 ```
+
+这样，在报价组件的父组件中，很容易地就能通过在`<app-price-quote>`上监听`buy`事件来获取发射出去的报价信息
