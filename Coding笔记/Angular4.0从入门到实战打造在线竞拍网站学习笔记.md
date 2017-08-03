@@ -1183,3 +1183,25 @@ export class PriceQuote {
 
 还是举上面的栗子，股票报价页面有一个下单按钮，但是报价组件并不知道如何去厦大，这时候，点击按钮可以把股票代码和价格传递给中间人，中间人知道谁可以执行下单操作，负责带着参数去找执行者。
 
+给股票报价页面添加一个下单购买按钮：
+
+```html
+<input tyle='button' (click)="buyStock($event)" />
+```
+
+在报价控制器中添加一个方法，用于想歪发射一个事件：
+
+```typescript
+import {EventEmitter} from "@angular/core";
+
+...
+
+// 定义一个事件发射器，发出购买事件（带上报价实例）
+@Output()
+buy:EventEmitter<PriceQuote> = new EventEmitter();
+
+// （点击之后）执行发射事件的方法
+buyStock(event){
+	this.buy.emit(PriceQuote);
+}
+```
