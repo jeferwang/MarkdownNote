@@ -1096,3 +1096,16 @@ export class ProductFilterPipe implements PipeTransform {
 
 ## 输入输出属性
 
+要想开发一个松耦合的组件，我们应该把组件打造成一个黑盒模型，组件无需去知道是谁在输入，只需要在被输入之后在黑盒内进行处理，得到想要的结果即可，保持和其他组件之间的松耦合关系。
+
+前面我们在开发星级评分组件的时候使用到了`@Input()`装饰器，`输入属性`就是用`@Input()`装饰器装饰的属性。例如：
+
+```typescript
+export class OrderComponent implements OnInit {
+	@Input()
+	stockCode: string;	// 股票代码
+	
+	@Input()
+	amount: number;	// 购买数量
+}
+```
