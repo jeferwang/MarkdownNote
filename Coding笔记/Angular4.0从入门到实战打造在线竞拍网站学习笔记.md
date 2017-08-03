@@ -1206,7 +1206,37 @@ buyStock(event){
 }
 ```
 
+下面是父组件代码
+
+```html
+<!--报价组件，监听了buy事件-->
+<app-price-quote (buy)='buyHandle($event)'></app-price-quote>
+<!--下单组件，暂时留空-->
+<app-order></app-order>
+```
+
 这样，在报价组件的父组件中，很容易地就能通过在`<app-price-quote>`上监听`buy`事件来获取发射出去的报价信息（和上节一样）。
 
 但是，这次不是直接在父组件中进行处理了，而是需要吧监听事件获得的参数传递给下单组件来执行下单操作。
 
+接下来做一个下单组件中接收中间人传来的参数的Demo。
+
+*下单组件控制器代码*
+
+```typescript
+export class OrderComponent implements OnInit {
+	
+	@Input()
+	priceQuote: PriceQuote;
+	
+	
+}
+```
+
+*下单组件模板代码*
+
+```html
+<div>
+	买入100手{{priceQuote.stockCode}}股票，买入价是{{priceQuote.lastPrice | number:'2.2-2'}}
+</div>
+```
