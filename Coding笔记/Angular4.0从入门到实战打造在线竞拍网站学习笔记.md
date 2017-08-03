@@ -1256,3 +1256,23 @@ export class OrderComponent implements OnInit {
 
 在一个组件的生命周期中会发生各种各样的事情，你可以在组件的声明周期哥哥阶段去实现你想要的操作。
 
+下面是组件声明周期中常见的的多个阶段：
+
+| 钩子 | 场景 | 次数 |
+| --- | --- | --- |
+| 组件初始化 |
+| constructor|  | 1 |
+| ngOnChanges|  | n |
+| ngOnInit|  | 1 |
+| ngDoCheck|  | n |
+| ngAfterContentInit|  | 1 |
+| ngAfterContentChecked|  | n |
+| ngAfterViewInit|  | 1 |
+| ngAfterViewChecked|  | n |
+| 变化检测 |
+| ngOnChanges|  | n |
+| ngDoCheck|  | n |
+| ngAfterContentChecked|  | n |
+| ngAfterViewChecked|  | n |
+| 组件销毁 |
+| ngOnDestory |  | 1 |
