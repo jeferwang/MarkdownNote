@@ -1276,3 +1276,16 @@ export class OrderComponent implements OnInit {
 | ngAfterViewChecked|  | n |
 | 组件销毁 |
 | ngOnDestory |  | 1 |
+
+> 每一个钩子都是`@angular/core`中的一个接口加上前缀`ng`来实现的，例如实现了`OnInit`接口的组件控制器类，就拥有了`ngOnInit`方法。
+
+> 当然，在Angular组件控制器中，接口的显示实现并不是必须的，不过，我们应该去手动实现所需要的方法所对应的接口，这样我们可以获得IDE的强类型检查和代码提示一级一些错误提示等等，并且我认为保持良好的代码风格有助于学习TypeScript这一门新语言（我没有学过TypeScript，直接入手的Angular，原先是PHP出身的，虽然开始的时候感觉有些困难，但是习惯就好了。。。）
+
+实现接口的例子：
+
+```typescript
+export class LifeComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestory {
+	
+}
+```
+
