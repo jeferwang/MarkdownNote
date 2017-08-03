@@ -1131,7 +1131,7 @@ export class OrderComponent implements OnInit {
 
 所谓输出属性即组件向外发出事件
 
-结合上面的例子，我们定义一个股票报价对象，包含两个属性：股票代码和最新价格。
+结合上面的例子，我们实现一个股票价格更新事件。
 
 ```typescript
 import {Emitter} from "@angular/core";
@@ -1163,4 +1163,12 @@ export class PriceQuote {
 }
 ```
 
-事件抛出之后
+当这个组件的事件抛出之后，在父组件中，子组件的标签上添加事件绑定即可，和前面的事件绑定类似：
+
+```html
+<app-price-quote (lastPrice)="eventHandle($event)"></app-price-quote>
+```
+
+其中，传入的参数`$event`即`PriceQuote`对象。
+
+这样，就实现了子组件向父组件的数据传递。
