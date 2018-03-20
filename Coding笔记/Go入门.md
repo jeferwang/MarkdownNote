@@ -33,6 +33,9 @@ func main() {
 # 编译&安装&运行
 在系统的任意位置运行`go install github.com/username/Hello`均可完成编译安装，如果在Hello目录下，直接运行`go install`即可完成编译安装，编译结果的可执行文件将会放在bin目录下。
 
-如果只需要进行编译，运行`go build`即可
+如果只需要进行编译测试而不需要输出文件，运行`go build`即可
 
 执行生成的`Hello.exe`，可以看到输出结果
+
+> 只有package名为main并且包含main函数的包才能编译成为可执行文件输出到bin目录，库文件会被安装到pkg目录
+
