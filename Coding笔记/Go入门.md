@@ -29,3 +29,10 @@ func main() {
 }
 ```
 以上代码还包含了其他package的引入方法，此处不再赘述
+
+# 编译&安装&运行
+在系统的任意位置运行`go install github.com/username/Hello`均可完成编译安装，如果在Hello目录下，直接运行`go install`即可完成编译安装，编译结果的可执行文件将会放在bin目录下。
+
+如果只需要进行编译，运行`go build`即可
+
+执行生成的`Hello.exe`，可以看到输出结果
