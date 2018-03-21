@@ -38,3 +38,28 @@ func main() {
 执行生成的`Hello.exe`，可以看到输出结果
 
 > 只有package名为main并且包含main函数的包才能编译成为可执行文件输出到bin目录，库文件会被安装到pkg目录
+
+# 基本语法纪要
+
+## for循环
+```golang
+// 当While True来用
+	a := 1
+	for {
+		a++
+		if (a >= 3) {
+			break
+		}
+	}
+	fmt.Println(a)
+	// 当普通While使用
+	b := 1
+	for b < 5 {
+		b++
+	}
+	fmt.Println(b)
+	// d当普通for循环来用
+	for c := 1; c <= 5; c++ {
+		fmt.Println(c)
+	}
+```
