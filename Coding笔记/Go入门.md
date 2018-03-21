@@ -38,8 +38,3 @@ func main() {
 执行生成的`Hello.exe`，可以看到输出结果
 
 > 只有package名为main并且包含main函数的包才能编译成为可执行文件输出到bin目录，库文件会被安装到pkg目录
-
-![enter description here][1]
-
-
-  [1]: https://www.github.com/JeffreyWxj/MarkdownNote/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1521592286219.jpg
