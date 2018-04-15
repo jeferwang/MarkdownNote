@@ -58,7 +58,7 @@ func main() {
 		b++
 	}
 	fmt.Println(b)
-	// d当普通for循环来用
+	// 当普通for循环来用
 	for c := 1; c <= 5; c++ {
 		fmt.Println(c)
 	}
