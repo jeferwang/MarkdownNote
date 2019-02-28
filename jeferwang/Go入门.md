@@ -4,7 +4,7 @@ tags: Go
 grammar_cjkRuby: true
 ---
 
-# 安装  
+# 安装
 - 去官网下载安装包，按照步骤进行安装
 - 配置GOPATH环境变量，这将是你以后的工作目录
 - 在GOPATH创建三个文件夹：bin、pkg和src，其中bin是编译之后的可执行文件存放目录，pkg为库文件编译之后的存放目录，src为所有的源代码。
