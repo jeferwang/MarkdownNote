@@ -123,13 +123,9 @@ Java 语言中有一些具有特殊用途的词被称为关键字。
 Java保留字：现有Java版本尚未使用，但以后版本可能会作为关键字使用。自己命名标记符时要避免使用这些保留字 byValue、cast、future、 generic、 inner、 operator、 outer、 rest、 var 、 goto 、const
 
 ```
-
-![1550796281980](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550796281980.png)
-
-![1550975737442](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550975737442.png)
-
-![1550975761787](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550975761787.png)
-
+![enter description here](./images/1551366150667.png)
+![enter description here](./images/1551366193677.png)
+![enter description here](./images/1551366221222.png)
 ## 代码注释
 
 ```java
@@ -152,7 +148,7 @@ Java保留字：现有Java版本尚未使用，但以后版本可能会作为关
 多行注释里面不允许有多行注释嵌套。
 ```
 
-文档注释操作方式：![1550804551228](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550804551228.png)
+文档注释操作方式：![enter description here](./images/1551366285331.png)
 
 ## 变量
 
@@ -218,14 +214,13 @@ Java中每个变量必须先声明，后使用
 
 ## 数据类型
 
-![1550976269325](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550976269325.png)
+![enter description here](./images/1551366342083.png)
 
 
 
 ### 基本数据类型
 
-![1550976435001](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550976435001.png)
-
+![enter description here](./images/1551366376272.png)
 #### 整数类型（4种）
 
 ```java
@@ -245,8 +240,7 @@ long    8   64                 了解
 
 #### 小数类型（浮点类型）
 
-![1550976523982](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550976523982.png)
-
+![enter description here](./images/1551366455062.png)
 ```java
                  字节数
 float(单精度)      4
@@ -319,11 +313,10 @@ String类是一个典型的不可变类，String对象创建出来就
 
 ```
 
-![1550976363041](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550976363041.png)
-
+![enter description here](./images/1551366600817.png)
 ### 数据类型之间的转换
 
-![1550991739327](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550991739327.png)
+![enter description here](./images/1551366646780.png)
 
 ```java
 自动类型提升
@@ -452,7 +445,7 @@ a++是a没有加一的值------>a
 
 ### 关系运算符（比较运算符）
 
-![1550995162652](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550995162652.png)
+![enter description here](./images/1551366722270.png)
 
 ```java
 >
@@ -467,10 +460,8 @@ a++是a没有加一的值------>a
 
 ### 逻辑运算符
 
-![1550995215389](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550995215389.png)
-
-![1550995986699](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550995986699.png)
-
+![enter description here](./images/1551366756264.png)
+![enter description here](./images/1551366763957.png)
 ```java
 &   逻辑与： 当运算符两边的值都为true 那么这个表达式的值为true,反之为false
 &&  短路与:
@@ -495,13 +486,11 @@ public class Test2{
 
 ### 位运算符
 
-![1550996123957](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550996123957.png)
-
-![1550996162431](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550996162431.png)
-
+![enter description here](./images/1551366790777.png)
+![enter description here](./images/1551366799387.png)
 ### 三元运算符
 
-![1550996331377](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550996331377.png)
+![enter description here](./images/1551366843007.png)
 
 ```java
 语法：
@@ -527,9 +516,8 @@ public class Demo{
 只有单目运算符、三元运算符、赋值运算符是从右向左运算的
 ```
 
-![1550996593763](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550996593763.png)
-
-![1550730410575](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550730410575.png)
+![enter description here](./images/1551366871530.png)
+![enter description here](./images/1551366997828.png)
 
 
 
@@ -978,7 +966,7 @@ eg: double a = add(add(10,20),40);//70
 注意：不要使用两个函数相互调用，函数调用不要执行闭环
 ```
 
-![1550978054654](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550978054654.png)
+![enter description here](./images/1551367082828.png)
 
 ### 函数的递归调用
 
@@ -1291,7 +1279,7 @@ class MyClass
 
 #### 冒泡排序
 
-![1551268298307](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551268298307.png)
+![enter description here](./images/1551367156874.png)
 
 ```java
 规则：相邻的两个元素进行对比，如果前者大于后者则两者交换位置
@@ -1321,7 +1309,7 @@ System.out.println(a[i]);
 
 #### 选择排序
 
-![1551268339685](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551268339685.png)
+![enter description here](./images/1551367174333.png)
 
 ```java
 规则：数组中每个元素，分别和其之后的元素进行对比，如果此元素大于后者那么两者交换位置
@@ -1540,11 +1528,8 @@ Java中的类：代码 定义了一类对象应该具有哪些属性，方法  �
 
 ### 成员变量（属性）和局部变量区别
 
-![1551321113365](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551321113365.png)
-
-![1551345602111](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551345602111.png
-
-![1551345808748](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551345808748.png)
+![enter description here](./images/1551367279312.png)
+![enter description here](./images/1551367300015.png)
 
 ```
 成员变量
@@ -1562,12 +1547,11 @@ Java中的类：代码 定义了一类对象应该具有哪些属性，方法  �
 
 ```
 
-![1551337555937](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551337555937.png)
+![enter description here](./images/1551367328197.png)
 
 ### 静态变量和实例变量的区别
 
-![1551345602111](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551345602111.png)
-
+![enter description here](./images/1551367354673.png)
 ```java
 加上 static之后  score不再是实例变量 但仍是成员变量  成员变量是个大概念，尽管它不是最精确的那个说法，秉承实际开发的习惯，我们叫他成员变量。
 
@@ -1736,9 +1720,8 @@ public int getAge(){                    
 } 
 ```
 
-![1551340463071](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551340463071.png)
-
-![1551340471220](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1551340471220.png)
+![enter description here](./images/1551367441372.png)
+![enter description here](./images/1551367451996.png)
 
 ## 三大特性
 
@@ -2248,7 +2231,7 @@ return false;
 
 ### 2.基本类型的数据和包装类类型之间的映射
 
-![1550979550222](C:\Users\Ying\AppData\Roaming\Typora\typora-user-images\1550979550222.png)
+![enter description here](./images/1551367507534.png)
 
 
 
