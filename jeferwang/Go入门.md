@@ -12,7 +12,7 @@ grammar_cjkRuby: true
 - 在src下建立自己的命名空间，例如github.com/username
 - 接下来，自己的包都会放在此命名空间内，例如在github.com/username 下建立文件夹：Hello，并在Hello文件夹创建Hello.go
 
-# Hello World
+# Hello World2
 按照安装的教程，我们已经配置好了go的开发环境，接下来就是进行简单的go语法学习
 编辑自己的Hello.go文件，输入测试代码：
 ```golang
