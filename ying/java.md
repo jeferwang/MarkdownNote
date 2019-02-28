@@ -1,3 +1,11 @@
+---
+title: Java学习笔记
+tags: Java
+grammar_cjkRuby: true
+---
+[TOC]
+
+
 #  CoreJava_Note
 
 ## 特点
