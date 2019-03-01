@@ -228,7 +228,7 @@ Java中每个变量必须先声明，后使用
 byte    1    8              -128~127
 short   2   16            -32768~32767
 int     4   32       -2147483648~2147483647
-long    8   64                 了解
+long    8   64                 -2^63~2^63-1，即-9223372036854775808~223372036854775807
 
 1字节(Byte)=8位（bit）
 一个bit中只能存放0或者1
@@ -1683,15 +1683,7 @@ jvm调用构造方法 |属性可以被赋予构造方法的参数
 1.方法名称相同
 2.与返回值类型无关，修饰符无关，
 3.只看参数列表，且参数列表必须不同（参数个数或参数类型或顺序， 不允许两个方法的参数表形参的名字不同），调用时，根据方法参数列表的不同来区别
-4.public  返回值类型   方法名(形参列表){ }    
-   
-    
-
-
-----------
-
-
-  
+4.public  返回值类型   方法名(形参列表){ }      
 作用：允许类中的同类方法同名 ，屏蔽参数差异，使用方式更加方便，灵活。（参数不同，同一行为的行为方式会有不同）
 
 
@@ -1783,8 +1775,8 @@ this关键字
 
 当实例变量与局部变量命名冲突时，默认优先使用过局部变量。如果需要访问实例变量，借助于this.        
 2.   this(参数)/this()    
- 代表调用本类的其他构造方法，根据括号中的参数顺序，类型以及个数去匹配构造方法（因为构造方法不能手动调用，需要用this)
- 
+ 代表调用本类的其他构造方法，根据括号中的参数顺序，类型以及个数去匹配构造方法（因为构造方法不能手动调用，需要用this)，**必须是构造方法的第一条语句**
+ 必须s
 ```java 
 clsaa MyClass{
 		int a = 10;
@@ -1796,22 +1788,28 @@ clsaa MyClass{
 		this();
 	System.out.println("ok");
 	}
+	public MyClass(String s){
+		this(10);
+	}
  }	
 ```
-
-``` java
-public  void setAge(int age){            
-		this.age = age;                        
-}                
-public int getAge(){                    
-		return this.age;                        
-} 
-
+```java
+class CreditCard{
+	String cardId;
+	String password;
+	double balance;
+	public CreditCard(){}
+	public CreditCard(String cardId,String password,double balance){
+			this.cardId = cardId;
+			this.password = password;
+		} 
+		public CreditCard(String cardId,String password,double balance){
+			this(cardId,password);
+			this.balance = balance;
+		}
+		public void method(){}
+}
 ```
-
-  
-
-
 ![enter description here](./images/1551367441372.png)
 ![enter description here](./images/1551367451996.png)
 
@@ -1833,9 +1831,12 @@ public int getAge(){                    
 	2.对外提供对应属性的公开的`set()  get()`方法
 	
 ``` java
-public void setAge(int age){
-	this.age=age;
-	}
+public  void setAge(int age){            
+		this.age = age;                        
+}                
+public int getAge(){                    
+		return this.age;                        
+} 
 ```
 	
 4.封装前     stu.age
