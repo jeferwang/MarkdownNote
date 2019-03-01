@@ -1776,7 +1776,30 @@ this关键字
 当实例变量与局部变量命名冲突时，默认优先使用过局部变量。如果需要访问实例变量，借助于this.        
 2.   this(参数)/this()    
  代表调用本类的其他构造方法，根据括号中的参数顺序，类型以及个数去匹配构造方法（因为构造方法不能手动调用，需要用this)，**必须是构造方法的第一条语句**
- 必须s
+3. 注意;
+  一个构造方法中只能定义一个this()或者this(实际参数)
+  this()和this（实际参数）只能定义在构造方法中，不能定义在成员方法中
+  构造方法中this（）不能出现递归调用，不能自己调用自己
+  ```java
+  //互相调用   错误
+	//无参构造方法
+	public Student(){
+		this(8);
+		System.out.println("无参的构造被执行");
+		
+		//初始化代码
+		/*
+		10000行
+		*/
+	}
+	//有参构造
+	public Student(int age){
+		this();
+		this.age = age;
+		
+		System.out.println("一个参数的构造被执行");
+	}
+  ```
 ```java 
 clsaa MyClass{
 		int a = 10;
@@ -1829,19 +1852,122 @@ class CreditCard{
 **3.封装步骤**
 	1.私有化属性
 	2.对外提供对应属性的公开的`set()  get()`方法
-	
+	3.封装前     s.age
+       封装后     s.setAge(20)    s.getAge();      
+语法：
 ``` java
+//set 设置属性的值
 public  void setAge(int age){            
 		this.age = age;                        
-}                
+}            
+//get 获取属性的值
 public int getAge(){                    
 		return this.age;                        
 } 
 ```
+```java
+
+//案例：
+public class Demo{
+	public static void main(String[] args) {
+		Student s = new Student();
+		
+		s.setAge(18);
+		
+	}
+}
+
+class Student{
+	private String name;
+	private int age;//成员变量
 	
-4.封装前     stu.age
-   封装后     stu.setAge(20)    stu.getAge();      
-   
+	//无参构造方法
+	public Student(){
+		System.out.println("无参的构造被执行");
+	}
+	//有参构造
+	public Student(String name,int age){
+		this.name = name;
+		this.age = age;
+		System.out.println("一个参数的构造被执行");
+	}
+
+	//set 设置属性的值  
+	public void setAge(int age){
+		this.age = age;
+	}
+	//get 获取属性的值
+	
+
+}
+
+
+----------
+
+
+//案例：
+public class Demo{
+	public static void main(String[] args) {
+		Student s = new Student();
+		s.setName("屎壳郎");
+		s.setAge(188);
+		System.out.println(s.getName());
+		System.out.println(s.getAge());
+		
+		
+		
+	}
+}
+
+class Student{
+	private String name;
+	private int age;//成员变量
+	
+	//无参构造方法
+	public Student(){
+		//System.out.println("无参的构造被执行");
+	}
+	//有参构造
+	public Student(String name,int age){
+		this.name = name;
+		this.age = age;
+		System.out.println("一个参数的构造被执行");
+	}
+
+	//setAge 设置属性的值  
+	public void setAge(int age){
+		if (age>0&&age<=120) {
+			this.age = age;
+		}else{
+			System.out.println("非法数据，赋值失败");
+			return;
+		}
+		
+		
+	}
+	//setName 设置姓名
+	public void setName(String name){
+		this.name = name;
+		
+	}
+	//get 获取属性的值
+	public String getName(){
+		return this.name;
+	}
+
+	public int getAge(){
+		if (this.age==0) {
+			return -1;
+		} else {
+			return this.age;
+		}
+		
+		
+	}
+
+}
+```
+
 
 
 ----------
