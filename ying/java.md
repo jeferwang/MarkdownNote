@@ -1459,6 +1459,56 @@ int[][] a = new int[][3];//错误的
 int[][] a =new int[高维][低维]
 ```
 
+#### 小游戏
+题目(30分钟，做完请立即举手，取前5名)
+	猜数字游戏
+	1.游戏开始后只有十次机会，十次之后提示“你没有       机会了，再从新来过吧！”
+	2.游戏被猜的数为随机的整数，整数范围为0--		100; 
+		提示：随机数的表示Math.random()，范围为		0到1不包括1的一个小数;
+	3.当猜中时提示“恭喜你猜中了”同时退出程序，
+	  当猜错时提示”你猜错了 你还有几次机会“；
+	4.在游戏开始时提示”请输入0--100之间的整数
+	  如果输入小数提示“输入有误”
+```java
+	  import java.util.*;
+class MyClass1020
+{
+	public static void main(String[] args) 
+	{
+		boolean f = false;
+		   
+	 	int a = (int)((Math.random())*100);
+	 	System.out.println("正确答案是"+a);
+		for(int i=1;i<=10;i++){		
+		Scanner s= new Scanner(System.in);
+		
+	 	System.out.println("请输入0--100之间的整数");
+	 	double n =s.nextDouble();
+	 	if((n-(int)n)!=0){
+      		 System.out.println("输入有误，你输入的是小数");
+  		 }else{
+	  		
+			if(n==a){
+				System.out.println("恭喜你猜中了");
+				f = true;
+				break;
+				
+				
+			}else{
+				System.out.println("你猜错了 你还有"+(10-i)+"次机会");
+				f=false;
+				continue;
+				}
+			}
+		}
+		if(f==false)
+		{
+			System.out.println("没有机会了 重新来过吧");
+		}
+    }
+}
+```
+
 ## 面向对象
 
 ### 面向对象
@@ -1536,6 +1586,30 @@ Java中的类：代码 定义了一类对象应该具有哪些属性，方法  �
 全类内部|声明开始--代码块结束
 可以和局部变量重名，局部变量有先|重合范围不允许两个局部变量重名
 
+``` java
+class ClassA{
+		public void method(int value){
+			 System.out.println(value);
+}
+		public void method(){
+			 System.out.println(value);
+}
+			int value;成员
+}
+
+class TestClassA{
+public static void main(String args[]){
+	 ClassA classA = new ClassA();
+ 	 classA.value = 10;局部
+     classA.method();
+     classA.method(20);
+  }
+}
+```
+
+第一个method函数打印的是它外面的value，因为他里面没value，只有外面的value离他近
+第二个method函数打印的是它的参数value，因为它的参数value比函数外面的那个value离得更近
+![enter description here](./images/1551445185692.png)
 
 
 成员变量
@@ -1551,20 +1625,27 @@ Java中的类：代码 定义了一类对象应该具有哪些属性，方法  �
 4.局部变量没有默认初始化值，每次必须显示初始化
 5.局部变量声明时不能指定权限修饰符
 
+| 成员变量类型    |  初始值  
+| --- | --- | 
+| byte|0
 
 
 ![enter description here](./images/1551367328197.png)
 
 ### 静态变量和实例变量的区别
 
-![enter description here](./images/1551367354673.png)
+
 ```java
+class  Student{
+	String name;
+	int age;
+	static double score;
+}
+```
 加上 static之后  score不再是实例变量 但仍是成员变量  成员变量是个大概念，尽管它不是最精确的那个说法，秉承实际开发的习惯，我们叫他成员变量。
 
 静态变量可以直接用类名来引用。实例变量必须通过创建对象才可以使用
-所以加了static之后  score就不是实例变量了  但可以说是成员变量 因为成员的概念更宽泛。
-```
-
+所以加了static之后  score就不是实例变量了  但可以说是成员变量 因为成员的概念更宽泛
 ```java
 在语法定义上的区别：静态变量前要加static关键字，而实例变量前不加。
 
