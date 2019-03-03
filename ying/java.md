@@ -10,11 +10,11 @@ grammar_cjkRuby: true
 
 ## 特点
 
-```java
-简单性：相对c++语言简单
-跨平台：平台就是操作系统，linux,macos,unix,windows
-面向对象:使用计算机模拟现实世界，解决现实问题，更贴近人的思维方式
-```
+
+1. 简单性：相对c++语言简单
+2. 跨平台：平台就是操作系统，linux,macos,unix,windows
+3. 面向对象:使用计算机模拟现实世界，解决现实问题，更贴近人的思维方式
+
 
 ## 执行机制
 
@@ -33,7 +33,15 @@ grammar_cjkRuby: true
 其中的开发工具：编译工具(javac.exe)  打包工具(jar.exe)等
 
 ```
+## 三个体系
 
+　JavaSE（JSE)(Java2PlatformStandardEdition，java平台标准版）
+
+　JavaEE(JEE)(Java2Platform,EnterpriseEdition，java平台企业版)
+
+　JavaME(JME)(Java2PlatformMicroEdition，java平台微型版)
+
+　　
 ## 环境搭建
 
 ```java
