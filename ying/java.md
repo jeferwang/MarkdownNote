@@ -18,24 +18,23 @@ grammar_cjkRuby: true
 
 ## 执行机制
 
-```java
+
 1.编译执行：源文件编译成机器码，一次编译，多次执行，执行效率高，不可跨平台
 2.解释执行：源文件一行一行解释，一行一行执行，不同的操作系统具备不同的解释器 执行效率低 可以跨平台
 3.java先编译再解释执行  源文件编译生成字节码文件（平台中立文件  .class）,再将字节码文件进行解释执行
-```
 
 ##  JVM,JRE,JDK
 
-```java
+
 1.JVM(Java Virtual Machne)虚拟机：使用软件在不同的操作系统中，模拟出相同的环境
 2.JRE（Java ERuntime Environment）运行时环境：包含JVM和解释器，核心类库 完整的Java运行环境
 3.JDK(Java Development Kit)java开发环境：包含 JRE+开发工具包（编译器+调试工具）
 其中的开发工具：编译工具(javac.exe)  打包工具(jar.exe)等
 
-```
+
 ## 三个体系
 
-　JavaSE（JSE)(Java2PlatformStandardEdition，java平台标准版）
+　JavaSE(JSE)(Java2PlatformStandardEdition，java平台标准版）
 
 　JavaEE(JEE)(Java2Platform,EnterpriseEdition，java平台企业版)
 
@@ -44,8 +43,8 @@ grammar_cjkRuby: true
 　　
 ## 环境搭建
 
-```java
-JAVA_HOME：变量值JDK的安装目录
+
+JAVA_HOME：==变量值JDK的安装目录==
 Path：变量值：jdk  bin目录的路径
 classpath：指定虚拟机去指定目录加载 .class文件  默认.
     
@@ -64,7 +63,7 @@ set  变量名=具体值 ：给指定变量定义具体值。
 		set  path=新值;%path%
 注：这种配置方式只在当前dos窗口有效。窗口关闭，配置消失。
 
-```
+
 
 ## 黑窗口指令
 
