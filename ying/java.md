@@ -1245,14 +1245,14 @@ public static void printArray(int[] a){
 
 ### 函数的可变长参数
 
-```java
+
 可变长参数        
 位置：用于定义函数的形参列表中            
 作用： 用于接收 0‐多个相同类型的实参（必须是形参列表中的最后一个参数）            
 例如：  public  static void m1(int a,double b,String... str){}            
 语法：  数据类型... 变量名            
 使用：  同数组   可以通过遍历获取实际的数据 
-元素的地址 = 首地址+下标*数据类型所占字节
+元素的地址 = 首地址+下标* 数据类型所占字节
 
 案例：
 计算 2个数的和 3个数的和
@@ -1260,6 +1260,7 @@ public static void printArray(int[] a){
 public static 返回值类型 函数名（数据类型...）
 eg: public static 返回值类型 函数名（int... 参数名）{}
 案例：
+```java
 class MyClass
 {
 	public static void main(String[] args) 
@@ -1275,19 +1276,20 @@ class MyClass
 		System.out.printin();
 	}
 }
-注意：
+```
+>注意：
 1.一个函数可变长度参数不能同时定义两个或多个
 (int...a,int...b)//错误
 2.一个函数里可变长度参数只能有一个且必须在参数列表的最后
 (inta,int...b)//正确
 (int...a,int b)//错误
-```
+
 
 ### 数组的排序
 
-```
+
 排序：将多个数据从小到大或者从大到小的顺序进行排列
-```
+
 
 #### 冒泡排序
 
