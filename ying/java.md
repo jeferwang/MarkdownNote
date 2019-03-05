@@ -1143,10 +1143,10 @@ public class Demo{
 }
 ```
 
-----------
 
 
-2)System.arraycopy(原数组,原数组的小标，新数组，新数组的小标，长度)
+
+**2)System.arraycopy(原数组,原数组的小标，新数组，新数组的小标，长度)**
 
 ```java 
 public class Demo{
@@ -1155,6 +1155,7 @@ public class Demo{
 	//创建一个新的数组 长度是原数组的2倍
 	int[] b = new int[a.length*2];
 	//将原数组的元素赋值到新数组
+	
 	/*第二种方法
 	System.arraycopy(a,0,b,0,a.length);
 */
@@ -1168,10 +1169,10 @@ public class Demo{
 }
 ```
 
-----------
 
 
-3)利用java.util包下的Arrays.copyOf(原数组，新数组的长度)，返回值的一个新的数组
+
+**3)利用java.util包下的Arrays.copyOf(原数组，新数组的长度)，返回值的一个新的数组**
 案例：
 ```java 
 import java.util.*;
@@ -1191,8 +1192,9 @@ public class Demo{
 
 ### 数组作为函数的参数
 
-```java
+
 案例：将数组的遍历打印，封装在一个函数里
+```java 
 //1 参数 数组类型
 import java.util.*;
 public class Demo{
@@ -1217,27 +1219,27 @@ public class Demo{
 
 ```java
 import java.util.*;
-public class Demo{
-public static void main(String[] args){
-int[] n = {1,3,5,6,8};
-n = arrayCopy(n);
-printArray(n);
+	public class Demo{
+		public static void main(String[] args){
+			int[] n = {1,3,5,6,8};
+			n = arrayCopy(n);
+			printArray(n);
 }
 //1形参 数组类型 返回值 数组类型
 public static int[] arrayCopy(int[] a){
-int[] b = new int[a.length*2];
+		int[] b = new int[a.length*2];
 //将原数组的元素复制到新的数组
-for(int i = 0;i<a.length;i++){
-b[i] = a[i];
+		for(int i = 0;i<a.length;i++){
+			b[i] = a[i];
 }
-return b;
+			return b;
 }
 //遍历打印
 public static void printArray(int[] a){
-for(int i = 0;i<a.length;i++){
-System.out.print(a[i]+" ");
-}
-}
+		for(int i = 0;i<a.length;i++){
+			System.out.print(a[i]+" ");
+		}
+	}
 }
 ```
 
