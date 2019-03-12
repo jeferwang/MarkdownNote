@@ -2371,7 +2371,7 @@ public void m6(){}
 能。有了接口之后，弥补了类与类之间的单继承关系。
 
 
-## 内部类b[重点]
+## 内部类[重点]
 
 #### 1.概念
 
@@ -2600,90 +2600,158 @@ interface Teacher{
 ### 2.Object的API
 
 
-1.public final Class getClass():  //返回此对象的运行时类型(实际类型)。判断两个对象的运行时类
-型是否一致
-2.public int hashCode():// 一个对象的整数名称（身份证号） 根据对象的地址或者字符串或者数字计算
-出来的。哈希码不是唯一的。 尽量保证不同的对象返回不同的哈希码值。
-3.public  String toString():// 返回对象的字符串形式
+1.public final Class getClass():  //返回引用中实际存储对象的类型。用于判断两个对象的运行时类型是否一致（用 ==），被final修饰不能被覆盖
 ```java
-package com.baizhi.object;
-public class TestObject1 {
-	public static void main(String[] args) {
-			Dog a = new Dog();
-			System.out.println(a.getClass().getName());
-			System.out.println(a.hashCode());//  十进制
-			System.out.println(a.getClass().getName()+'@'+Integer.toHexString(a.hashCode()));
-			System.out.println(a.toString());
-			System.out.println(a);
-		}
-}
-class Dog extends Animal{}
-class Cat extends Animal{}
-class Animal {}
+	Animal a1= new Dog();
+	Animal a2= new Cat();
+	System.out.println(a1.getClass()==a2.getClass());
 ```
-------------------------------------
-4.public boolean equals(Object obj):// 判断指定对象是否与此对象“相等”
-```java 
-package com.baizhi.object;
-public class TestObject1 {
-		public static void main(String[] args) {
-					Student a = new Student(5,"小黑");
-					Student d = new Student(5,"小黑");
-					System.out.println(a.toString());
-					System.out.println(a.equals(d));
+
+2.public int hashCode():// 返回对象的哈希码值，哈希码值的来源是对象十六进制的内存地址转换为十进制整数的结果。一个对象的整数名称（身份证号） 根据对象的地址或者字符串或者数字计算出来的。哈希码不是唯一的。 尽量保证不同的对象返回不同的哈希码值。
+
+3.public  String toString():// 返回对象的字符串形式
+	实际开发应用：通常将自定义类中的toString方法进行覆盖，打印输出对象的属性信息
+	
+覆盖的原则 ：将所有属性拼接为一个String类型的结果进行返回
+```java
+public String toString(){
+		return "name="+name+",age=";
 	}
-}
-class Student{
-		String name;
-		int id;
-	public Student(int id,String name){
-		this.id=id;
-		this.name=name;
-}
-@Override
-public String toString() {
-	return "Student [name=" + name + ", id=" + id + "]";
-}
-//equals  比较两个对象的属性（值）是否相同
-public boolean equals(Object obj){   //  Object obj = 第二次抓到的对象  null
- 
-		if(this==obj){
+```
+注意toStrong方法和get方法的区别
+	（1）get方法是获取单个属性的信息，并且不更改属性的原数据类型
+	   (2)  toString方法是获取所有属性的信息，并且是以String类型结果的返回--方便程序员打印输出对象信息用的
+	
+
+4.public boolean equals(Object obj):// 判断指定对象是否与此对象“相等”。。。可以判断两个对象的地址是否相同 ，相同为true ，不同为false
+	(1)==的应用
+		①如果==
+			两端是基本数据类型的变量，则比较数值是否相同
+		②如果==
+			两端是引用类型的变量，则比较引用中存储的地址是否相同
+						实际开发应用：通常用==判断两个引用是否指向同一个对象
+						引用1 == 引用2     ---》true 代表指向同一个对象
+						                                	   false 代表指向不同的对象
+（2）equals方法的应用
+	1.Object类中提供的equals方法默认是比较两个对象的地址是否相同
+	2.自定义类型的对象利用equals比较对象内容同时需要手动覆盖，覆盖原则如下：
+	
+```java
+	public boolean equals(Object o){
+	1.自反性：判断两个引用是否指向同一个对象
+		if(this==o){
 			return true;
-}
-		if(obj==null){
+		}
+	2.判断 o 是否指向空
+	if（0==null）{
 			return false;
-}
-if(this.getClass()!=obj.getClass()){
-		return false;
-}
-		Student stu = (Student)obj;
-		if(this.id==stu.id && this.name.equals(stu.name)){
+		}
+	3.判断两引用中存储的对象实际类型是否一致
+	if（	this.getClass（）!= o.getClasss()）{
+				return false;
+			}
+	4.强制类型转换
+	Student s = (Student)o;	
+	5.将两个对象的属性内容一一比较：基本数据类型==：引用类型：equals
+	if（this.age==s.age &&this.name.equals(s.name)）{
 				return true;
+		}else{
+			return false;
+		}
 	}
-		return false;
-	}
-}
 ```
--------------------------------
+
+
 5.protected  void  finalize()  throws Throwable //  当对象被判定为垃圾对象时，由垃圾回收器(GC)调用该方法
 
 
-void finalize();JVM中的垃圾回收器进行回收垃圾对象，自动调用方法
+void finalize()：JVM中的垃圾回收器进行回收垃圾对象，自动调用方法(面试重要，性能调优)
 1.垃圾对象：  没有任何引用指向的对象   Student  stu = new Student();   stu=null;
-2.垃圾回收：  销毁垃圾对象，释放数据存储空间
-3.当对象成为垃圾对象时，通过垃圾回收器（GC)回收
-4.自动回收机制： JVM的内存耗尽，无法再为新对象分配空间，一次性回收掉所有的垃圾对象  5.手动回收机制：  使用System.gc()  通知垃圾回收器进行垃圾回收。
-
+2.垃圾回收器：简称GC，用于JVM完成回收垃圾对象
+3.垃圾回收目的：  销毁垃圾对象，释放数据存储空间（释放JVM内存）
+4.垃圾回收器（GC）回收垃圾对象的时机
+	自动回收机制： J当JVM内存耗尽，不能再为新创建的对象分配空间时，JVM会启动垃圾回收器，将垃圾对象一次性进行回收(当垃圾回收器回收垃圾对象时，自动调用finalize方法)。
+	手动回收机制： 通过 System.gc(); 通知JVM启动垃圾回收器进行垃圾回收，如果 GC处于空闲状态，则垃圾进行垃圾回收；如果GC处于繁忙状态，则暂不回收。
+	
+>面试题目
+>：写出  final 和 finalize 的区别。
+				        final  修饰符：修饰类、变量、方法
+				        	    修饰的类：不允许被继承，即没有子类
+				        	    修饰的方法：不能被覆盖，可以被继承
+				        	    修饰变量：作用范围内的常亮，允许一次赋值
+				        finalize:是方法名，垃圾回收器回收垃圾对象,JVM自动调用的方法。
 
 ## 包装类
 
 ### 1.概念
 
+1.概念：8种基本数据类型对应的引用/对象类型，称为基本数据类型的包装类
+2.基本数据类型对应 包装类：位于java.lang包中【重点】
+|基本数据类型|包装类|
+|---|---|
+|byte|Byte|
+|lshort|Short|
+|long|Long|
+|int|Integer|
+|float|Float|
+|double|Double|
+|boolean|Boolean|
+|char|Character|
 
-由JDK提供，用于把基本的数据类型转化为对应的引用类型的  一组类
-目的：  方便Object去管理所有类型的数据
-包装类在开发过程中的应用：
-包装类是因哟用类型，其默认值为null,可以与用于区分 有效数据和无效数据
+3.数据类型之间的转换：
+	（1）int 和 Integer 之间的转换
+				int --->Integer
+					① Integer i1= new Ingeter(12);//借助Integer的构造方法
+					②Integer i2 = Integer.valueOf(12);//借助Integer中的静态方法 valueOf
+				Integer--->int
+					① int a=i2.intValue();
+		(2) String和Integer之间的转换
+				String--->Integer
+					①Integer i3 = new Interger(“123”);
+					②Integer i4 = Integer.valueOf("123");
+				Integer--->String
+					①String s1 = i4.toString();
+					②String s2 = i4+"";//利用字符串拼接
+		（3）int 和String之间的转换
+				int--->String
+						int a=5;
+					①String s3=a3+"";//注意：基本数据类型没有toString方法
+				String --->int
+					①int a4= Integer.parseInt("123")//借助Integer静态方法【开发应用重点】
+>注意：String类型数据转换为int/Integer时，要求转换字符串必须是纯数值类型，否则运行报错，错误信息：java.lang.NumberFormatException(数值类型转换异常)
+
+4.
+①JDK5.0之后 提供自动装箱和拆箱功能 ，即基本数据类型和对应的包装类型之间可以相互转换
+②
+	装箱：基本数据类型 转换为 对应的包装类型的过程 Integer i=12;
+	拆箱：包装类型 转化为对应 基本数据类型的过程 int a=i;
+③ 自动装箱的原理【面试重点难点】
+	（1）自动装箱底层 调用是 Integer 类中valueOf方法完成转换
+```java  
+			public ststic Integer valueOf(int i){
+			if(i>= -128 && i<=127)
+						return  对应的常量池的包装结果;
+					return new Integer(i);
+			}
+```
+
+（2）为了提高转换的效率，Integer中将 -128~127作为常用数据段进行预先包装处理，包装
+	的结果存储在方法区中常量池中，也称为缓冲区。
+	
+	面试题目：
+			    	Integer i1 = 12;
+			    	Integer i2 = 12;
+			    	System.out.println(i1==i2);//true
+
+			    	Integer i3 = 129;
+			    	Integer i4 = 129;
+			    	System.out.println(i3==i4);//false
+	
+5.实际开发应用【开发重点】
+	（1）作用：可以区分程序中有效数据和无效数据	,例如：0和null;'
+       (2)  场景：通常将类中属性由之前的基本数据类型改变为对应包装类型--->区分数据有效性
+	   
+	   
 
 
 ### 2.基本类型的数据和包装类类型之间的映射
