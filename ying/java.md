@@ -2371,7 +2371,7 @@ public void m6(){}
 能。有了接口之后，弥补了类与类之间的单继承关系。
 
 
-## 内部[重点]
+## 内部类b[重点]
 
 #### 1.概念
 
@@ -2519,6 +2519,7 @@ int a = 0;
 特殊性：必须继承一个类或是实现一个接口
 基于一个匿名内部类只能创建该类的一个对象，而且对象的创建和类的定义一起完成
  语法：
+   注意：匿名内部类实现接口的形式：必须实现接口中所有方法
  ```java
    			实现接口：
    				interface IA{
@@ -2531,9 +2532,9 @@ int a = 0;
 								//方法的实现部分
 							}  					
    						};
-   		            注意：匿名内部类实现接口的形式：必须实现接口中所有方法
+   		          
 					
----------------------------------------------------------------------------------------------------------------					
+----------------------------------------------------------
    		    继承类：
    		    	class MyClass{
 	   		    	public void test(){}
@@ -2541,17 +2542,19 @@ int a = 0;
 
    		    	main函数中匿名内部类：
    		    		MyClass mc= new MyClass(){}; 
-   		    		注意：匿名内部类继承类的形式：可以不覆盖类中的已有方法。
+   		    	
+```
+注意：匿名内部类继承类的形式：可以不覆盖类中的已有方法。
    		 匿名内部类的优缺点
    			优点：简化代码，同时可以使程序不间断编程思路。
    			缺点：可读性差。 
-```
-```java
+			
 语法：
 new 父类名/接口名(){
 //类的内容
 }
 不但定义了类  还同时创建了对象
+```java 
 package com.baizhi.inner;
 import java.util.Scanner;
 public class TestInnerClass2 {
@@ -2596,85 +2599,92 @@ interface Teacher{
 
 ### 2.Object的API
 
-```java
-1. public final Class getClass():  //返回此对象的运行时类型(实际类型)。判断两个对象的运行时类
+
+1.public final Class getClass():  //返回此对象的运行时类型(实际类型)。判断两个对象的运行时类
 型是否一致
-2. public int hashCode():// 一个对象的整数名称（身份证号） 根据对象的地址或者字符串或者数字计算
+2.public int hashCode():// 一个对象的整数名称（身份证号） 根据对象的地址或者字符串或者数字计算
 出来的。哈希码不是唯一的。 尽量保证不同的对象返回不同的哈希码值。
-3. public  String toString():// 返回对象的字符串形式
+3.public  String toString():// 返回对象的字符串形式
+```java
 package com.baizhi.object;
 public class TestObject1 {
-public static void main(String[] args) {
-Dog a = new Dog();
-System.out.println(a.getClass().getName());
-System.out.println(a.hashCode());//  十进制
-System.out.println(a.getClass().getName()+'@'+Integer.toHexString(a.hashCode()));
-System.out.println(a.toString());
-System.out.println(a);
-}
+	public static void main(String[] args) {
+			Dog a = new Dog();
+			System.out.println(a.getClass().getName());
+			System.out.println(a.hashCode());//  十进制
+			System.out.println(a.getClass().getName()+'@'+Integer.toHexString(a.hashCode()));
+			System.out.println(a.toString());
+			System.out.println(a);
+		}
 }
 class Dog extends Animal{}
 class Cat extends Animal{}
 class Animal {}
-4. public boolean equals(Object obj):// 判断指定对象是否与此对象“相等”
+```
+------------------------------------
+4.public boolean equals(Object obj):// 判断指定对象是否与此对象“相等”
+```java 
 package com.baizhi.object;
 public class TestObject1 {
-public static void main(String[] args) {
-Student a = new Student(5,"小黑");
-Student d = new Student(5,"小黑");
-System.out.println(a.toString());
-System.out.println(a.equals(d));
-}
+		public static void main(String[] args) {
+					Student a = new Student(5,"小黑");
+					Student d = new Student(5,"小黑");
+					System.out.println(a.toString());
+					System.out.println(a.equals(d));
+	}
 }
 class Student{
-String name;
-int id;
-public Student(int id,String name){
-this.id=id;
-this.name=name;
+		String name;
+		int id;
+	public Student(int id,String name){
+		this.id=id;
+		this.name=name;
 }
 @Override
 public String toString() {
-return "Student [name=" + name + ", id=" + id + "]";
+	return "Student [name=" + name + ", id=" + id + "]";
 }
-/  equals  比较两个对象的属性（值）是否相同
+//equals  比较两个对象的属性（值）是否相同
 public boolean equals(Object obj){   //  Object obj = 第二次抓到的对象  null
  
-if(this==obj){
-return true;
+		if(this==obj){
+			return true;
 }
-if(obj==null){
-return false;
+		if(obj==null){
+			return false;
 }
 if(this.getClass()!=obj.getClass()){
-return false;
+		return false;
 }
-Student stu = (Student)obj;
-if(this.id==stu.id && this.name.equals(stu.name)){
-return true;
+		Student stu = (Student)obj;
+		if(this.id==stu.id && this.name.equals(stu.name)){
+				return true;
+	}
+		return false;
+	}
 }
-return false;
-}
-}
-5.protected  void  finalize()  throws Throwable //  当对象被判定为垃圾对象时，由垃圾回收
-器(GC)调用该方法
-  1.垃圾对象：  没有任何引用指向的对象   Student  stu = new Student();   stu=null;
+```
+-------------------------------
+5.protected  void  finalize()  throws Throwable //  当对象被判定为垃圾对象时，由垃圾回收器(GC)调用该方法
+
+
+void finalize();JVM中的垃圾回收器进行回收垃圾对象，自动调用方法
+1.垃圾对象：  没有任何引用指向的对象   Student  stu = new Student();   stu=null;
 2.垃圾回收：  销毁垃圾对象，释放数据存储空间
 3.当对象成为垃圾对象时，通过垃圾回收器（GC)回收
-4.自动回收机制：  JVM的内存耗尽，无法再为新对象分配空间，一次性回收掉所有的垃圾对象
- 手动回收机制：  使用System.gc()  通知垃圾回收器进行垃圾回收。
-```
+4.自动回收机制： JVM的内存耗尽，无法再为新对象分配空间，一次性回收掉所有的垃圾对象  5.手动回收机制：  使用System.gc()  通知垃圾回收器进行垃圾回收。
+
 
 ## 包装类
 
 ### 1.概念
 
-```
+
 由JDK提供，用于把基本的数据类型转化为对应的引用类型的  一组类
 目的：  方便Object去管理所有类型的数据
 包装类在开发过程中的应用：
 包装类是因哟用类型，其默认值为null,可以与用于区分 有效数据和无效数据
-```
+
 
 ### 2.基本类型的数据和包装类类型之间的映射
 
