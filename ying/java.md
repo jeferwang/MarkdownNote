@@ -2833,10 +2833,17 @@ int b = i.intValue(); // 包装类转化为对应的基本类型
 3.字符串字面值存储在串池中，不可更改，不会销毁。提高可重用性
 
 
-### 2.创建String类型对象的方式
+
+###  2.获取字符串的方式：【面试题目】
+
+（1）String str ="hello";
+			在串池中产生一个对象，供其他字符串共享
+（2）String str2 = new String("world");
+			产生两个对象，一个在堆空间中产生，另一个在串池中产生，如果串池中已经存在此字符串，则不在串池中创建
+	
 
 ```java
-1.  String s1 = "hello"; //只在串池中构建了一个 "hello"
+1. String s1 = "hello"; //只在串池中构建了一个 "hello"
 String s2 = "hello" // 与s1共享串池中的 "hello"  并未新建对象
 String s3 = new String("abc")//  在堆空间中构建一个对象 "abc"  在串池中构建
 "abc" 一共两个对象
@@ -2849,13 +2856,23 @@ System.out.println(s3==s5)//false
 
 ### 3.不可变的字符串与可变字符串
 
-```java
-1.String不可变字符串，当对串池中的对象进行修改时，都是在源对象的基础上创建副本，然后在副本的基础上进行
+
+1.String不可变字符串即字符串是字面值常量，一旦创建不能改变，如果对字符串进行拼接，则会在原文本的基础上拷贝一个副文本，在副文本的基础上完成字符串的拼接（原文本保持不变）
+当对串池中的对象进行修改时，都是在源对象的基础上创建副本，然后在副本的基础上进行
 改变，源对象并未改变
+特殊点：String  s= "a"+"b"+"c";如果拼接时 +两端都是字符串常量，则在编译时直接翻译成“abc”,运行时只会产生一个对象,这种情况称为编译期可知。
 2.可变字符串
-1. StringBuilder  JDK1.5之后  速度较快  但线程不安全
-2. StringBuffer  JDK1.0之后  速度较慢  但线程安全
-```
+1.位于 java.lang包中：
+		StringBuffer: JDK1.0版本，线程安全，效率慢
+		StringBuilder:JDK5.0版本，线程不安全，效率快
+
+2.常用的方法：
+		append(String str):完成字符串的拼接
+		
+3.可变长字符串进行字符串拼接时，相对 String的拼接效率 较高。
+
+面试题目： 写出 String 和  StringBuilder 的区别？
+		          写出 StringBuffer 和 StringBuilder 的区别？
 
 ```java
 package com.baizhi.object;
@@ -2870,34 +2887,70 @@ StringBuilder sb1 = sb;
 sb.append("world");
 System.out.println(sb);
 System.out.println(sb==sb1);
-}
+	}
 }
 ```
 
 ### 4.String类中常用的API
 
-```java
+
 详细见API
-public String intern():当一个String类型的对象，去调用用intren（）方法方法时，会返回此对象（串池中的对象） 如果该对象在串池中不存在，则创建一个再返回
-public char charAt(int index) ：根据下标获取字符
-public boolean contains(String str): 判断当前字符串中是否包含str
-public char[] toCharArray():将字符串转换成数组。
-public boolean equals(Object obj): 比较字符串的内容是否相同。
-public int indexOf(String str): 在当前串中查找str出现的下标，如果存在，则返回str第一个字符在str出现的下标；如果不存在，则返回-1。
-public int indexOf(String str,int fromindex):同上,从指定下标开始查找。
-public int lastIndexOf(String str):查找字符串在当前字符串中最后一次出现的下标索引。
-public int length():返回字符串的长度。
-public String trim():去掉字符串前后的空格。
-实际开发应用： int n =Integer.parsInt(str.trim())
+
+
+
+①`public char charAt(int index) ：`获取对应下标的字符内容
+注意：（1）String底层本质为char类型的数组，所有String下标从0开始，长度为字符个数
+			（2）如果给定下标超出String的最大下标数，则运行报错，错误信息为java.lang.StringIndexOutOfBoundsException(字符串下标越界)
+
+②`public boolean contains(String str): `判断当前字符串中是否包含str
+
+③`public boolean equals(Object obj): `比较字符串的内容是否相同。
+注意：开发时遇到比较字符串内容时，严谨应用equals方法比较
+
+
+
+④`public int indexOf(String str): `在当前串中查找str出现的下标，如果存在，则返回str第一个字符在str出现的下标；如果不存在，则返回-1。
+
+
+⑤`public int length():`返回字符串的长度。
+实际开发应用：遍历字符串。
+				for(int i=0;i<str.length();i++){ //控制字符串的下标
+					//根据下标获取对应的字符
+					char c= str.charAt(i);
+					//利用 c 操作每一个字符
+				}	
+
+
+⑥`public String trim():`去掉字符串前后的空格。
+实际开发应用： int n = Integer.parseInt(str2.trim());	
+
+
 public String[] split(String str):根据str做拆分。
 public String toUpperCase():将小写转成大写。
 public String toLowerCase():将大写转成小写。
-public boolean endWith(String str):判断字符串是否以str结尾
-```
+public int indexOf(String str,int fromindex):同上,从指定下标开始查找。
+public int lastIndexOf(String str):查找字符串在当前字符串中最后一次出现的下标索引。
+public boolean endWith(String str):判断字符串是否以str结尾(用于判断文件类型)
+public char[] toCharArray():将字符串转换成数组。
+public String intern():当一个String类型的对象，去调用用intren（）方法方法时，会返回此对象（串池中的对象） 如果该对象在串池中不存在，则创建一个再返回
+
 ### 5. BigDecimal
 
+1.位置：位于 java.math包中
+	2. 作用：精确表示、计算浮点数	
+	3. 常用的方法：
+		① BigDecimal r1 = bd1.add(bd2);// 加法
+		② BigDecimal r2 = bd1.subtract(bd2); //减法
+		③ BigDecimal r3 = bd1.multiply(bd2);//乘法
+		④ BigDecimal r4 = bd1.divide(bd2,3,BigDecimal.ROUND_HALF_UP);
+			参数说明：
+				第一个参数：代表分母
+				第二个参数：代表保留到小数点后第几位
+				第三个参数：代表取舍模式，通常采用四舍五入(BigDecimal.ROUND_HALF_UP)
+
+
 ```java
-作用：  用于精确存储浮点型数据  以及  精确计算浮点型数据之间的加减乘除
+
 package com.baizhi.object;
 import java.math.BigDecimal;
 public class TestString {
@@ -2931,14 +2984,15 @@ String str1 = "Hello";
 String str2 = new String("Hello");
 4.String类API
 
-## 集合框架
+## 集合框架【重点】
 
-```
-概念：存储多个对象
+
+### 概念
+1.集合：是一种工具类，同时也是一种容器，可以存储多个对象
 collection：元素的类型都是Object
 list:元素是按顺序存储的（有下标），元素可以重复
 set：元素无下标，元素不可以重复
-```
+
 
 ### collection常用的方法
 
