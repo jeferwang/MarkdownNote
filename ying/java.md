@@ -2665,7 +2665,8 @@ public boolean equals(Object obj):// 判断指定对象是否与此对象“相�
 	}
 ```
 
-####  finalize
+#### finalize
+
 protected  void  finalize()  throws Throwable //  当对象被判定为垃圾对象时，由垃圾回收器(GC)调用该方法
 
 
