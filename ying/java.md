@@ -548,7 +548,7 @@ public class Demo{
 	}
 }
 ```
-**接收其他数据类型的方法**
+### **接收其他数据类型的方法**
 
 nextByte();     返回字节整数       
 nextShort();    返回短整数
@@ -844,7 +844,7 @@ for(int i=1；i<100;i++){
 ##### 流程控制语句break,continue,return
 
 
-**1.break**
+###### **1.break**
 结束整个循环，跳出包含break语句的循环结构    
 
 break语句出现在多层嵌套的语句块中时，可以通过标签指明要终止的是哪一层语句块 
@@ -858,13 +858,13 @@ break语句出现在多层嵌套的语句块中时，可以通过标签指明要
 			 } 
 
 
-**2.continue**
+###### **2.continue**
 结束本次循环，直接进入下次循环。
 
 continue语句用于跳过某个循环语句块的一次执行 
 continue语句出现在多层嵌套的循环语句体中时，可以通过标签指明要跳过的是哪一层循环 
 
-**3.return**
+###### **3.return**
 并非专门用于结束循环的，它的功能是结束一个方法。当一个方法执行到一个return语句时，这个方法将被结束
 与break和continue不同的是，return直接结束整个方法，不管这个return处于多少层循环之内
 
@@ -2145,6 +2145,7 @@ super :引用 指向父类对象
 
 >注意：把返回值类型设置成父类更加通用 可以返回父类以及子类
 形参里面定义为父类 就可以传父类以及子类作为实参 
+
 ## 三大修饰符[ abstract static final]
 
 ### 1.abstract
@@ -2198,7 +2199,7 @@ static修饰的成员称为类成员[静态成员]，全类共享，不属于某
    //功能性代码   一般用于给静态属性[静态成员变量]赋值，进行必要的初始化操作                
    }            
 
-6.类加载    
+### 类加载    
    1.JVM首次使用(创建对象，调用静态成员，使用子类时Class.forName("类的全限定名"))到某个类，需要通过CLASSPATH查找该类的.class
    
    2.类加载，会将类中所有的描述信息（类名，包名，方法，属性，构造方法...）读取到内存中
@@ -2600,30 +2601,33 @@ interface Teacher{
 ### 2.Object的API
 
 #### getClass
-1.public final Class getClass():  //返回引用中实际存储对象的类型。用于判断两个对象的运行时类型是否一致（用 ==），被final修饰不能被覆盖
+public final Class getClass():  //返回引用中实际存储对象的类型。用于判断两个对象的运行时类型是否一致（用 ==），被final修饰不能被覆盖
 ```java
 	Animal a1= new Dog();
 	Animal a2= new Cat();
 	System.out.println(a1.getClass()==a2.getClass());
 ```
+#### hashCode
 
-2.public int hashCode():// 返回对象的哈希码值，哈希码值的来源是对象十六进制的内存地址转换为十进制整数的结果。一个对象的整数名称（身份证号） 根据对象的地址或者字符串或者数字计算出来的。哈希码不是唯一的。 尽量保证不同的对象返回不同的哈希码值。
+public int hashCode():// 返回对象的哈希码值，哈希码值的来源是对象十六进制的内存地址转换为十进制整数的结果。一个对象的整数名称（身份证号） 根据对象的地址或者字符串或者数字计算出来的。哈希码不是唯一的。 尽量保证不同的对象返回不同的哈希码值。
 
-3.public  String toString():// 返回对象的字符串形式
+#### toString
+public  String toString():// 返回对象的字符串形式
 	实际开发应用：通常将自定义类中的toString方法进行覆盖，打印输出对象的属性信息
 	
 覆盖的原则 ：将所有属性拼接为一个String类型的结果进行返回
+
 ```java
 public String toString(){
 		return "name="+name+",age=";
 	}
 ```
-注意toStrong方法和get方法的区别
+>注意toStrong方法和get方法的区别
 	（1）get方法是获取单个属性的信息，并且不更改属性的原数据类型
 	   (2)  toString方法是获取所有属性的信息，并且是以String类型结果的返回--方便程序员打印输出对象信息用的
 	
-
-4.public boolean equals(Object obj):// 判断指定对象是否与此对象“相等”。。。可以判断两个对象的地址是否相同 ，相同为true ，不同为false
+#### equals
+public boolean equals(Object obj):// 判断指定对象是否与此对象“相等”。。。可以判断两个对象的地址是否相同 ，相同为true ，不同为false
 	(1)==的应用
 		①如果==
 			两端是基本数据类型的变量，则比较数值是否相同
@@ -2661,8 +2665,8 @@ public String toString(){
 	}
 ```
 
-
-5.protected  void  finalize()  throws Throwable //  当对象被判定为垃圾对象时，由垃圾回收器(GC)调用该方法
+####  finalize
+protected  void  finalize()  throws Throwable //  当对象被判定为垃圾对象时，由垃圾回收器(GC)调用该方法
 
 
 void finalize()：JVM中的垃圾回收器进行回收垃圾对象，自动调用方法(面试重要，性能调优)
@@ -2760,8 +2764,7 @@ int  a = Integer.parseInt(s);
 jdk1.5之后  java为八种基本数据类型所对应的包装类，提供了一个字节的缓冲区。当字面值在  -128~127
  之间，且字面值相同时，则两个包装类对象所指向的地址相同，均为缓冲区中的地址
  
- 
-3.数据类型之间的转换：
+ **总结：数据类型之间的转换：**
 	（1）int 和 Integer 之间的转换
 				int --->Integer
 					① Integer i1= new Ingeter(12);//借助Integer的构造方法
@@ -2783,7 +2786,7 @@ jdk1.5之后  java为八种基本数据类型所对应的包装类，提供了�
 					①int a4= Integer.parseInt("123")//借助Integer静态方法【开发应用重点】
 >注意：String类型数据转换为int/Integer时，要求转换字符串必须是纯数值类型，否则运行报错，错误信息：java.lang.NumberFormatException(数值类型转换异常)
 
-4.
+#### 装箱拆箱
 ①JDK5.0之后 提供自动装箱和拆箱功能 ，即基本数据类型和对应的包装类型之间可以相互转换
 ②
 	装箱：基本数据类型 转换为 对应的包装类型的过程 Integer i=12;
@@ -2815,9 +2818,9 @@ int b = i.intValue(); // 包装类转化为对应的基本类型
 			    	Integer i4 = 129;
 			    	System.out.println(i3==i4);//false
 	
-5.实际开发应用【开发重点】
-	（1）作用：可以区分程序中有效数据和无效数据	,例如：0和null;'
-       (2)  场景：通常将类中属性由之前的基本数据类型改变为对应包装类型--->区分数据有效性
+#### 实际开发应用【开发重点】
+（1）作用：可以区分程序中有效数据和无效数据	,例如：0和null;'
+   (2)  场景：通常将类中属性由之前的基本数据类型改变为对应包装类型--->区分数据有效性
 	   
 ## String类
 
