@@ -2698,6 +2698,69 @@ void finalize()：JVM中的垃圾回收器进行回收垃圾对象，自动调�
 |boolean|Boolean|
 |char|Character|
 
+### 2.类型转化的总结
+
+#### 1.基本数据类型转化为对应的包装类型
+
+
+第一种方式：  使用参数对应的基本数据类型的构造方法
+第二种方式：  调用对应包装类的静态方法  valueOf()；
+
+
+#### 2.包装类型转化为对应的基本类型
+
+
+使用包装类对象，并调用  xxxValue()   xxx代表对应的基本数据类型
+Integer a = new Integer(10);
+int b = Integer.intValue();
+
+
+#### 3.String 转化为包装类型
+
+
+第一种方式： 使用参数对应的基本数据类型的构造方法
+第二种方式： 调用包装类中的静态方法   valueOf()
+ 注意：  如果该String不是一个合法的数字，则会报错
+  String s = "100";
+  Integer a = new Integer(s);
+  Integer b = Integer.valueOf(s);
+
+
+#### 4.包装类型转化为String
+
+
+第一种方式：  可以使用字符串拼接来转化  
+Integer a = 10;
+ String s = a+"";
+第二种方式：  String 中的静态方法 valueOf()
+Integer a = 10;
+String s = String.valueOf(a);
+
+
+#### 5.基本类型转化为String类型
+
+
+第一种方法：  通过字符串拼接  
+  int a = 10   String  s = a+"";
+第二种方式：  先转化为包装类，再转化为String
+
+
+#### 6.String 转化为基本类型
+
+
+第一种方式：  String先转化为包装类型，在转化为基本类型
+第二种方式：  调用对应包装类中的静态方法   parseXxx（)   Xxx代表基本的数据类型
+String  s = "100";
+int  a = Integer.parseInt(s);
+
+
+#### 7.包装类的缓冲区
+
+
+jdk1.5之后  java为八种基本数据类型所对应的包装类，提供了一个字节的缓冲区。当字面值在  -128~127
+ 之间，且字面值相同时，则两个包装类对象所指向的地址相同，均为缓冲区中的地址
+ 
+ 
 3.数据类型之间的转换：
 	（1）int 和 Integer 之间的转换
 				int --->Integer
@@ -2725,6 +2788,12 @@ void finalize()：JVM中的垃圾回收器进行回收垃圾对象，自动调�
 ②
 	装箱：基本数据类型 转换为 对应的包装类型的过程 Integer i=12;
 	拆箱：包装类型 转化为对应 基本数据类型的过程 int a=i;
+```java
+int a = 10;
+Integer  i = new Integer(a);
+Integer  j = Integer.valueOf(a);//基本类型转化为对应的包装类型
+int b = i.intValue(); // 包装类转化为对应的基本类型
+```
 ③ 自动装箱的原理【面试重点难点】
 	（1）自动装箱底层 调用是 Integer 类中valueOf方法完成转换
 ```java  
@@ -2750,90 +2819,15 @@ void finalize()：JVM中的垃圾回收器进行回收垃圾对象，自动调�
 	（1）作用：可以区分程序中有效数据和无效数据	,例如：0和null;'
        (2)  场景：通常将类中属性由之前的基本数据类型改变为对应包装类型--->区分数据有效性
 	   
-### 2.包装类和基本数据类型之间的自动转换
-
-在JDK1.5以后，Java提供了自动的装箱和拆箱过程
-例子：
-
-```java
-int a = 10;
-Integer  i = new Integer(a);
-Integer  j = Integer.valueOf(a);//基本类型转化为对应的包装类型
-int b = i.intValue(); // 包装类转化为对应的基本类型
-```
-
-### 4.类型转化的总结
-
-#### 1.基本数据类型转化为对应的包装类型
-
-```
-第一种方式：  使用参数对应的基本数据类型的构造方法
-第二种方式：  调用对应包装类的静态方法  valueOf()；
-```
-
-#### 2.包装类型转化为对应的基本类型
-
-```java
-使用包装类对象，并调用  xxxValue()   xxx代表对应的基本数据类型
-Integer a = new Integer(10);
-int b = Integer.intValue();
-```
-
-#### 3.String 转化为包装类型
-
-```java
-第一种方式： 使用参数对应的基本数据类型的构造方法
-第二种方式： 调用包装类中的静态方法   valueOf()
- 注意：  如果该String不是一个合法的数字，则会报错
-  String s = "100";
-  Integer a = new Integer(s);
-  Integer b = Integer.valueOf(s);
-```
-
-#### 4.包装类型转化为String
-
-```java
-第一种方式：  可以使用字符串拼接来转化  
-Integer a = 10;
- String s = a+"";
-第二种方式：  String 中的静态方法 valueOf()
-Integer a = 10;
-String s = String.valueOf(a);
-```
-
-#### 5.基本类型转化为String类型
-
-```
-第一种方法：  通过字符串拼接  
-  int a = 10   String  s = a+"";
-第二种方式：  先转化为包装类，再转化为String
-```
-
-#### 6.String 转化为基本类型
-
-```
-第一种方式：  String先转化为包装类型，在转化为基本类型
-第二种方式：  调用对应包装类中的静态方法   parseXxx（)   Xxx代表基本的数据类型
-String  s = "100";
-  int  a = Integer.parseInt(s);
-```
-
-#### 7.包装类的缓冲区
-
-```
-jdk1.5之后  java为八种基本数据类型所对应的包装类，提供了一个字节的缓冲区。当字面值在  -128~127
- 之间，且字面值相同时，则两个包装类对象所指向的地址相同，均为缓冲区中的地址
-```
-
 ## String类
 
 ### 1.String的概念
 
-```
+
 1.String表示字符串，是对char[]  的一种封装
 2.字符串是常量，创建后不可更改
 3.字符串字面值存储在串池中，不可更改，不会销毁。提高可重用性
-```
+
 
 ### 2.创建String类型对象的方式
 
