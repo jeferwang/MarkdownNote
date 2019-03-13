@@ -2893,7 +2893,6 @@ public String toUpperCase():将小写转成大写。
 public String toLowerCase():将大写转成小写。
 public boolean endWith(String str):判断字符串是否以str结尾
 ```
-
 ### 5. BigDecimal
 
 ```java
