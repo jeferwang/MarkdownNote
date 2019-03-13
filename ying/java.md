@@ -2878,17 +2878,14 @@ System.out.println(sb==sb1);
 
 ```java
 详细见API
-public String intern():// 当一个String类型的对象，去调用用intren（）方法方法时，会返回此对象
-（串池中的对象） 如果该对象在串池中不存在，则创建一个再返回
+public String intern():当一个String类型的对象，去调用用intren（）方法方法时，会返回此对象（串池中的对象） 如果该对象在串池中不存在，则创建一个再返回
 public char charAt(int index) ：根据下标获取字符
 public boolean contains(String str): 判断当前字符串中是否包含str
 public char[] toCharArray():将字符串转换成数组。
 public boolean equals(Object obj): 比较字符串的内容是否相同。
-public int indexOf(String str): 在当前串中查找str出现的下标，如果存
-    在，则返回str第一个字符在str出现的下标；如果不存在，则返回-1。
+public int indexOf(String str): 在当前串中查找str出现的下标，如果存在，则返回str第一个字符在str出现的下标；如果不存在，则返回-1。
 public int indexOf(String str,int fromindex):同上,从指定下标开始查找。
-public int lastIndexOf(String str):查找字符串在当前字符串中最后一次
-                  出现的下标索引。
+public int lastIndexOf(String str):查找字符串在当前字符串中最后一次出现的下标索引。
 public int length():返回字符串的长度。
 public String trim():去掉字符串前后的空格。
 public String[] split(String str):根据str做拆分。
@@ -2919,21 +2916,20 @@ System.out.println("1.0 * 0.9 ="+multiply);
 // 计算 1.0 和 0.9 的商  bd1.divide(除数,保留位数,取舍方式)
 BigDecimal divide = bd1.divide(bd2, 3, BigDecimal.ROUND_HALF_UP);
 System.out.println("1.0 除以 0.9等于"+divide);
-}
+	}
 }
 
 ```
 
 #### 6.面试题
 
-```
-1. String 和 StringBuilder的区别
-2. StringBuffer和StringBuilder的区别
-3. String有几种构建方式，区别是什么？
+
+1.String 和 StringBuilder的区别
+2.StringBuffer和StringBuilder的区别
+3.String有几种构建方式，区别是什么？
 String str1 = "Hello";
 String str2 = new String("Hello");
-4. String类API
-```
+4.String类API
 
 ## 集合框架
 
