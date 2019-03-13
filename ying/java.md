@@ -2888,6 +2888,7 @@ public int indexOf(String str,int fromindex):同上,从指定下标开始查找�
 public int lastIndexOf(String str):查找字符串在当前字符串中最后一次出现的下标索引。
 public int length():返回字符串的长度。
 public String trim():去掉字符串前后的空格。
+实际开发应用： int n =Integer.parsInt(str.trim())
 public String[] split(String str):根据str做拆分。
 public String toUpperCase():将小写转成大写。
 public String toLowerCase():将大写转成小写。
