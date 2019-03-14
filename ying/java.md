@@ -2985,6 +2985,7 @@ String str2 = new String("Hello");
 4.String类API
 
 ## 集合框架【重点】
+![enter description here](./images/1552545768167.png)
 
 
 ### 概念
@@ -3003,23 +3004,25 @@ String str2 = new String("Hello");
 ### collection集合体系
 
 
-#### 父接口：collection
+#### 父接口collection
 
 
    ##### 特点
+   
    存储Object类型的多个对象，collection：元素的类型都是Object----------是List和set的父接口
    
    
    ##### 方法
-（**1）boolean add(Object o) 添加元素**
-   (2)  boolean  contains(Object o)判断集合中是否存在制定元素
-   (3)  boolean remove(Object o)移除单个元素，前提：存在
-   **(4)   int  size() 返回集合中元素的个数**
+（**1）boolean add(Object o) 添加元素**成功为true[开发应用重点]
+   (2)  boolean  contains(Object o)判断集合中是否存在指定元素,存在为true
+   (3)  boolean remove(Object o)移除单个元素，前提：存在,移除成功为true
+   **(4)   int  size() 返回集合中有效元素的个数**
 （5）addAll(Collection c) 把c集合中的元素添加到一个新的集合中
 （6）clear()清空一个集合中的所有元素
 （7）toArray() 将集合转化为一个数组
+
    实现类：Collection 没有直接的实现类，基于子接口来应用
-   详见子接口
+   遍历：详见子接口
 		
 ![enter description here](./images/1552533604172.png)
 
@@ -3033,25 +3036,80 @@ String str2 = new String("Hello");
 
 ##### 方法
 部分继承父接口Collection,同时自身定义了独有的一些功能方法
-**（1）add(int index,Object o)请一个元素插入到制定位置**
+**（1）add(int index,Object o)请一个元素插入到指定位置**
 （2）remove(int index) 删除制定位置上的元素
-**（3）get（int index） 获得制定位置上的元素**
+**（3）get（int index） 获得指定位置上的元素**
 （4）indexOf(Object o) 返回第一次出现此元素的下标，若没有，返回值为-1
 （5）lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
-（**6）set（int pos,Object o）将o元素设置到pos的位置上**
+（**6）set（int pos,Object o）将o元素设置到pos的位置上**修改指定下标对应的集合元素，将修改的对象作为返回值进行返回
 ![enter description here](./images/1552535245492.png)
 
-##### List的实现类
 
-###### ArrayList(重点)
 
+**##### List的实现类【面试重点】**
+
+1.ArrayList:底层数组实现，查询快，增删效率慢
+					JDK1.2版本，线程不安全，运行效率快
+2.Vector:底层数组实现，查询快，增删效率慢
+					JDK1.0版本，线程安全，运行效率慢
+3.LinkedList:底层链表实现，增删效率慢，查询慢---线程不安全
+
+
+ ArrayList(重点)
 
 数组结构存储
 轻量级，查询速度快，增删慢
 JDK1.2 操作速度快，但是线程不安全
 
+#### 遍历
 
-#### 2.Vector
+对集合元素进行一一访问
+
+##### 下标遍历
+for(int i=0;i<集合名.size();i++){
+					//通过下标获取对应集合元素
+					System.out.ptintln(集合名.get(i));
+				}
+
+##### forEach遍历
+```java
+for(数据类型  变量名：集合名)
+	//利用变量名直接操作集合元素
+}
+```
+注意：数据类型取决于集合以哪种类型存储数据
+
+扩充：foeEach底层原理：利用迭代器遍历方式
+		Iterator it = 集合名.iterator(); 获取迭代器对象
+		迭代器中方法：
+			boolean hasNext():判断有没有下一个元素，有-true；否则false
+			Object next();获取下一个迭代器中集合元素
+		while(it.hasNext()){
+			Object o = it.next();
+		}利用O操作集合对象
+		
+#### 泛型		
+泛型集合：安全的集合，可以保证集合中数据类型统一【开发应用重点】
+（1）语法：List<数据类型>  list = new ArrayList<数据类型>（）；
+		  注意：前后数据类型一致
+（2）泛型类扩展
+			①定义：
+				class 类名<泛型标识1,泛型标识2>{
+					//在类中直接将 泛型标识 作为一种数据类型直接使用
+				}
+				注意：通常用 E/K/V/T 等作为泛型标识
+			②创建对象:需要制定泛型标识对应的 具体数据类型
+		 	  （1）类名<数据类型> 对象名 = new 类名<数据类型>（）；
+		  		注意：基本数据类型使用对应包装类作为泛型类型
+			    如果创建对象时没有执行泛型的数据类型，则默认为Object类型
+		     （2）带多个泛型标识
+				类名<数据类型1，数据类型> 对象名 = new 类名<数据类型，数据类型>();
+				注意：指定多个泛型是，要么都指定，要么都不指定
+		  
+		  
+
+		
+ #### 子接口Vector
 
 
 数组结构存储
@@ -3059,7 +3117,7 @@ JDK1.2 操作速度快，但是线程不安全
 JDK1.0 操作速度慢，线程安全
 
 
-####  3.LinkedList
+####  子接口LinkedList
 
 
 链表结构存储
@@ -3082,6 +3140,4 @@ compareTo方法参数是对象类型，返回值类型是int类型
 当前对象的值>参数传递过来的值  那么当先对象排到参数对象的后面
 当前对象的值<参数传递过来的值  那么当前对象排到参数对象的前面
 当前对象的值=参数传递过来的值  这两个对象相同
-
-Map
 
