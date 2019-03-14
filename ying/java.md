@@ -2933,7 +2933,7 @@ public int lastIndexOf(String str):查找字符串在当前字符串中最后一
 public boolean endWith(String str):判断字符串是否以str结尾(用于判断文件类型)
 public char[] toCharArray():将字符串转换成数组。
 public String intern():当一个String类型的对象，去调用用intren（）方法方法时，会返回此对象（串池中的对象） 如果该对象在串池中不存在，则创建一个再返回
-
+![enter description here](./images/1552533743044.png)
 ### 5. BigDecimal
 
 1.位置：位于 java.math包中
@@ -2991,37 +2991,59 @@ String str2 = new String("Hello");
 
 
 1.集合：是一种工具类，同时也是一种容器，可以存储多个对象
-collection：元素的类型都是Object
-list:元素是按顺序存储的（有下标），元素可以重复
-set：元素无下标，元素不可以重复
+2.集合相关的接口和实现类位于java.util包中
+3.学习集合接口从以下四个方面
+	（1）集合接口的特点
+	（2）接口的方法
+	（3）接口对应的实现类
+	（4）集合遍历方式
 
 
-### collection常用的方法
+
+### collection集合体系
 
 
-add(Object o) 添加元素
-addAll(Collection c) 把c集合中的元素添加到一个新的集合中
-clear()清空一个集合中的所有元素
-contains(Object o)判断集合中是否存在制定元素
-remove(Object o)移除单个元素，前提：存在
-size() 返回集合中元素的个数
-toArray() 将集合转化为一个数组
+#### 父接口：collection
 
 
-### List中常用的方法
+   ##### 特点
+   存储Object类型的多个对象，collection：元素的类型都是Object----------是List和set的父接口
+   
+   
+   ##### 方法
+（**1）boolean add(Object o) 添加元素**
+   (2)  boolean  contains(Object o)判断集合中是否存在制定元素
+   (3)  boolean remove(Object o)移除单个元素，前提：存在
+   **(4)   int  size() 返回集合中元素的个数**
+（5）addAll(Collection c) 把c集合中的元素添加到一个新的集合中
+（6）clear()清空一个集合中的所有元素
+（7）toArray() 将集合转化为一个数组
+   实现类：Collection 没有直接的实现类，基于子接口来应用
+   详见子接口
+		
+![enter description here](./images/1552533604172.png)
 
 
-add(int index,Object o)请一个元素插入到制定位置
-remove(int index) 删除制定位置上的元素
-get（int index） 获得制定位置上的元素
-indexOf(Object o) 返回第一次出现此元素的下标，若没有，返回值为-1
-lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
-set（int pos,Object o）将o元素设置到pos的位置上
+#### 子接口  List
+
+##### 特点
+存储Object类型的对象，list元素有序，有下标，元素可以重复
+下标范围：0~size-1
 
 
-### List的实现类
+##### 方法
+部分继承父接口Collection,同时自身定义了独有的一些功能方法
+**（1）add(int index,Object o)请一个元素插入到制定位置**
+（2）remove(int index) 删除制定位置上的元素
+**（3）get（int index） 获得制定位置上的元素**
+（4）indexOf(Object o) 返回第一次出现此元素的下标，若没有，返回值为-1
+（5）lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
+（**6）set（int pos,Object o）将o元素设置到pos的位置上**
+![enter description here](./images/1552535245492.png)
 
-#### 1.ArrayList(重点)
+##### List的实现类
+
+###### ArrayList(重点)
 
 
 数组结构存储
@@ -3029,7 +3051,7 @@ set（int pos,Object o）将o元素设置到pos的位置上
 JDK1.2 操作速度快，但是线程不安全
 
 
-### 2.Vector
+#### 2.Vector
 
 
 数组结构存储
@@ -3037,7 +3059,7 @@ JDK1.2 操作速度快，但是线程不安全
 JDK1.0 操作速度慢，线程安全
 
 
-### 3.LinkedList
+####  3.LinkedList
 
 
 链表结构存储
@@ -3062,51 +3084,4 @@ compareTo方法参数是对象类型，返回值类型是int类型
 当前对象的值=参数传递过来的值  这两个对象相同
 
 Map
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
