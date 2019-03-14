@@ -2953,22 +2953,22 @@ public String intern():当一个String类型的对象，去调用用intren（）
 
 package com.baizhi.object;
 import java.math.BigDecimal;
-public class TestString {
-public static void main(String[] args) {
-BigDecimal bd1 = new BigDecimal("1.0"); 
-BigDecimal bd2 = new BigDecimal("0.9");
+public class TestString1 {
+	public static void main(String[] args) {
+			BigDecimal bd1 = new BigDecimal("1.0"); 
+			BigDecimal bd2 = new BigDecimal("0.9");
 // 计算  1.0  和 0.9 的差
-BigDecimal subtract = bd1.subtract(bd2);
-System.out.println("1.0 - 0.9 ="+subtract);
+			BigDecimal subtract = bd1.subtract(bd2);
+			System.out.println("1.0 - 0.9 ="+subtract);
 // 计算 1.0  和  0.9 的和
-BigDecimal add = bd1.add(bd2);
-System.out.println("1.0 + 0.9 ="+add);
+			BigDecimal add = bd1.add(bd2);
+			System.out.println("1.0 + 0.9 ="+add);
 // 计算 1.0 和 0.9 的乘积
-BigDecimal multiply = bd1.multiply(bd2);
-System.out.println("1.0 * 0.9 ="+multiply);
+			BigDecimal multiply = bd1.multiply(bd2);
+			System.out.println("1.0 * 0.9 ="+multiply);
 // 计算 1.0 和 0.9 的商  bd1.divide(除数,保留位数,取舍方式)
-BigDecimal divide = bd1.divide(bd2, 3, BigDecimal.ROUND_HALF_UP);
-System.out.println("1.0 除以 0.9等于"+divide);
+			BigDecimal divide = bd1.divide(bd2, 3, BigDecimal.ROUND_HALF_UP);
+			System.out.println("1.0 除以 0.9等于"+divide);
 	}
 }
 
@@ -2988,6 +2988,8 @@ String str2 = new String("Hello");
 
 
 ### 概念
+
+
 1.集合：是一种工具类，同时也是一种容器，可以存储多个对象
 collection：元素的类型都是Object
 list:元素是按顺序存储的（有下标），元素可以重复
@@ -2996,7 +2998,7 @@ set：元素无下标，元素不可以重复
 
 ### collection常用的方法
 
-```java
+
 add(Object o) 添加元素
 addAll(Collection c) 把c集合中的元素添加到一个新的集合中
 clear()清空一个集合中的所有元素
@@ -3004,45 +3006,45 @@ contains(Object o)判断集合中是否存在制定元素
 remove(Object o)移除单个元素，前提：存在
 size() 返回集合中元素的个数
 toArray() 将集合转化为一个数组
-```
+
 
 ### List中常用的方法
 
-```
+
 add(int index,Object o)请一个元素插入到制定位置
 remove(int index) 删除制定位置上的元素
 get（int index） 获得制定位置上的元素
 indexOf(Object o) 返回第一次出现此元素的下标，若没有，返回值为-1
 lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
 set（int pos,Object o）将o元素设置到pos的位置上
-```
+
 
 ### List的实现类
 
 #### 1.ArrayList(重点)
 
-```
+
 数组结构存储
 轻量级，查询速度快，增删慢
 JDK1.2 操作速度快，但是线程不安全
-```
+
 
 ### 2.Vector
 
-```
+
 数组结构存储
 重量级，查询速度快，增删慢
 JDK1.0 操作速度慢，线程安全
-```
+
 
 ### 3.LinkedList
 
-```
+
 链表结构存储
 查询慢，增删快
-```
 
-```java
+
+
 集合两个父接口
 Collection分为两个子接口
 List特点：有序，有下标，元素可以重复
@@ -3061,7 +3063,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 
 Map
 
-```
+
 
 
 
