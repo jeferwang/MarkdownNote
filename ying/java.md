@@ -3009,12 +3009,12 @@ String str2 = new String("Hello");
 #### 父接口collection
 
 
-①特点
+##### ①特点
    
    存储Object类型的多个对象，collection：元素的类型都是Object----------是List和set的父接口
    
    
-   ②方法
+ ##### ②方法
 **（1）boolean add(Object o) 添加元素成功为true[开发应用重点]**
    (2)  boolean  contains(Object o)判断集合中是否存在指定元素,存在为true
    (3)  boolean remove(Object o)移除单个元素，前提：存在,移除成功为true
@@ -3023,20 +3023,20 @@ String str2 = new String("Hello");
 （6）clear()清空一个集合中的所有元素
 （7）toArray() 将集合转化为一个数组
 
-   实现类：Collection 没有直接的实现类，基于子接口来应用
-   遍历：详见子接口
+   ##### 实现类：Collection 没有直接的实现类，基于子接口来应用
+   ##### 遍历：详见子接口
 		
 ![enter description here](./images/1552533604172.png)
 
 
 #### 子接口  List
 
-① 特点
+##### ① 特点
 存储Object类型的对象，list元素有序，有下标，元素可以重复
 下标范围：0~size-1
 
 
-②方法
+##### ②方法
 部分继承父接口Collection,同时自身定义了独有的一些功能方法
 **（1）add(int index,Object o)请一个元素插入到指定位置**
 （2）remove(int index) 删除制定位置上的元素
@@ -3048,7 +3048,7 @@ String str2 = new String("Hello");
 
 
 
-**##### List的实现类【面试重点】**
+##### ③List的实现类【面试重点】
 
 1.ArrayList:底层数组实现，查询快，增删效率慢
 					JDK1.2版本，线程不安全，运行效率快
@@ -3058,17 +3058,17 @@ String str2 = new String("Hello");
 
 
  
-#### 遍历
+##### ④遍历
 
 对集合元素进行一一访问
 
-##### 下标遍历
+###### 下标遍历
 for(int i=0;i<集合名.size();i++){
 					//通过下标获取对应集合元素
 					System.out.ptintln(集合名.get(i));
 				}
 
-##### forEach遍历
+###### forEach遍历
 ```java
 for(数据类型  变量名：集合名)
 	//利用变量名直接操作集合元素
@@ -3121,12 +3121,13 @@ for(数据类型  变量名：集合名)
 
 #### 子接口Set[重点]
 
-① 特点：存储Object类的对象，无序、无下标、元素的内容不允许重复。
+##### ① 特点：存储Object类的对象，无序、无下标、元素的内容不允许重复。
 		          	
-② 方法：方法全部继承于父接口Collection
+##### ② 方法：方法全部继承于父接口Collection
 			
-**③ 实现类: HashSet【开发重点】**
-		为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
+#####  ③实现类: HashSet【开发重点】
+
+为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
 		（1） 覆盖hashCode方法
 					目的：必须保证相同内容的对象返回相同的hashCode码值；
 						  为了提高效率，不同内容的对象尽量返回不同的hashCode码值。
@@ -3143,52 +3144,75 @@ for(数据类型  变量名：集合名)
 					
 执行原理：往HashSet集合中存储对象时，调用当前对象的hashCode方法，通过计算获取对应存储下标，如果两个对象存储在同一个下标时，才会调用equalsf方法，判断两个对象的内容是否相同（返回值true）——拒绝添加；不相同（f返回值false）——添加成功。
 
-④遍历方式：forEach
+##### ④遍历方式：forEach
 
-【扩展】	
-⑤实现类：LinkedHashSet:继承HashSet，根据添加顺序进行存储，同时元素内容不允许重复
-												如果保证自动类型的对象在集合中元素内容不重复，则需覆盖hashCode和equals方法。
-				
-##### Set的子接口：SortedSet[了解]
+	
+##### ⑤实现类：LinkedHashSet
+【扩展】
+继承HashSet，根据添加顺序进行存储，同时元素内容不允许重复，如果保证自动类型的对象在集合中元素内容不重复，则需覆盖hashCode和equals方法。
+																							
 
- ① 特点：存储Object类型的对象，无序、无下标、元素内容不允许重复。
+##### ⑥ Set的子接口：SortedSet[了解]
+
+ ###### ① 特点：存储Object类型的对象，无序、无下标、元素内容不允许重复。
 			          可以根据元素内容自动排序。
- ② 实现类：TreeSet
-				如果自定义类型的对象存储在TreeSet集合中，需要实现 java.lang.Comparable,同时实现compareTo方法，在方法中指定排序规则。
-				注意：TreeSort保证存储元素内容是否相同取决于compareTo方法的返回值 
-				如果compareTo的结果返回值为0，则代表相同内容的元素，拒绝添加到集合中。
-③遍历：forEach
+					  
+###### ②实现类：TreeSet
+ 
+如果自定义类型的对象存储在TreeSet集合中，需要实现 java.lang.Comparable,同时实现compareTo方法，在方法中指定排序规则。
+注意：TreeSort保证存储元素内容是否相同取决于compareTo方法的返回值 
+如果compareTo的结果返回值为0，则代表相同内容的元素，拒绝添加到集合中。
+				
+###### ③遍历：forEach
 
+
+>总结:Set方法  增加add(object)	remove(object) 无修改方法 长度size()  无查询方法
+hashSet    先调用该对象的hashcode方法  如果hashcode码不一致，则表示不是同一对象，如果一致，会调用该对象的equals方法，如果equals方法返回false，被视为不是同一对象，否则被视为同一对象
+存的是基本类型，会自动将基本类型转化为包装类，然后根据hashcode排序
+linkedhashSet  链表实现  目的是为了维护添加元素的顺序  
+如果添加的是自定义对象类型，一样需要重写equals方法和hashcode方法
+treeSet   通过红黑树实现的  如果向该集合存入的是一个自定义的对象类型，首先需要让该类实现一个comparable接口  重写该接口的一个方法compareTo方法
+compareTo方法参数是对象类型，返回值类型是int类型
+当前对象的值>参数传递过来的值  那么当先对象排到参数对象的后面
+当前对象的值<参数传递过来的值  那么当前对象排到参数对象的前面
+当前对象的值=参数传递过来的值  这两个对象相同
+			
 ###  Map集合体系[开发重点]
+![enter description here](./images/1552635664339.png)
 
-1.特点：【重点】
-			① 存储任意的键值对(key-value)
-			② 键：无序、无下标、元素不允许重复(唯一性)
-			③ 值:   无序、无下标、元素允许重复
-	2. 方法：
-		① V put(K key,V value):将一个键值对存储在map集合中。如果键在map中
+#### 1.特点：【重点】
+
+① 存储任意的键值对(key-value)
+② 键：无序、无下标、元素不允许重复(唯一性)
+③ 值:   无序、无下标、元素允许重复
+
+#### 2.方法：
+
+① V put(K key,V value):将一个键值对存储在map集合中。如果键在map中
 		                        已经存在，则用新的数值覆盖旧值，将旧值作为返回值返回；
 								如果键在map不存在，值直接存储，返回null.【重点】
-		② V remove(K key):根据key删除map中的一个键值对，同时将删除值作为返回值返回。
-		③ V get(K key):根据键获取值。【开发重点】
-		④ boolean containsKey(K key):判断map集合中是否包含此键，包含-true;
+② V remove(K key):根据key删除map中的一个键值对，同时将删除值作为返回值返回。
+**③ V get(K key):根据键获取对应值。【开发重点】**
+④ boolean containsKey(K key):判断map集合中是否包含此键，包含-true;
 		                                                         不包含-false.
-		⑤ boolean containsValue(V value):判断map集合中是否包含此value,包含-true;
+⑤ boolean containsValue(V value):判断map集合中是否包含此value,包含-true;
                                                                       不包含-false.
-        ⑥ int size():获取键值对的个数。
-	3. 实现类：HashMap【开发应用重点】
-		① HashMap【重点】：JDK1.2 版本，线程不安全，运行效率快。
+⑥ int size():获取键值对的个数。
+#### 3. 实现类：HashMap【开发应用重点】
+
+① HashMap【重点】：JDK1.2 版本，线程不安全，运行效率快。
 		                     允许null作为key或是value.
-		② Hashtable:JDK1.0 版本，线程安全，运行效率慢。
+② Hashtable:JDK1.0 版本，线程安全，运行效率慢。
 		                     不允许null作为key或是value.
-	    ③ Properties:是Hashtable的子类，键和值必须是String类型。
+③ Properties:是Hashtable的子类，键和值必须是String类型。
 		              作用：通常用于读取配置文件。
-		④ TreeMap:是SortedMap的实现类(SortedMap是Map的子接口)。
+④ TreeMap:是SortedMap的实现类(SortedMap是Map的子接口)。
 		              作用：可以对键自动排序。
 		
 面试重点：写出 HashMap和Hashtable的区别？？？？
-	4. 遍历：
-		① 键遍历：【开发应用重点】
+#### 4. 遍历：
+
+① 键遍历：【开发应用重点】
 			通过keySet方法获取map中所有的键：Set keySet();
 			Set<键的数据类型> ks=map.keySet();
 			for(键的数据类型 key:ks){
@@ -3237,14 +3261,4 @@ Set<Map.Entry<K,V>> kvs=map.entrySet();
 		
 		
 		
-Set方法  增加add(object)	remove(object) 无修改方法 长度size()  无查询方法
-hashSet    先调用该对象的hashcode方法  如果hashcode码不一致，则表示不是同一对象，如果一致，会调用该对象的equals方法，如果equals方法返回false，被视为不是同一对象，否则被视为同一对象
-存的是基本类型，会自动将基本类型转化为包装类，然后根据hashcode排序
-linkedhashSet  链表实现  目的是为了维护添加元素的顺序  
-如果添加的是自定义对象类型，一样需要重写equals方法和hashcode方法
-treeSet   通过红黑树实现的  如果向该集合存入的是一个自定义的对象类型，首先需要让该类实现一个comparable接口  重写该接口的一个方法compareTo方法
-compareTo方法参数是对象类型，返回值类型是int类型
-当前对象的值>参数传递过来的值  那么当先对象排到参数对象的后面
-当前对象的值<参数传递过来的值  那么当前对象排到参数对象的前面
-当前对象的值=参数传递过来的值  这两个对象相同
 
