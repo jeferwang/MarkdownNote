@@ -2371,7 +2371,9 @@ public void m6(){}
 1.把主要功能（父类）和次要功能（接口）加以区分。使用实现过程相对简单，为功能的拓展和功能的多样化提供了可
 能。有了接口之后，弥补了类与类之间的单继承关系。
 
-
+ ### 5.接口回调：【理解即可】
+ 接口定义之后，先有接口的使用者，再有接口的实现者。开发者通常关注的是实现者。
+			 
 ## 内部类[重点]
 
 #### 1.概念
@@ -3107,29 +3109,18 @@ for(数据类型  变量名：集合名)
 				注意：指定多个泛型是，要么都指定，要么都不指定
 		  
 		  
-
-		
- #### 子接口Vector
-
-
-数组结构存储
-重量级，查询速度快，增删慢
-JDK1.0 操作速度慢，线程安全
-
-
-####  子接口LinkedList
-
-
-链表结构存储
-查询慢，增删快
+#### 工具类collections[了解]
+![enter description here](./images/1552615300866.png)
+1.collections位于java.util包中，操作集合元素的工具类，例如排序，倒置等
+常用方法：
+			① public static void reverse(List list):倒置
+			② public static void shuffle(List list):随机显示
+			③ public static void sort(List list):排序
 
 
 
-集合两个父接口
-Collection分为两个子接口
-List特点：有序，有下标，元素可以重复
-实现类：ArrayList数组实现  LinkedList链表实现  Vector数组实现，线程安全的
-Set特点：无序，无下标，元素不可重复
+
+
 Set方法  增加add(object)	remove(object) 无修改方法 长度size()  无查询方法
 hashSet    先调用该对象的hashcode方法  如果hashcode码不一致，则表示不是同一对象，如果一致，会调用该对象的equals方法，如果equals方法返回false，被视为不是同一对象，否则被视为同一对象
 存的是基本类型，会自动将基本类型转化为包装类，然后根据hashcode排序
