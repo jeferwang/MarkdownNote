@@ -3213,20 +3213,26 @@ compareTo方法参数是对象类型，返回值类型是int类型
 #### 4. 遍历：
 
 ##### ① 键遍历：【开发应用重点】
-通过keySet方法获取map中所有的键：Set keySet();
-			Set<键的数据类型> ks=map.keySet();
-			//遍历Set集合，获取每一个value
-			for(键的数据类型 key:ks){
-				//通过键获取值的内容:get
-				值的数据类型 value=map.get()	
-			}
-			//通过key和value操作键值
+//通过keySet方法获取map中所有的键：Set keySet();
+`Set<键的数据类型> ks=map.keySet();`
+//遍历Set集合，获取每一个value
+`for(键的数据类型 key:ks){`
+//通过键获取值的内容:get
+`V value = map.get(key`
+//通过key和value操作键值
+`值的数据类型 value=map.get()	`
+
+}
+		
 ##### ② 值遍历：
 通过values方法获取map中所有的值：Collection values();
-			Collection<值的数据类型> vs=map.values();
-			for(值的数据类型 value:vs){
-				//
+			Collection<值的数据类型> vs=map.values();//获取所有的值
+			for(值的数据类型 value:vs){//通过forEach遍历 获取每一个值
+				// 通过value操作值
 			}
+			
+注意：map中没有提供值获取key的方法
+ 
 ##### ③ 键值对遍历：【开发应用重点】
 通过entrySet方法获取map中所有的键值对：Set<Map.Entry<K,V>> entrySet();
 			
