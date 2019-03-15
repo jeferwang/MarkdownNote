@@ -3009,13 +3009,13 @@ String str2 = new String("Hello");
 #### 父接口collection
 
 
-   ##### 特点
+①特点
    
    存储Object类型的多个对象，collection：元素的类型都是Object----------是List和set的父接口
    
    
-   ##### 方法
-（**1）boolean add(Object o) 添加元素**成功为true[开发应用重点]
+   ②方法
+**（1）boolean add(Object o) 添加元素成功为true[开发应用重点]**
    (2)  boolean  contains(Object o)判断集合中是否存在指定元素,存在为true
    (3)  boolean remove(Object o)移除单个元素，前提：存在,移除成功为true
    **(4)   int  size() 返回集合中有效元素的个数**
@@ -3031,12 +3031,12 @@ String str2 = new String("Hello");
 
 #### 子接口  List
 
-##### 特点
+① 特点
 存储Object类型的对象，list元素有序，有下标，元素可以重复
 下标范围：0~size-1
 
 
-##### 方法
+②方法
 部分继承父接口Collection,同时自身定义了独有的一些功能方法
 **（1）add(int index,Object o)请一个元素插入到指定位置**
 （2）remove(int index) 删除制定位置上的元素
@@ -3057,12 +3057,7 @@ String str2 = new String("Hello");
 3.LinkedList:底层链表实现，增删效率慢，查询慢---线程不安全
 
 
- ArrayList(重点)
-
-数组结构存储
-轻量级，查询速度快，增删慢
-JDK1.2 操作速度快，但是线程不安全
-
+ 
 #### 遍历
 
 对集合元素进行一一访问
@@ -3111,16 +3106,137 @@ for(数据类型  变量名：集合名)
 		  
 #### 工具类collections[了解]
 ![enter description here](./images/1552615300866.png)
-1.collections位于java.util包中，操作集合元素的工具类，例如排序，倒置等
+1.collections位于java.util包中，操作集合元素的工具类，例如排序，倒置等操作
+2.collections提供了很多静态的功能方法：利用Collections.方法名（实参）。
 常用方法：
 			① public static void reverse(List list):倒置
 			② public static void shuffle(List list):随机显示
 			③ public static void sort(List list):排序
+注意：如果进行排序的集合中存储的对象类型是自定义类型的对象（基于自己定义的类创建的对象），则该类需要实现java.lang.Comparable接口，同时实现compareTo方法，指定排序的规则
 
 
+ >面试题目：区分Collection和Collections。
+		          Collection是java中Collection集合体系中的根接口,具有List和Set接口。
+                  Collections是java中操作集合的工具类，类中提供大量静态功能方法，如排序，倒置等
 
+#### 子接口Set[重点]
 
+① 特点：存储Object类的对象，无序、无下标、元素的内容不允许重复。
+		          	
+② 方法：方法全部继承于父接口Collection
+			
+**③ 实现类: HashSet【开发重点】**
+		为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
+		（1） 覆盖hashCode方法
+					目的：必须保证相同内容的对象返回相同的hashCode码值；
+						  为了提高效率，不同内容的对象尽量返回不同的hashCode码值。
+					覆盖原则：将所有的属性拼凑为一个int值作为返回值。
+							   例如：
+							   public int hashCode(){
+							   //将所有的属性转为一个int类型的结果作为返回值返回
+									return this.age+this.name.hashCode();
+							   }
+					注意：如果是基本数据数值类型的属性，则直接通过转换获取即可
+ 		（2）覆盖equals方法 :
+					必须保证内容相同的对象结果返回true，拒绝添加到集合中
+					必须保证内容不同的对象结果返回false，成功添加到集合中（以数组+链表的形式进行存储）
+					
+执行原理：往HashSet集合中存储对象时，调用当前对象的hashCode方法，通过计算获取对应存储下标，如果两个对象存储在同一个下标时，才会调用equalsf方法，判断两个对象的内容是否相同（返回值true）——拒绝添加；不相同（f返回值false）——添加成功。
 
+④遍历方式：forEach
+
+【扩展】	
+⑤实现类：LinkedHashSet:继承HashSet，根据添加顺序进行存储，同时元素内容不允许重复
+												如果保证自动类型的对象在集合中元素内容不重复，则需覆盖hashCode和equals方法。
+				
+##### Set的子接口：SortedSet[了解]
+
+ ① 特点：存储Object类型的对象，无序、无下标、元素内容不允许重复。
+			          可以根据元素内容自动排序。
+ ② 实现类：TreeSet
+				如果自定义类型的对象存储在TreeSet集合中，需要实现 java.lang.Comparable,同时实现compareTo方法，在方法中指定排序规则。
+				注意：TreeSort保证存储元素内容是否相同取决于compareTo方法的返回值 
+				如果compareTo的结果返回值为0，则代表相同内容的元素，拒绝添加到集合中。
+③遍历：forEach
+
+###  Map集合体系[开发重点]
+
+1.特点：【重点】
+			① 存储任意的键值对(key-value)
+			② 键：无序、无下标、元素不允许重复(唯一性)
+			③ 值:   无序、无下标、元素允许重复
+	2. 方法：
+		① V put(K key,V value):将一个键值对存储在map集合中。如果键在map中
+		                        已经存在，则用新的数值覆盖旧值，将旧值作为返回值返回；
+								如果键在map不存在，值直接存储，返回null.【重点】
+		② V remove(K key):根据key删除map中的一个键值对，同时将删除值作为返回值返回。
+		③ V get(K key):根据键获取值。【开发重点】
+		④ boolean containsKey(K key):判断map集合中是否包含此键，包含-true;
+		                                                         不包含-false.
+		⑤ boolean containsValue(V value):判断map集合中是否包含此value,包含-true;
+                                                                      不包含-false.
+        ⑥ int size():获取键值对的个数。
+	3. 实现类：HashMap【开发应用重点】
+		① HashMap【重点】：JDK1.2 版本，线程不安全，运行效率快。
+		                     允许null作为key或是value.
+		② Hashtable:JDK1.0 版本，线程安全，运行效率慢。
+		                     不允许null作为key或是value.
+	    ③ Properties:是Hashtable的子类，键和值必须是String类型。
+		              作用：通常用于读取配置文件。
+		④ TreeMap:是SortedMap的实现类(SortedMap是Map的子接口)。
+		              作用：可以对键自动排序。
+		
+面试重点：写出 HashMap和Hashtable的区别？？？？
+	4. 遍历：
+		① 键遍历：【开发应用重点】
+			通过keySet方法获取map中所有的键：Set keySet();
+			Set<键的数据类型> ks=map.keySet();
+			for(键的数据类型 key:ks){
+				//通过键获取值的内容
+				值的数据类型 value=map.get()	
+			}
+② 值遍历：
+			通过values方法获取map中所有的值：Collection values();
+			Collection<值的数据类型> vs=map.values();
+			for(值的数据类型 value:vs){
+				//....
+			}
+③ 键值对遍历：【开发应用重点】
+			通过entrySet方法获取map中所有的键值对：Set<Map.Entry<K,V>> entrySet();
+			
+Set<Map.Entry<K,V>> kvs=map.entrySet();
+		    for(Map.Entry<K,V> kv:kvs){
+				K key=kv.getKey();//获取键
+				V value=kv.getValue();//获取值
+			}
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		
+
+		
+
+		
+		
+		
 Set方法  增加add(object)	remove(object) 无修改方法 长度size()  无查询方法
 hashSet    先调用该对象的hashcode方法  如果hashcode码不一致，则表示不是同一对象，如果一致，会调用该对象的equals方法，如果equals方法返回false，被视为不是同一对象，否则被视为同一对象
 存的是基本类型，会自动将基本类型转化为包装类，然后根据hashcode排序
