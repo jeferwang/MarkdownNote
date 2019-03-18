@@ -3121,11 +3121,13 @@ for(数据类型  变量名：集合名)
 
 #### 子接口Set[重点]
 
-##### ① 特点：存储Object类的对象，无序、无下标、元素的内容不允许重复。
+##### ① 特点
+存储Object类的对象，无序、无下标、元素的内容不允许重复。
 		          	
-##### ② 方法：方法全部继承于父接口Collection
+##### ② 方法
+方法全部继承于父接口Collection
 			
-#####  ③实现类: HashSet【开发重点】
+#####  ③实现类HashSet【开发重点】
 
 为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
 		（1） 覆盖hashCode方法
@@ -3154,7 +3156,8 @@ for(数据类型  变量名：集合名)
 
 ##### ⑥ Set的子接口：SortedSet[了解]
 
- ###### ① 特点：存储Object类型的对象，无序、无下标、元素内容不允许重复。
+ ###### ① 特点：
+ 存储Object类型的对象，无序、无下标、元素内容不允许重复。
 			          可以根据元素内容自动排序。
 					  
 ###### ②实现类：TreeSet
@@ -3207,9 +3210,10 @@ compareTo方法参数是对象类型，返回值类型是int类型
 ③ Properties:是Hashtable的子类，键和值必须是String类型。
 		              作用：通常用于读取配置文件。
 ④ TreeMap:是SortedMap的实现类(SortedMap是Map的子接口)。
-		              作用：可以对键自动排序。
+		              作用：可以对Map键自动排序。
+⑤java.util.LinkedHashMap:是HashMap的子类，可以根据键添加的顺序完成存储
 		
-面试重点：写出 HashMap和Hashtable的区别？？？？
+**面试重点**：写出 HashMap和Hashtable的区别？？？？
 #### 4. 遍历：
 
 ##### ① 键遍历：【开发应用重点】
@@ -3218,7 +3222,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 //遍历Set集合，获取每一个value
 `for(键的数据类型 key:ks){`
 //通过键获取值的内容:get
-`V value = map.get(key`
+`V value = map.get(key）`
 //通过key和value操作键值
 `值的数据类型 value=map.get()	`
 
@@ -3242,11 +3246,29 @@ Set<Map.Entry<K,V>> kvs=map.entrySet();
 				V value=kv.getValue();//获取值
 			}
 
+注意：如果自定义类型的对象作为HashCode的key,为了保证元素内容不重复，则自定义类型的对象应该覆盖两个方法，hashCose和equals方法，但是开发时通常用String或是对应的数值包装类型作为HashMap键内容				
 				
-				
-				
-				
-				
+## 异常
+### 异常
+1.概念：程序运行过程中出现的非正常的现象
+2.异常处理：异常一旦出现，应该执行预先准备好的一段程序代码。
+3.异常处理的必要性：可以提高用户的体验度，同时减小因异常对用户带来的损失
+### 异常分类
+1.父类：Throwable:=位于java.lang 包中，是java语言中所有错误或异常的父类
+	常用方法：
+		① String getMessage():获取String类型的异常信息。
+		② void printStackTrace():获取方法调用栈中，异常详细的信息。
+			
+2.子类：
+（1）Error
+		①表示仅靠程序本身无法恢复的严重错误，例如：内存不足，或是方法调用栈溢出      
+		       特点：在大多数的情况下，遇到这样的错误，程序无法处理。
+  (2)	Exception:分类两类
+  		①	RuntimeException:运行时异常，未检查异常，直接或间接继承RuntimeException的异常类
+		**特点**：编译器编译时不会检测它，运行时报错。
+				    这类异常可以避免，遇到此类异常，可以处理也可以不处理。
+		②非RuntimeException:非运行时异常，已检查异常，和RuntimeException没有任何继承关系的异常类
+  		**特点**：编译器编译时检测它，出现这类异常，编译不通过，必须处理。
 				
 				
 				
