@@ -3383,30 +3383,36 @@ n=n+1;
 ② 数据：堆空间共享，栈空间独立。
 	堆空间：存储对象，堆空间共享，线程共享的空间。
 	栈空间：存储局部变量，栈空间独立，每一个线程都有独立栈空间。
-③ 代码：代码实现多线程【开发应用重点】		
+**③ 代码：代码实现多线程【开发应用重点】**		
 a. 第一种实现多线程
-	I. 类继承java.lang.Thread类，即继承Thread类，覆盖run方法
+	I. 类继承java.lang.Thread类，即继承Thread类，同时覆盖run方法
 	II. 创建线程对象：
-		MyThread t=new MyThread();
+		`MyThread t=new MyThread();`
 	III. 开启线程：调用start()方法
-		t.start();//JVM会自动调用run方法
+		t.start();//线程被开启。JVM会自动调用线程中的run方法
+注意：t.run();不是正确的开启线程，只是利用引用调用其方法
+>面试题目：分析t.run()和t.start()的区别
 
 b. 第二种实现多线程：
-	I. 实现Runnable接口，同时实现run方法
+	I. 类实现java.lang.Runnable接口，同时实现接口里的run方法
 	II. 创建目标对象：
-		MyTarget tg=new MyTarget();
+		`MyTarget tg=new MyTarget();`
 	III. 创建线程对象，同时将目标对象作为参数传递：
-		Thread t=new Thread(tg);
+		`Thread t=new Thread(tg);`
 	IV. 开启线程：调用start方法
-		t.start();
-三、线程状态
-	1. 状态图详见pdf.【理解】
-	2. 常见方法：
-		① sleep(long ms):让当前线程处于休眠状态，单位是毫秒。
-		                   处于休眠状态的线程会让出CPU时间片,但是不释放锁标记。
-						   调用sleep方法的线程进入限期等待状态(Timed Waiting)。
-		② 	join():加入，合并到自身线程任务中，优先执行。	
-				   例如：main函数中调用t.join()//主线程让t线程优先执行。
+		`t.start();`//JVM默认执行run方法
+### 线程状态[面试重点]
+1.状态图【理解】
+	注意：一个线程只能被开启一次
+ ![enter description here](./images/1552987269875.png)
+ ![enter description here](./images/1552987741455.png)
+2.常见方法：
+	① sleep(long ms):是Thread类中的静态方法，让当前线程处于休眠状态，单位是毫秒。
+					   处于休眠状态的线程会让出CPU时间片,但是不释放锁标记。
+					   调用sleep方法的线程进入休眠（限期等待状态(Timed Waiting)）同时让当前线程释放CPU资源
+	② 	join():加入，合并到自身线程任务中，优先执行。	
+			   例如：main函数中调用`t.join()//主线程让 t 线程优先执行。`
+			   面试题目：简述进程和线程的区别
 		
 四、线程同步【重点】
 	1. 临界资源：多线程并发时，多个线程共享的同一个对象。
