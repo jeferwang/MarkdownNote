@@ -3248,16 +3248,16 @@ Set<Map.Entry<K,V>> kvs=map.entrySet();
 
 注意：如果自定义类型的对象作为HashCode的key,为了保证元素内容不重复，则自定义类型的对象应该覆盖两个方法，hashCose和equals方法，但是开发时通常用String或是对应的数值包装类型作为HashMap键内容				
 				
-## 异常
-### 异常
+ ## 异常
+ ### 异常
 1.概念：程序运行过程中出现的非正常的现象【理解】
 2.异常处理：异常一旦出现，应该执行预先准备好的一段程序代码。
 3.异常处理的必要性：可以提高用户的体验度，同时减小因异常对用户带来的损失
 ### 异常分类
 1.父类：Throwable:=位于java.lang 包中，是java语言中所有错误或异常的父类
 	常用方法：
-		① String getMessage():获取String类型的异常信息。
-		② void printStackTrace():获取方法调用栈中，异常详细的信息。
+		① String getMessage():获取String类型的异常信息--为用户设置提示信息。
+		② void printStackTrace():获取方法调用栈中，异常详细的信息--给程序员调试错误用的。
 			
 2.子类：
 （1）Error
@@ -3285,8 +3285,8 @@ Set<Map.Entry<K,V>> kvs=map.entrySet();
 ### 异常的传递【理解】
 程序中的异常，沿着方法的调用链进行反向传递，最终传递给JVM，导致程序终止。
 ### 异常的处理【开发应用重点】
-1.消极处理异常（抛出异常，声明异常）
-		① 关键字： throws ，声明异常，定义在方法的声明后面。
+#### 1.消极处理异常（抛出异常，声明异常）
+① 关键字： throws ，声明异常，定义在方法的声明后面。
 		② 语法：修饰符 返回值类型 方法名(形参列表)throws 异常类名{}
 		③ 结果：采用消极处理异常的方式只是将异常传递，推卸责任，程序仍然会被终止。
 		④注意：消极处理异常时，可以利用异常的父类进行外抛
@@ -3298,8 +3298,8 @@ Set<Map.Entry<K,V>> kvs=map.entrySet();
 		语法：修饰符 返回值类型 方法名（形参列表）
 		throws 异常类名1，异常类名2{}
 		
-2 积极处理异常	
-		① 语法：
+#### 2 积极处理异常（捕获异常）【重点】
+① 语法：
 			try{
 				//可能出现的异常的语句
 			}catch(异常类名 e){ //将捕获到的异常，自动赋值给e引用
@@ -3314,34 +3314,55 @@ Set<Map.Entry<K,V>> kvs=map.entrySet();
 			c. catch中只能处理try中可能出现的非运行时异常。
 		       catch中可以处理任意的运行时异常，即使在try中没有出现的可能性。【了解】
 			d. 积极处理异常的同时可以声明抛出异常。
-	        e. finally中的语句是必须执行的语句：
+#### finally的应用
+finally中的语句是必须执行的语句：
 				语法：
 				try{
-					//....
+					//....可能出现异常的语句
 				}catch(异常类名 e){
-					//...
+					//...异常出现时执行的语句
 				}finally{
 					//不管有没有异常，必须执行的语句
 				}
-	            注意：finally中一般不放return语句。
-				      finally一般用于释放资源。
-	    区分：final 、finalize、 finally？？？【面试题目】
+	            注意：①finally中一般不放return语句。
+				    ②  finally一般用于释放资源,关闭资源，例如：IO资源。数据库连接资源
+					③  try后面可以跟多个catch资源，但是最多一个finally；
+			        ④同时存在时，catch在前，finally在后，
+					⑤  try不能脱离catch或finally单独存在
+					  
+>区分：final 、finalize、 finally？？？【面试题目】
 		      final是修饰符：可以修饰变量、方法、类
 			       final修饰的变量是作用范围内常量
 				   final修饰的方法可以被继承，不能被覆盖
-				   final修饰的类不能被继承，即没有子类。
-			  finalize是方法的名字：垃圾回收器回收垃圾对象时，调用的方法
-			  finally是 try..catch...finally结构，finally中的语句不管异常一定被执行；
+				   final修饰的类不能被继承，即没有子类。例如String/Math
+			  finalize是方法的名字：JVM启动垃圾回收器回收垃圾对象时，自动调用的方法
+			  finally是几级处理异常结构， try..catch...finally结构，finally中的语句不管有没有异常一定被执行；
 			             finally一般用于释放资源。
+						 
+>main函数中调用test函数语句中：test(3,0):写出返回值结果，并分析原因，代码如下
+```java
+public static int test(int n,int m){
+try{
+return n/m;
+}catch(Exception e){
+return n;
+
+}
+finally{
+n=n+1;
+	}
+}
+
+```
 	
 ### 自定义异常类
 1.类继承Exception或是其子类；如果自定的异常类想成为运行时异常，
 	   它需要继承RuntimeException或是RuntimeException的子类。
 	   自定义异常类通常定义为：运行时异常。
-	2. 提供两个构造方法：
+2.提供两个构造方法：
 		一个构造方法为无参数的构造方法；
 		另一个构造方法为带有String类型参数的构造方法：
-			利用super(message),message描述异常的String信息。
+		利用super(message),为属性赋值，message描述异常的String信息。
 	
 ### 方法的覆盖(终结版)【重点】
 1.子类的方法名、参数列表、返回值类型必须和父类相同
