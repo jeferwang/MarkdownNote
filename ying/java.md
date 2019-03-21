@@ -2988,8 +2988,6 @@ String str2 = new String("Hello");
 
 ## 集合框架【重点】
 ![enter description here](./images/1552545768167.png)
-
-
 ### 概念
 
 
@@ -3030,7 +3028,6 @@ String str2 = new String("Hello");
 
 
 ### 子接口  List
-
 #### 1. 特点
 存储Object类型的对象，list元素有序，有下标，元素可以重复
 下标范围：0~size-1
@@ -3046,13 +3043,13 @@ String str2 = new String("Hello");
 #### 3.方法
 部分继承父接口Collection,同时自身定义了独有的一些功能方法
 ![enter description here](./images/1552535245492.png)
-**（1）add(int index,Object o)请一个元素插入到指定位置**
+   (1)add(int index,Object o)请一个元素插入到指定位置
 （2）remove(int index) 删除制定位置上的元素
-**（3）get（int index） 获得指定位置上的元素**
+（3）get（int index） 获得指定位置上的元素
 （4）indexOf(Object o) 返回第一次出现此元素的下标，若没有，返回值为-1
 （5）lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
-（**6）set（int pos,Object o）将o元素设置到pos的位置上**修改指定下标对应的集合元素，将修改的对象作为返回值进行返回
-<i class="fas fa-project-diagram">(7)List\<student>   list=Arrays.asList(new Student(),new Student(),new Student(),new Student());**(重要)**</i>
+（6）set（int pos,Object o）将o元素设置到pos的位置上修改指定下标对应的集合元素，将修改的对象作为返回值进行返回
+   **(7)List\<student>   list=Arrays.asList(new Student(),new Student(),new Student(),new Student());**
 
 #### 4.List的实现类【面试重点】
 1.ArrayList:底层数组实现，查询快，增删效率慢
@@ -3131,7 +3128,6 @@ for(数据类型  变量名：集合名)
                   Collections是java中操作集合的工具类，类中提供大量静态功能方法，如排序，倒置等
 
 ### 子接口Set[重点]
-
 #### 1. 特点
 存储Object类的对象，无序、无下标、元素的内容不允许重复。
 		          	
@@ -3157,16 +3153,14 @@ for(数据类型  变量名：集合名)
 					
 执行原理：往HashSet集合中存储对象时，调用当前对象的hashCode方法，通过计算获取对应存储下标，如果两个对象存储在同一个下标时，才会调用equalsf方法，判断两个对象的内容是否相同（返回值true）——拒绝添加；不相同（f返回值false）——添加成功。
 
-#### 4.遍历方式：forEach
-
-	
+#### 4.遍历方式：forEach	
 #### 5.实现类：LinkedHashSet
 【扩展】
 继承HashSet，根据添加顺序进行存储，同时元素内容不允许重复，如果保证自动类型的对象在集合中元素内容不重复，则需覆盖hashCode和equals方法。
 																							
 #### 6. Set的子接口：SortedSet[了解]
 
-  (1) 特点：
+(1) 特点：
  存储Object类型的对象，无序、无下标、元素内容不允许重复。
 			          可以根据元素内容自动排序。
 					  
@@ -3408,7 +3402,6 @@ n=n+1;
     3. 子类不能抛出比父类更多、更宽的异常	
 				
 ## 多线程
-
 ### 进程【理解】
 1.概念：进程是指操作系统(OS)中并发执行的多个任务（运行的每一个应用程序就是一个进程）。
  2.进程并发执行的原理：宏观并行（一起执行），微观串行（一个一个执行）。
@@ -3539,31 +3532,31 @@ satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线�
 			V get():从Future中获取结果
 ### 锁（Lock）
 
-	1. Lock:位于 java.util.concurrent.locks 包中，可以替代原有的synchronized。--》接口
-	2. 常用方法：
-		① lock():获取锁，如果锁标记被其他线程占用，则等待
-		② unlock():释放锁，必须手动释放
-	3. ReentrantLock：是 Lock接口的实现类，直接利用其构造方法获取锁对象。比synchronized更直观、灵活。
+1.Lock:位于 java.util.concurrent.locks 包中，可以替代原有的synchronized。--》接口
+2.常用方法：
+① lock():获取锁，如果锁标记被其他线程占用，则等待
+② unlock():释放锁，必须手动释放
+3.ReentrantLock：是 Lock接口的实现类，直接利用其构造方法获取锁对象。比synchronized更直观、灵活。
 
-	4. 读写锁：ReadWriteLock,位于：java.util.concurrent.locks
-		① 读写锁(ReadWriteLock)：是支持一写多读的锁，可以分配读锁和写锁。---》接口
-		② 实现类：ReentrantReadWriteLock
-			使用方式：
-				ReadWriteLock rwl=new ReentrantReadWriteLock();//获取读写锁对象
-				Lock rl=rwl.readLock();//获取读锁
-		        Lock wl= rwl.writeLock();//获取写锁
-		③ 读写锁互斥性：
-			读与读操作：不互斥
-			读与写：   互斥
-			写与读：   互斥
-			写与写：   互斥
-		④ 适用场景：读操作次数远远大于写操作。  
+4.读写锁：ReadWriteLock,位于：java.util.concurrent.locks
+① 读写锁(ReadWriteLock)：是支持一写多读的锁，可以分配读锁和写锁。---》接口
+② 实现类：ReentrantReadWriteLock
+	使用方式：
+		ReadWriteLock rwl=new ReentrantReadWriteLock();//获取读写锁对象
+		Lock rl=rwl.readLock();//获取读锁
+		Lock wl= rwl.writeLock();//获取写锁
+③ 读写锁互斥性：
+	读与读操作：不互斥
+	读与写：   互斥
+	写与读：   互斥
+	写与写：   互斥
+④ 适用场景：读操作次数远远大于写操作。  
 ### 高效并安全的集合类(java.util.concurrent)
-	1. CopyOnWriteArrayList: 写操作操作时进行加锁，为了保证数据的安全性，会拷贝一个副文本，
-	                         在副文本的基础上进行操作；但是对于读没有加锁，此类是牺牲写操作的
-	                         效率提高读操作的效率。
-	        应用场景：读操作次数远远大于写操作。
-	    面试题目： 写出 ArrayList 和 CopyOnWriteArrayList的区别。
-	    	    ArrayList线程不安全，运行效率相对快。
-	    	    CopyOnWriteArrayList：线程安全，在读操作远远多于写操作时，效率仅次于ArrayList.    
+1.CopyOnWriteArrayList: 写操作操作时进行加锁，为了保证数据的安全性，会拷贝一个副文本，
+					 在副文本的基础上进行操作；但是对于读没有加锁，此类是牺牲写操作的
+					 效率提高读操作的效率。
+	应用场景：读操作次数远远大于写操作。
+面试题目： 写出 ArrayList 和 CopyOnWriteArrayList的区别。
+		ArrayList线程不安全，运行效率相对快。
+		CopyOnWriteArrayList：线程安全，在读操作远远多于写操作时，效率仅次于ArrayList.    
 
