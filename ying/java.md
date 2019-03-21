@@ -3554,7 +3554,8 @@ satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线�
 	写与读：   互斥
 	写与写：   互斥
 ④ 适用场景：读操作次数远远大于写操作。  
-### 高效并安全的集合类(java.util.concurrent)
+### 高效并安全的集合类
+(位于java.util.concurrent)
 1.CopyOnWriteArrayList: 写操作操作时进行加锁，为了保证数据的安全性，会拷贝一个副文本，
 					 在副文本的基础上进行操作；但是对于读没有加锁，此类是牺牲写操作的
 					 效率提高读操作的效率。
