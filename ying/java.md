@@ -3009,12 +3009,12 @@ String str2 = new String("Hello");
 ### 父接口collection
 
 
-#### ①特点
+#### 1.特点
    
    存储Object类型的多个对象，collection：元素的类型都是Object----------是List和set的父接口
    
    
- #### ②方法
+ #### 2.方法
 **（1）boolean add(Object o) 添加元素成功为true[开发应用重点]**
    (2)  boolean  contains(Object o)判断集合中是否存在指定元素,存在为true
    (3)  boolean remove(Object o)移除单个元素，前提：存在,移除成功为true
@@ -3023,27 +3023,27 @@ String str2 = new String("Hello");
 （6）clear()清空一个集合中的所有元素
 （7）toArray() 将集合转化为一个数组
 
-   #### 实现类：Collection 没有直接的实现类，基于子接口来应用
-   #### 遍历：详见子接口
+   #### 3.实现类：Collection 没有直接的实现类，基于子接口来应用
+   #### 4.遍历：详见子接口
 		
 ![enter description here](./images/1552533604172.png)
 
 
 ### 子接口  List
 
-#### ① 特点
+#### 1. 特点
 存储Object类型的对象，list元素有序，有下标，元素可以重复
 下标范围：0~size-1
 
 
-#### ②List排序（如图）
+#### 2.List排序（如图）
 ![enter description here](./images/1553158161045.png)
 ![enter description here](./images/1553146730899.png)
 ![enter description here](./images/1553152543267.png)
 ![enter description here](./images/1553152798230.png)
 ![enter description here](./images/1553153122999.png)
 
-#### ③方法
+#### 3.方法
 部分继承父接口Collection,同时自身定义了独有的一些功能方法
 ![enter description here](./images/1552535245492.png)
 **（1）add(int index,Object o)请一个元素插入到指定位置**
@@ -3054,7 +3054,7 @@ String str2 = new String("Hello");
 （**6）set（int pos,Object o）将o元素设置到pos的位置上**修改指定下标对应的集合元素，将修改的对象作为返回值进行返回
 <i class="fas fa-project-diagram">(7)List\<student>   list=Arrays.asList(new Student(),new Student(),new Student(),new Student());**(重要)**</i>
 
-#### ④List的实现类【面试重点】
+#### 4.List的实现类【面试重点】
 1.ArrayList:底层数组实现，查询快，增删效率慢
 					JDK1.2版本，线程不安全，运行效率快
 2.Vector:底层数组实现，查询快，增删效率慢
@@ -3063,7 +3063,7 @@ String str2 = new String("Hello");
 
 
  
-#### ⑤遍历
+#### 5.遍历
 ![enter description here](./images/1553158080282.png)
 ![enter description here](./images/1553095722315.png)
 
