@@ -3132,13 +3132,13 @@ for(数据类型  变量名：集合名)
 
 ### 子接口Set[重点]
 
-#### ① 特点
+#### 1. 特点
 存储Object类的对象，无序、无下标、元素的内容不允许重复。
 		          	
-#### ② 方法
+#### 2. 方法
 方法全部继承于父接口Collection
 			
-####  ③实现类HashSet【开发重点】
+####  3.实现类HashSet【开发重点】
 
 为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
 		（1） 覆盖hashCode方法
@@ -3157,14 +3157,14 @@ for(数据类型  变量名：集合名)
 					
 执行原理：往HashSet集合中存储对象时，调用当前对象的hashCode方法，通过计算获取对应存储下标，如果两个对象存储在同一个下标时，才会调用equalsf方法，判断两个对象的内容是否相同（返回值true）——拒绝添加；不相同（f返回值false）——添加成功。
 
-#### ④遍历方式：forEach
+#### 4.遍历方式：forEach
 
 	
-#### ⑤实现类：LinkedHashSet
+#### 5.实现类：LinkedHashSet
 【扩展】
 继承HashSet，根据添加顺序进行存储，同时元素内容不允许重复，如果保证自动类型的对象在集合中元素内容不重复，则需覆盖hashCode和equals方法。
 																							
-#### ⑥ Set的子接口：SortedSet[了解]
+#### 6. Set的子接口：SortedSet[了解]
 
   (1) 特点：
  存储Object类型的对象，无序、无下标、元素内容不允许重复。
@@ -3192,6 +3192,25 @@ compareTo方法参数是对象类型，返回值类型是int类型
 
 ### 子接口 Queue
 ![enter description here](./images/1553158648318.png)
+	1. Queue:是 Collection的子接口，模拟的队列结构，特点先进先出(FIFO).
+	2. Queue常用方法：
+		① add(Object o):往队列中添加元素；容量达到上限，不自动扩容。
+		② offer(Object o):往 队列中顺序添加元素。  ---》入队
+		③ E poll():从队列中获取元素。---》出队
+	3. Queue的实现类  
+		LinkedList:
+	4. BlockingQueue：是Queue的子接口，模拟了队列结构，同时内部实现类生产者-消费者
+		ArrayBlockingQueue：数组实现的
+		LinkedBlockingQueue：链表实现
+
+	5. Collections的方法补充：
+		① static List synchronizedList(List list):将不安性的List作为参数传递，返回安全性的List.
+		② static Set synchronizedSet(Set set):将不安性的Set作为参数传递，返回安全性的Set
+		② static Map synchronizedMap(Map map):将不安性的Map作为参数传递，返回安全性的Map
+
+		面试题目：分析 ArrayList 和 Vector的区别。
+		      ArrayList：线程不安全，内部的方法都是非同步(没有加锁)，效率高
+		      Vector:线程安全，内部的方法都是同步方法，效率底。
 
 
 
@@ -3217,6 +3236,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 ⑤ boolean containsValue(V value):判断map集合中是否包含此value,包含-true;
                                                                       不包含-false.
 ⑥ int size():获取键值对的个数。
+
 #### 3. 实现类：HashMap【开发应用重点】
 
 ① HashMap【重点】：JDK1.2 版本，线程不安全，运行效率快。
@@ -3517,8 +3537,33 @@ satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线�
 5.Future \<V.>：位于 java.util.concurrent 包中，接收sumbit（C）的返回结果，其中包括了Callable接口中call方法的返回结果
 常用方法：
 			V get():从Future中获取结果
+### 锁（Lock）
 
-		
-		
-		
+	1. Lock:位于 java.util.concurrent.locks 包中，可以替代原有的synchronized。--》接口
+	2. 常用方法：
+		① lock():获取锁，如果锁标记被其他线程占用，则等待
+		② unlock():释放锁，必须手动释放
+	3. ReentrantLock：是 Lock接口的实现类，直接利用其构造方法获取锁对象。比synchronized更直观、灵活。
+
+	4. 读写锁：ReadWriteLock,位于：java.util.concurrent.locks
+		① 读写锁(ReadWriteLock)：是支持一写多读的锁，可以分配读锁和写锁。---》接口
+		② 实现类：ReentrantReadWriteLock
+			使用方式：
+				ReadWriteLock rwl=new ReentrantReadWriteLock();//获取读写锁对象
+				Lock rl=rwl.readLock();//获取读锁
+		        Lock wl= rwl.writeLock();//获取写锁
+		③ 读写锁互斥性：
+			读与读操作：不互斥
+			读与写：   互斥
+			写与读：   互斥
+			写与写：   互斥
+		④ 适用场景：读操作次数远远大于写操作。  
+### 高效并安全的集合类(java.util.concurrent)
+	1. CopyOnWriteArrayList: 写操作操作时进行加锁，为了保证数据的安全性，会拷贝一个副文本，
+	                         在副文本的基础上进行操作；但是对于读没有加锁，此类是牺牲写操作的
+	                         效率提高读操作的效率。
+	        应用场景：读操作次数远远大于写操作。
+	    面试题目： 写出 ArrayList 和 CopyOnWriteArrayList的区别。
+	    	    ArrayList线程不安全，运行效率相对快。
+	    	    CopyOnWriteArrayList：线程安全，在读操作远远多于写操作时，效率仅次于ArrayList.    
 
