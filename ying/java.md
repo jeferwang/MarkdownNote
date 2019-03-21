@@ -3059,6 +3059,7 @@ String str2 = new String("Hello");
 
  
 ##### ④遍历
+![enter description here](./images/1553095722315.png)
 
 对集合元素进行一一访问
 
@@ -3086,6 +3087,7 @@ for(数据类型  变量名：集合名)
 		}利用O操作集合对象
 		
 #### 泛型		
+![enter description here](./images/1553132410150.png)
 泛型集合：安全的集合，可以保证集合中数据类型统一【开发应用重点】
 （1）语法：List<数据类型>  list = new ArrayList<数据类型>（）；
 		  注意：前后数据类型一致
