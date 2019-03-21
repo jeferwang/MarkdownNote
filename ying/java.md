@@ -2690,7 +2690,7 @@ void finalize()：JVM中的垃圾回收器进行回收垃圾对象，自动调�
 
 ## 包装类
 
-### 1.概念
+### 概念
 
 1.概念：8种基本数据类型对应的引用/对象类型，称为基本数据类型的包装类
 2.基本数据类型对应 包装类：位于java.lang包中【重点】
@@ -2705,7 +2705,7 @@ void finalize()：JVM中的垃圾回收器进行回收垃圾对象，自动调�
 |boolean|Boolean|
 |char|Character|
 
-### 2.类型转化的总结
+### 类型转化的总结
 
 #### 1.基本数据类型转化为对应的包装类型
 
@@ -2790,7 +2790,7 @@ jdk1.5之后  java为八种基本数据类型所对应的包装类，提供了�
 					①int a4= Integer.parseInt("123")//借助Integer静态方法【开发应用重点】
 >注意：String类型数据转换为int/Integer时，要求转换字符串必须是纯数值类型，否则运行报错，错误信息：java.lang.NumberFormatException(数值类型转换异常)
 
-#### 装箱拆箱
+#### 8.装箱拆箱
 ①JDK5.0之后 提供自动装箱和拆箱功能 ，即基本数据类型和对应的包装类型之间可以相互转换
 ②
 	装箱：基本数据类型 转换为 对应的包装类型的过程 Integer i=12;
@@ -2821,7 +2821,7 @@ int b = i.intValue(); // 包装类转化为对应的基本类型
 			    	Integer i4 = 129;
 			    	System.out.println(i3==i4);//false
 	
-#### 实际开发应用【开发重点】
+####9. 实际开发应用【开发重点】
 （1）作用：可以区分程序中有效数据和无效数据	,例如：0和null;'
    (2)  场景：通常将类中属性由之前的基本数据类型改变为对应包装类型--->区分数据有效性
 	   
@@ -2976,7 +2976,7 @@ public class TestString1 {
 
 ```
 
-#### 6.面试题
+### 6.String面试题
 
 
 1.String 和 StringBuilder的区别
@@ -3007,12 +3007,12 @@ String str2 = new String("Hello");
 ### 父接口collection
 
 
-#### 1.特点
+ 1.特点
    
    存储Object类型的多个对象，collection：元素的类型都是Object----------是List和set的父接口
    
    
- #### 2.方法
+ 2.方法
 **（1）boolean add(Object o) 添加元素成功为true[开发应用重点]**
    (2)  boolean  contains(Object o)判断集合中是否存在指定元素,存在为true
    (3)  boolean remove(Object o)移除单个元素，前提：存在,移除成功为true
@@ -3021,8 +3021,9 @@ String str2 = new String("Hello");
 （6）clear()清空一个集合中的所有元素
 （7）toArray() 将集合转化为一个数组
 
-   #### 3.实现类：Collection 没有直接的实现类，基于子接口来应用
-   #### 4.遍历：详见子接口
+   3.实现类
+   Collection 没有直接的实现类，基于子接口来应用
+   4.遍历：详见子接口
 		
 ![enter description here](./images/1552533604172.png)
 
@@ -3060,7 +3061,7 @@ String str2 = new String("Hello");
 
 
  
-#### 5.遍历
+#### 5.遍历总结
 ![enter description here](./images/1553158080282.png)
 ![enter description here](./images/1553095722315.png)
 
@@ -3137,20 +3138,20 @@ for(数据类型  变量名：集合名)
 ####  3.实现类HashSet【开发重点】
 
 为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
-		（1） 覆盖hashCode方法
-					目的：必须保证相同内容的对象返回相同的hashCode码值；
-						  为了提高效率，不同内容的对象尽量返回不同的hashCode码值。
-					覆盖原则：将所有的属性拼凑为一个int值作为返回值。
-							   例如：
-							   public int hashCode(){
-							   //将所有的属性转为一个int类型的结果作为返回值返回
-									return this.age+this.name.hashCode();
-							   }
-					注意：如果是基本数据数值类型的属性，则直接通过转换获取即可
- 		（2）覆盖equals方法 :
-					必须保证内容相同的对象结果返回true，拒绝添加到集合中
-					必须保证内容不同的对象结果返回false，成功添加到集合中（以数组+链表的形式进行存储）
-					
+（1） 覆盖hashCode方法
+		目的：必须保证相同内容的对象返回相同的hashCode码值；
+			  为了提高效率，不同内容的对象尽量返回不同的hashCode码值。
+		覆盖原则：将所有的属性拼凑为一个int值作为返回值。
+				   例如：
+				   public int hashCode(){
+				   //将所有的属性转为一个int类型的结果作为返回值返回
+						return this.age+this.name.hashCode();
+				   }
+		注意：如果是基本数据数值类型的属性，则直接通过转换获取即可
+（2）覆盖equals方法 :
+		必须保证内容相同的对象结果返回true，拒绝添加到集合中
+		必须保证内容不同的对象结果返回false，成功添加到集合中（以数组+链表的形式进行存储）
+
 执行原理：往HashSet集合中存储对象时，调用当前对象的hashCode方法，通过计算获取对应存储下标，如果两个对象存储在同一个下标时，才会调用equalsf方法，判断两个对象的内容是否相同（返回值true）——拒绝添加；不相同（f返回值false）——添加成功。
 
 #### 4.遍历方式：forEach	
@@ -3160,19 +3161,19 @@ for(数据类型  变量名：集合名)
 																							
 #### 6. Set的子接口：SortedSet[了解]
 
-(1) 特点：
+##### (1) 特点：
  存储Object类型的对象，无序、无下标、元素内容不允许重复。
 			          可以根据元素内容自动排序。
 					  
-(2) 实现类：TreeSet
+##### (2) 实现类：TreeSet
  
 如果自定义类型的对象存储在TreeSet集合中，需要实现 java.lang.Comparable,同时实现compareTo方法，在方法中指定排序规则。
 注意：TreeSort保证存储元素内容是否相同取决于compareTo方法的返回值 
 如果compareTo的结果返回值为0，则代表相同内容的元素，拒绝添加到集合中。
 				
-(3)遍历：forEach
+##### (3)遍历：forEach
 
-
+### 总结 
 >总结:Set方法  增加add(object)	remove(object) 无修改方法 长度size()  无查询方法
 hashSet    先调用该对象的hashcode方法  如果hashcode码不一致，则表示不是同一对象，如果一致，会调用该对象的equals方法，如果equals方法返回false，被视为不是同一对象，否则被视为同一对象
 存的是基本类型，会自动将基本类型转化为包装类，然后根据hashcode排序
@@ -3186,23 +3187,25 @@ compareTo方法参数是对象类型，返回值类型是int类型
 
 ### 子接口 Queue
 ![enter description here](./images/1553158648318.png)
-	1. Queue:是 Collection的子接口，模拟的队列结构，特点先进先出(FIFO).
-	2. Queue常用方法：
-		① add(Object o):往队列中添加元素；容量达到上限，不自动扩容。
-		② offer(Object o):往 队列中顺序添加元素。  ---》入队
-		③ E poll():从队列中获取元素。---》出队
-	3. Queue的实现类  
-		LinkedList:
-	4. BlockingQueue：是Queue的子接口，模拟了队列结构，同时内部实现类生产者-消费者
+#### 1.特点
+Queue:是 Collection的子接口，模拟的队列结构，特点先进先出(FIFO).
+#### 2. Queue常用方法：
+① add(Object o):往队列中添加元素；容量达到上限，不自动扩容。
+② offer(Object o):往 队列中顺序添加元素。  ---》入队
+③ E poll():从队列中获取元素。---》出队
+#### 3. Queue的实现类  
+LinkedList
+#### 4. BlockingQueue
+ BlockingQueue：是Queue的子接口，模拟了队列结构，同时内部实现类生产者-消费者
 		ArrayBlockingQueue：数组实现的
 		LinkedBlockingQueue：链表实现
 
-	5. Collections的方法补充：
-		① static List synchronizedList(List list):将不安性的List作为参数传递，返回安全性的List.
-		② static Set synchronizedSet(Set set):将不安性的Set作为参数传递，返回安全性的Set
-		② static Map synchronizedMap(Map map):将不安性的Map作为参数传递，返回安全性的Map
+#### 5.Collections的方法补充：
+① static List synchronizedList(List list):将不安性的List作为参数传递，返回安全性的List.
+② static Set synchronizedSet(Set set):将不安性的Set作为参数传递，返回安全性的Set
+② static Map synchronizedMap(Map map):将不安性的Map作为参数传递，返回安全性的Map
 
-		面试题目：分析 ArrayList 和 Vector的区别。
+面试题目：分析 ArrayList 和 Vector的区别。
 		      ArrayList：线程不安全，内部的方法都是非同步(没有加锁)，效率高
 		      Vector:线程安全，内部的方法都是同步方法，效率底。
 
