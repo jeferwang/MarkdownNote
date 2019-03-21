@@ -3069,13 +3069,13 @@ String str2 = new String("Hello");
 
 对集合元素进行一一访问
 
-##### 下标遍历
+(1)下标遍历
 for(int i=0;i<集合名>.size();i++){
 					//通过下标获取对应集合元素
 					System.out.ptintln(集合名.get(i));
 				}
 
-##### forEach遍历
+(2) forEach遍历
 ```java
 for(数据类型  变量名：集合名)
 	//利用变量名直接操作集合元素
@@ -3166,17 +3166,17 @@ for(数据类型  变量名：集合名)
 																							
 #### ⑥ Set的子接口：SortedSet[了解]
 
- ##### ① 特点：
+  (1) 特点：
  存储Object类型的对象，无序、无下标、元素内容不允许重复。
 			          可以根据元素内容自动排序。
 					  
-##### ②实现类：TreeSet
+(2) 实现类：TreeSet
  
 如果自定义类型的对象存储在TreeSet集合中，需要实现 java.lang.Comparable,同时实现compareTo方法，在方法中指定排序规则。
 注意：TreeSort保证存储元素内容是否相同取决于compareTo方法的返回值 
 如果compareTo的结果返回值为0，则代表相同内容的元素，拒绝添加到集合中。
 				
-##### ③遍历：forEach
+(3)遍历：forEach
 
 
 >总结:Set方法  增加add(object)	remove(object) 无修改方法 长度size()  无查询方法
@@ -3232,7 +3232,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 **面试重点**：写出 HashMap和Hashtable的区别？？？？
 #### 4. 遍历：
 
-##### ① 键遍历：【开发应用重点】
+ ① 键遍历：【开发应用重点】
 //通过keySet方法获取map中所有的键：Set keySet();
 `Set<键的数据类型> ks=map.keySet();`
 //遍历Set集合，获取每一个value
@@ -3244,7 +3244,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 
 }
 		
-##### ② 值遍历：
+② 值遍历：
 通过values方法获取map中所有的值：Collection values();
 			Collection<值的数据类型> vs=map.values();//获取所有的值
 			for(值的数据类型 value:vs){//通过forEach遍历 获取每一个值
@@ -3253,7 +3253,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 			
 注意：map中没有提供值获取key的方法
  
-##### ③ 键值对遍历：【开发应用重点】
+③ 键值对遍历：【开发应用重点】
 通过entrySet方法获取map中所有的键值对：Set<Map.Entry<K,V>> entrySet();
 			
 Set<Map.Entry<K,V>> kvs=map.entrySet();
@@ -3366,7 +3366,9 @@ return n;
 }
 finally{
 n=n+1;
-	}
+
+}
+
 }
 
 ```
