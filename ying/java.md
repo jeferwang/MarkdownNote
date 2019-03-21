@@ -3006,15 +3006,15 @@ String str2 = new String("Hello");
 ### collection集合体系
 
 
-#### 父接口collection
+### 父接口collection
 
 
-##### ①特点
+#### ①特点
    
    存储Object类型的多个对象，collection：元素的类型都是Object----------是List和set的父接口
    
    
- ##### ②方法
+ #### ②方法
 **（1）boolean add(Object o) 添加元素成功为true[开发应用重点]**
    (2)  boolean  contains(Object o)判断集合中是否存在指定元素,存在为true
    (3)  boolean remove(Object o)移除单个元素，前提：存在,移除成功为true
@@ -3023,23 +3023,29 @@ String str2 = new String("Hello");
 （6）clear()清空一个集合中的所有元素
 （7）toArray() 将集合转化为一个数组
 
-   ##### 实现类：Collection 没有直接的实现类，基于子接口来应用
-   ##### 遍历：详见子接口
+   #### 实现类：Collection 没有直接的实现类，基于子接口来应用
+   #### 遍历：详见子接口
 		
 ![enter description here](./images/1552533604172.png)
 
 
-#### 子接口  List
+### 子接口  List
 
-##### ① 特点
+#### ① 特点
 存储Object类型的对象，list元素有序，有下标，元素可以重复
 下标范围：0~size-1
 
 
-##### ②方法
+#### ②List排序（如图）
+![enter description here](./images/1553158161045.png)
 ![enter description here](./images/1553146730899.png)
 ![enter description here](./images/1553152543267.png)
+![enter description here](./images/1553152798230.png)
+![enter description here](./images/1553153122999.png)
+
+#### ③方法
 部分继承父接口Collection,同时自身定义了独有的一些功能方法
+![enter description here](./images/1552535245492.png)
 **（1）add(int index,Object o)请一个元素插入到指定位置**
 （2）remove(int index) 删除制定位置上的元素
 **（3）get（int index） 获得指定位置上的元素**
@@ -3047,12 +3053,8 @@ String str2 = new String("Hello");
 （5）lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
 （**6）set（int pos,Object o）将o元素设置到pos的位置上**修改指定下标对应的集合元素，将修改的对象作为返回值进行返回
 <i class="fas fa-project-diagram">(7)List\<student>   list=Arrays.asList(new Student(),new Student(),new Student(),new Student());**(重要)**</i>
-![enter description here](./images/1552535245492.png)
 
-
-
-##### ③List的实现类【面试重点】
-
+#### ④List的实现类【面试重点】
 1.ArrayList:底层数组实现，查询快，增删效率慢
 					JDK1.2版本，线程不安全，运行效率快
 2.Vector:底层数组实现，查询快，增删效率慢
@@ -3061,18 +3063,19 @@ String str2 = new String("Hello");
 
 
  
-##### ④遍历
+#### ⑤遍历
+![enter description here](./images/1553158080282.png)
 ![enter description here](./images/1553095722315.png)
 
 对集合元素进行一一访问
 
-###### 下标遍历
-for(int i=0;i<集合名.size();i++){
+##### 下标遍历
+for(int i=0;i<集合名>.size();i++){
 					//通过下标获取对应集合元素
 					System.out.ptintln(集合名.get(i));
 				}
 
-###### forEach遍历
+##### forEach遍历
 ```java
 for(数据类型  变量名：集合名)
 	//利用变量名直接操作集合元素
@@ -3089,13 +3092,15 @@ for(数据类型  变量名：集合名)
 			Object o = it.next();
 		}利用O操作集合对象
 		
-#### 泛型		
+### 泛型		
+![enter description here](./images/1553158237193.png)
 ![enter description here](./images/1553132410150.png)
 ![enter description here](./images/1553137649908.png)
 泛型集合：安全的集合，可以保证集合中数据类型统一【开发应用重点】
 （1）语法：List<数据类型>  list = new ArrayList<数据类型>（）；
 		  注意：前后数据类型一致
 （2）泛型类扩展
+![enter description here](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1553158217798]]]" )
 			①定义：
 				class 类名<泛型标识1,泛型标识2>{
 					//在类中直接将 泛型标识 作为一种数据类型直接使用
@@ -3110,7 +3115,7 @@ for(数据类型  变量名：集合名)
 				注意：指定多个泛型是，要么都指定，要么都不指定
 		  
 		  
-#### 工具类collections[了解]
+### 工具类collections[了解]
 ![enter description here](./images/1552615300866.png)
 1.collections位于java.util包中，操作集合元素的工具类，例如排序，倒置等操作
 2.collections提供了很多静态的功能方法：利用Collections.方法名（实参）。
@@ -3125,15 +3130,15 @@ for(数据类型  变量名：集合名)
 		          Collection是java中Collection集合体系中的根接口,具有List和Set接口。
                   Collections是java中操作集合的工具类，类中提供大量静态功能方法，如排序，倒置等
 
-#### 子接口Set[重点]
+### 子接口Set[重点]
 
-##### ① 特点
+#### ① 特点
 存储Object类的对象，无序、无下标、元素的内容不允许重复。
 		          	
-##### ② 方法
+#### ② 方法
 方法全部继承于父接口Collection
 			
-#####  ③实现类HashSet【开发重点】
+####  ③实现类HashSet【开发重点】
 
 为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
 		（1） 覆盖hashCode方法
@@ -3152,27 +3157,26 @@ for(数据类型  变量名：集合名)
 					
 执行原理：往HashSet集合中存储对象时，调用当前对象的hashCode方法，通过计算获取对应存储下标，如果两个对象存储在同一个下标时，才会调用equalsf方法，判断两个对象的内容是否相同（返回值true）——拒绝添加；不相同（f返回值false）——添加成功。
 
-##### ④遍历方式：forEach
+#### ④遍历方式：forEach
 
 	
-##### ⑤实现类：LinkedHashSet
+#### ⑤实现类：LinkedHashSet
 【扩展】
 继承HashSet，根据添加顺序进行存储，同时元素内容不允许重复，如果保证自动类型的对象在集合中元素内容不重复，则需覆盖hashCode和equals方法。
 																							
+#### ⑥ Set的子接口：SortedSet[了解]
 
-##### ⑥ Set的子接口：SortedSet[了解]
-
- ###### ① 特点：
+ ##### ① 特点：
  存储Object类型的对象，无序、无下标、元素内容不允许重复。
 			          可以根据元素内容自动排序。
 					  
-###### ②实现类：TreeSet
+##### ②实现类：TreeSet
  
 如果自定义类型的对象存储在TreeSet集合中，需要实现 java.lang.Comparable,同时实现compareTo方法，在方法中指定排序规则。
 注意：TreeSort保证存储元素内容是否相同取决于compareTo方法的返回值 
 如果compareTo的结果返回值为0，则代表相同内容的元素，拒绝添加到集合中。
 				
-###### ③遍历：forEach
+##### ③遍历：forEach
 
 
 >总结:Set方法  增加add(object)	remove(object) 无修改方法 长度size()  无查询方法
@@ -3183,10 +3187,16 @@ linkedhashSet  链表实现  目的是为了维护添加元素的顺序
 treeSet   通过红黑树实现的  如果向该集合存入的是一个自定义的对象类型，首先需要让该类实现一个comparable接口  重写该接口的一个方法compareTo方法
 compareTo方法参数是对象类型，返回值类型是int类型
 当前对象的值>参数传递过来的值  那么当先对象排到参数对象的后面
-当前对象的值<参数传递过来的值  那么当前对象排到参数对象的前面
+当前对象的值<参数传递过来的值>  那么当前对象排到参数对象的前面
 当前对象的值=参数传递过来的值  这两个对象相同
-			
+
+### 子接口 Queue
+![enter description here](./images/1553158648318.png)
+
+
+
 ###  Map集合体系[开发重点]
+
 ![enter description here](./images/1552635664339.png)
 
 #### 1.特点：【重点】
