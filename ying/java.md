@@ -3037,6 +3037,8 @@ String str2 = new String("Hello");
 
 
 ##### ②方法
+![enter description here](./images/1553146730899.png)
+![enter description here](./images/1553152543267.png)
 部分继承父接口Collection,同时自身定义了独有的一些功能方法
 **（1）add(int index,Object o)请一个元素插入到指定位置**
 （2）remove(int index) 删除制定位置上的元素
@@ -3044,6 +3046,7 @@ String str2 = new String("Hello");
 （4）indexOf(Object o) 返回第一次出现此元素的下标，若没有，返回值为-1
 （5）lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
 （**6）set（int pos,Object o）将o元素设置到pos的位置上**修改指定下标对应的集合元素，将修改的对象作为返回值进行返回
+<i class="fas fa-project-diagram">(7)List\<student>   list=Arrays.asList(new Student(),new Student(),new Student(),new Student());**(重要)**</i>
 ![enter description here](./images/1552535245492.png)
 
 
@@ -3088,6 +3091,7 @@ for(数据类型  变量名：集合名)
 		
 #### 泛型		
 ![enter description here](./images/1553132410150.png)
+![enter description here](./images/1553137649908.png)
 泛型集合：安全的集合，可以保证集合中数据类型统一【开发应用重点】
 （1）语法：List<数据类型>  list = new ArrayList<数据类型>（）；
 		  注意：前后数据类型一致
@@ -3464,13 +3468,43 @@ b. 第二种实现多线程：
 	反之：消费者判断栈结构元素为空时，则需要利用wait方法等待生产者生产，同时生产者生产一个元素，则需要利用notifyAll消费者结束等待状态
 		④生产则—消费者程序设置中，wait方法的调用放于While循环中，应用场景为：多对多，一对一，多对一
 				
-				
-				
-				
-				
-		
+### System原理【面试题目】			
+补充：解析System.out.println();实现原理
+System:类-------》系统相关
+out ：静态属性------》属性的类型为对象类型，同时被final修饰
+println：--------》方法 
+### 线程池
+（位于java.util.concurrent）
+<i class="fas fa-feather-alt"></i>1.概念：线程容器，将预先创建好的线程对象存储在线程池中，线程池中的线程对象可以被反复使用
 
-		
+<i class="fas fa-feather-alt"></i>2.好处：线程池中的线程对象可以反复使用，从而减少了线程创建和销毁次数，提高效率
+
+<i class="fas fa-feather-alt"></i>3.常用的类和接口：
+	① Executor:线程池的顶级接口,根接口
+	②ExecutorService:是Executor的子接口，线程池的核心接口
+	     （1） submit(Runnable  r):将任务提交给线程池,线程池分配线程对象完成提交的任务
+		 （2）shutdown():关闭线程池，即线程池不再接收新的任务
+	③Executors:是获取线程池对象的工具类，其中定义了大量的静态功能方法
+<i class="fas fa-project-diagram">
+	static ExecutorService newFixedThreadPool(int n):获取固定个数线程对象的线程池（参数说明：n代表线程池中线程对象的个数）
+	</i>
+<i class="fas fa-project-diagram">
+satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线程池，线程池中的线程池不够用则新创建，没有上限。
+</i>				
+### Callable接口		
+（位于java.util.concurrent 包中）
+1.Callable接口是JDK5.0开始应用的，类似Runnable接口
+
+2.Callable接口中方法：
+	V call():带返回值并且可以抛出异常
+	
+3.同步方法：方法一旦被调用，则调用者需要等待被调方法内部的程序全部执行完毕，并返回到调用位置，调用者才能继续往下执行。//现实商场购物
+
+4.异步方法:方法一旦被调用，调用者立即返回继续执行以下内容//网购
+
+5.Future \<V.>：位于 java.util.concurrent 包中，接收sumbit（C）的返回结果，其中包括了Callable接口中call方法的返回结果
+常用方法：
+			V get():从Future中获取结果
 
 		
 		
