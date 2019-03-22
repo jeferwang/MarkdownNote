@@ -3051,7 +3051,7 @@ String str2 = new String("Hello");
 （5）lastIndexOf(Object o) 返回最后一次出现此元素的下标，若没有，返回值为-1
 （6）set（int pos,Object o）将o元素设置到pos的位置上修改指定下标对应的集合元素，将修改的对象作为返回值进行返回
    **(7)List\<student>   list=Arrays.asList(new Student(),new Student(),new Student(),new Student());**
-
+返回一个受指定数组支持的固定大小的列表。
 #### 4.List的实现类【面试重点】
 1.ArrayList:底层数组实现，查询快，增删效率慢
 					JDK1.2版本，线程不安全，运行效率快
@@ -3216,7 +3216,7 @@ LinkedList
 ② static Set synchronizedSet(Set set):将不安性的Set作为参数传递，返回安全性的Set
 ② static Map synchronizedMap(Map map):将不安性的Map作为参数传递，返回安全性的Map
 
-面试题目：分析 ArrayList 和 Vector的区别。
+>面试题目：分析 ArrayList 和 Vector的区别。
 		      ArrayList：线程不安全，内部的方法都是非同步(没有加锁)，效率高
 		      Vector:线程安全，内部的方法都是同步方法，效率底。
 
@@ -3505,14 +3505,14 @@ b. 第二种实现多线程：
 	    消费者：往栈结构中取出元素
 	③ 注意：当生产者判断栈结构中元素满时，需要利用wait方法等待消费者消费，同时消费者消费一个元素时，则需要利用notifyAll通知生产者结束等待状态
 	反之：消费者判断栈结构元素为空时，则需要利用wait方法等待生产者生产，同时生产者生产一个元素，则需要利用notifyAll消费者结束等待状态
-		④生产则—消费者程序设置中，wait方法的调用放于While循环中，应用场景为：多对多，一对一，多对一
+	④生产则—消费者程序设置中，wait方法的调用放于While循环中，应用场景为：多对多，一对一，多对一
 				
 ### System原理【面试题目】			
 补充：解析System.out.println();实现原理
 System:类-------》系统相关
 out ：静态属性------》属性的类型为对象类型，同时被final修饰
 println：--------》方法 
-### 线程池
+### 线程池【重点】
 （位于java.util.concurrent）
 <i class="fas fa-feather-alt"></i>1.概念：线程容器，将预先创建好的线程对象存储在线程池中，线程池中的线程对象可以被反复使用
 
@@ -3528,9 +3528,9 @@ println：--------》方法
 	static ExecutorService newFixedThreadPool(int n):获取固定个数线程对象的线程池（参数说明：n代表线程池中线程对象的个数）
 	</i>
 <i class="fas fa-project-diagram">
-satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线程池，线程池中的线程池不够用则新创建，没有上限。
+static ExecutorService newCatchedThreadPool():获取动态个数的线程的线程池，线程池中的线程池不够用则新创建，没有上限。
 </i>				
-### Callable接口		
+### Callable接口	【重点】	
 （位于java.util.concurrent 包中）
 1.Callable接口是JDK5.0开始应用的，类似Runnable接口
 
@@ -3544,7 +3544,7 @@ satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线�
 5.Future \<V.>：位于 java.util.concurrent 包中，接收sumbit（C）的返回结果，其中包括了Callable接口中call方法的返回结果
 常用方法：
 			V get():从Future中获取结果
-### 锁（Lock）
+### 锁（Lock）【理解】
 
 1.Lock:位于 java.util.concurrent.locks 包中，可以替代原有的synchronized。--》接口
 2.常用方法：
@@ -3565,7 +3565,7 @@ satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线�
 	写与读：   互斥
 	写与写：   互斥
 ④ 适用场景：读操作次数远远大于写操作。  
-### 高效并安全的集合类
+### 高效并安全的集合类【面试侧重】
 (位于java.util.concurrent)
 1.CopyOnWriteArrayList: 写操作操作时进行加锁，为了保证数据的安全性，会拷贝一个副文本，在副文本的基础上进行操作；但是对于读没有加锁，此类是牺牲写操作的效率提高读操作的效率。
 
@@ -3573,4 +3573,144 @@ satic ExecutorService newCatchedThreadPool():获取动态个数的线程的线�
 >面试题目： 写出 ArrayList 和 CopyOnWriteArrayList的区别。
 		ArrayList线程不安全，运行效率相对快。
 		CopyOnWriteArrayList：线程安全，在读操作远远多于写操作时，效率仅次于ArrayList.    
+		
+>面试题目：分析 ArrayList 和 Vector的区别。
+		      ArrayList：线程不安全，内部的方法都是非同步(没有加锁)，效率高
+		      Vector:线程安全，内部的方法都是同步方法，效率底。
+			  
+>面试题目：实现线程有几种方式，分别如何实现
+①类继承Thread类同时覆盖run方法
+创建线程对象t1,t1.start();开启线程
+②实现Runnable接口，同时实现Run方法
+创建目标对象,以目标对象为参数创建线程对象t2,t2.start()开启线程
+③利用Callable接口，将线程任务定义call方法中，借助线程池完成线程任务
 
+2.ConcurrentLinkedQueue:
+ ConcurrentLinkedQueue ：所在包java.util.concurrent；是Queue接口的常用实现类，基于链表实现的队列，采用比较交换算法，简称CAS无锁算法，特点是无锁并且线程安全的类同时效率相对较高。
+ 3.ConcurrentHahMap:减小锁粒度，提高并发效率---》线程安全相对高效的集合类
+ ①提升效率：利用较小锁定对象的范围，降低锁冲突的可能性，从而提高并发效率
+ ②注意：ConcurrentHahMap底层分为多个小的HashMap,每一个被称为一个段，共16段
+ ③使用适用场景：全局操作不频繁时，效率相对较高。例如：size操作
+ >面试题目：ConcurrentHahMap和HahMap的区别高效的Map集合实现类，利用减小锁粒度提高效率
+ ConcurrentHahMap:线程安全并且相对
+ HahMap：线程不安全，运行效率快
+## IO流
+### IO
+#### 1.概念
+ （位于java.IO包中）
+流是数据在内存和其他存储设备中运输的通道，管道。
+####  2.流的分类【面试】
+
+① 按方向分：(以JVM为参照物)【重点】
+	输入流：将<其他存储设备>中的数据，读入到<JVM内存>中。【读操作】读书输入大脑知识
+	输出流：将<JVM内存>中的数据，写入到<其他存储设备>中。【写操作】考试写到纸上输出内容
+② 按单位分：
+	字节流：以字节为传输单位，可以操作所有类型的文件。
+	字符流：以字符为传输单位，只能操作文本文件。
+						  (可以用记事本打开的文件，例如：.java/.txt/.c/.html)
+③ 按功能分：
+	节点流：具有基本的读写功能的流。
+	过滤流：在节点流的基础上，增强新的功能。增强读写功能。
+### 字节流
+#### 1.字节流的父类(抽象类)
+① InputStream:字节输入流---》读操作:read
+② OutputStream:字节输出流---》写操作：write
+
+#### 2.字节节点流【开发重点】
+##### ① FileOutputStream:文件字节输出流
+（1）常用的构造方法：
+a. FileOutputStream fos = new FileOutputStream("E:/CoreJava/test/a.txt");
+   I. 参数类型为Stringl类型：指定文件的路径和文件名，E:/CoreJava/test/a.txt 
+					   或是 E:\\CoreJava\\test\\a.txt
+   II. 如果指定的文件不存在，系统默认新创建一个文件。
+	   但是如果指定的文件夹不存在，则系统报错，错误信息：
+	   java.io.FileNotFoundException (系统找不到指定的路径。)
+   III. 绝对路径：盘符:/文件夹名/文件名=======》不灵活不通用
+b. FileOutputStream fos = new FileOutputStream("a.txt"); 
+   I.参数：指定文件的路径，默认在当前项目的根目录下查找文件，没有则创建
+   II. 相对路径：默认在当前项目的根目录下查找指定文件和文件夹
+c. FileOutputStream fos = new FileOutputStream("file/a.txt");【开发应用】
+d. FileOutputStream fos = new FileOutputStream("file/a.txt",true);
+   I.参数说明：
+      第一个参数指定操作的文件的路径及文件名  
+      第二个参数：类型是 boolean
+				   true-在原有内容上追加(不覆盖原有内容)
+				   false-覆盖原有的内容	(默认)					   
+
+（2）常用的方法：
+	a. public void write(int b):将单个字节的内容写入到文件中。
+	b. public void write(byte[] bs):一次性将多个字节写入到文件中。
+	c. public void write(byte[] bs,int off,int len):一次性将多个字节写入到文件中，
+					  将bs数组中一部分内容写入文件中，起始下标off,写入长度len
+注意：用完流需要调用close()方法将流进行关闭，流一旦关闭，不能继续使用。
+##### ② FileInputStream:文件字节输入流
+   （1）常用的构造方法：
+	a. FileInputStream fis = new FileInputStream("f.txt");
+	   I. 参数：代表文件的路径，如果指定文件不存在，系统不会自动创建，
+				 运行报错，错误信息：
+				 java.io.FileNotFoundException(系统找不到指定的文件。)
+
+（2） 常用的方法：
+	a. public int read():一次性读取一个字节的内容，返回值代表读取的字节内容，
+						  如果达到文件的尾部，则返回-1.
+
+开发应用：将文件中内容一次性全部读取到JVM中
+				   `while(true){
+								int r = fis.read();
+								if(r==-1){
+									break;
+								}
+								System.out.println((char)r);
+							}`
+b. public int read(byte[] bs):一次性读取多个字节的内容，将读取的字节内容自动存储到bs数组中，返回值代表实际读取的字节个数。  
+`byte[] bs=new byte[5];
+int count = fis.read(b);
+system.out.println("实际读取到的个数"+count);
+for(byte r:bs){
+sysytem.out.println(char(r))
+	}`
+
+c. public int read(byte[] bs,int off,int len):从文件中一次性读取多个字节的内容，
+						  将读取的字节内容存储到数组bs中(存储的起始下标off,读取的个数len),
+						  返回值代表实际读取的字节个数。（读还是从头开始读，下标代表的是从哪个位置开始存储）
+
+思考：如何实现文件的拷贝？？？	 
+		while(true){
+			int r = fis.read();
+			if(r==-1) break;
+			fos.write(r);
+		}
+
+#### 3.过滤流
+① BufferedInputStream/BufferedOutputStream
+	a. 缓冲流，用于提高IO读写效率，减少访问硬盘的次数。
+	b. 如果将存储在缓冲中的数据写到文件中，可以利用flush方法将缓冲区的数据清空
+		或是直接利用close方法清空缓冲区。
+		
+注意：flush方法只是清空缓冲区，流还可以继续使用
+close方法关闭流的同时清空缓冲流，流不能继续使用
+
+② DataOutputStream/DataInputStream
+	a. 具有基本读写操作，同时增强了操作8种基本数据类型的功能
+	   readByte()/readShort()/readInt()/readLong()/readFloat()/readDouble()...
+	   writeByte(形参)/writeShort(形参)....
+	b. 可以操作字符串：readUTF() / writeUTF(参数)
+③ ObjectOutputStream/ObjectInputStream
+	a. 具有缓冲作用
+	b. 具有基本读写操作，可以操作8种基本数据类型和字符串String
+	c. 可以操作对象
+		writeObject(Object o):将对象写入到文件中
+		Object  readObject():从文件中读取一个对象的内容，返回值类型是Object.
+   **d.对象序列化[重点]**
+   概念：将对象放在流上进行传输的过程称为对象序列化。【重点】
+   要求：参与对象序列化的对象是可序列化的，可序列化的要求是
+		 对象的类实现java.io.Serializable接口。【重点】
+
+   注意：① 被transient修饰的属性不参与对象序列化。
+		 ② 达到文件尾部的标志：java.io.EOFException
+		 ③ 如果参与对象序列化的对象中的属性是自定义类型，
+			则该对象也必须是可序列化的。
+		 ④ 如果对集合进行对象序列化，则必须保证集合中所有的元素
+			都是可序列化的。
+### 字符流 
+### File类
