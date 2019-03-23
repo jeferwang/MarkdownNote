@@ -3198,7 +3198,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 
 ### 子接口 Queue
 ![enter description here](./images/1553158648318.png)
-![enter description here](./images/1553314475225.png)
+![enter description here](./images/1553315241860.png)
 #### 1.特点
 Queue:是 Collection的子接口，模拟的队列结构，特点先进先出(FIFO).
 #### 2. Queue常用方法：
