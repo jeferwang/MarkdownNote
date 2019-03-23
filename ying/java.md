@@ -3144,7 +3144,7 @@ for(数据类型  变量名：集合名)
 方法全部继承于父接口Collection
 			
 ####  3.实现类HashSet【开发重点】
-
+![enter description here](./images/1553314418719.png)
 为了保证HashSet中存储不同内容的对象即为了保证元素的内容不重复，则自定义类型的对象对应的类需要做到以下两点：
 （1） 覆盖hashCode方法
 		目的：必须保证相同内容的对象返回相同的hashCode码值；
@@ -3198,6 +3198,7 @@ compareTo方法参数是对象类型，返回值类型是int类型
 
 ### 子接口 Queue
 ![enter description here](./images/1553158648318.png)
+![enter description here](./images/1553314475225.png)
 #### 1.特点
 Queue:是 Collection的子接口，模拟的队列结构，特点先进先出(FIFO).
 #### 2. Queue常用方法：
@@ -3246,6 +3247,7 @@ LinkedList
 ⑥ int size():获取键值对的个数。
 
 #### 3. 实现类：HashMap【开发应用重点】
+![enter description here](./images/1553314274308.png)
 
 ① HashMap【重点】：JDK1.2 版本，线程不安全，运行效率快。
 		                     允许null作为key或是value.
@@ -3259,7 +3261,8 @@ LinkedList
 		
 **面试重点**：写出 HashMap和Hashtable的区别？？？？
 #### 4. 遍历：
-
+![enter description here](./images/1553313365619.png)
+![enter description here](./images/1553313398681.png)
  ① 键遍历：【开发应用重点】
 //通过keySet方法获取map中所有的键：Set keySet();
 `Set<键的数据类型> ks=map.keySet();`
