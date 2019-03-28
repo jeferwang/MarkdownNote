@@ -2254,14 +2254,28 @@ static修饰的成员称为类成员[静态成员]，全类共享，不属于某
 静态常量：static  final  int  a;            
 没有默认值   只有一次赋值机会：   声明时赋值  ，静态代码块赋值           4.基本数据类型‐‐‐‐‐被final修饰之后。值不允许改变        
    引用数据类型‐‐‐‐‐被final修饰之后，地址不允许改变
-  
+   
+注意：  
 private protected可以修饰 属性方法 构造方法
 default public 除了修饰属性方法构造方法，还能修饰类
 
 private abstract 不能联用
 final abstrct 不能调用
 static abstract 不能联用                
-
+static、final、abstract能不能修饰构造方法？
+① static不能修饰构造方法
+static修饰的成员与对象无关，而构造方法是创   建对象时用，与对象有关。
+② final不能修饰构造方法
+final修饰的方法不能被覆盖；而构造方法不能被继承，谈不上覆盖的概念。
+③  abstract不能修饰构造方法
+abstract修饰的方法只有声明，没有实现；而构造方法用于创建对象，必须有实现。
+① private与abstract：private修饰的方法不能被继承，如果private和abstract一起使
+用，该方法永远没有实现。
+② static与abstract:static修饰的方法与某个对象无关，可以通过类名直接访问；如果static与abstract一
+起使用，再用类名访问方法时，方法没有了实现。
+③  final与abstract:final修饰的方法不能被覆盖，而abstract修饰的方法即抽象方法，需要借助子类进行实现，矛盾，所以不能一起使用。
+④  private、static、final 可以任意组合。
+局部变量不用被修饰，自身就有范围（从定义行开始到代码块结束）
 ## 接口
 
 ### 1.概念
