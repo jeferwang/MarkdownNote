@@ -1,6 +1,6 @@
 ---
 title: Java学习笔记
-tags: Java
+tags: Java学习笔记
 grammar_cjkRuby: true
 ---
 [TOC]
