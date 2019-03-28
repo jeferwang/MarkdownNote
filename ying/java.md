@@ -3778,81 +3778,77 @@ c.可以将对象的内容写入到文件中：
 	① String getName():获取文件名，包含扩展名。
 	② String getAbsolutePath():获取文件的绝对路径【重点】		
 
+## 反射
+1.概念：
+	① 类的对象：基于定义好的一个类，创建的该类的一个实例。即：new 出来的对象就是 类的对象。
+	② 类对象：类加载读取一个类信息的产物，该类封装类一个类的所有信息：包名、类名、父类、接口、属性、构造方法、功能方法等。
+		
+2. 获取类对象的方式
+① 通过 类的对象 获取 类对象
+	Student s = new Student();//类的对象
+	Class c1 = s.getClass();//类对象
+② 通过类名获取该类的 类对象：类名.class 
+	Class c2 = Student.class;
+③ 利用Class类中静态方法 forName("包名.类名");
+	Class c3 = Class.forName("test_flect.Student");
+	注意：参数是全类名：包名.类名
 
-------------------------------反射------------------------------------
-一、反射
-	1. 概念：
-		① 类的对象：基于定义好的一个类，创建的该类的一个实例。即：new 出来的对象就是 类的对象。
-		② 类对象：类加载读取一个类信息的产物，该类封装类一个类的所有信息：包名、类名、父类、接口、属性、构造方法、功能方法等。
-		
-	2. 获取类对象的方式
-		① 通过 类的对象 获取 类对象
-			Student s = new Student();//类的对象
-			Class c1 = s.getClass();//类对象
-		② 通过类名获取该类的 类对象：类名.class 
-		    Class c2 = Student.class;
-		③ 利用Class类中静态方法 forName("包名.类名");
-		    Class c3 = Class.forName("test_flect.Student");
-		    注意：参数是全类名：包名.类名
-		
-	3. Class中常用方法：
-		① 通过 类对象获取 类的对象：
-            Class c = Class.forName("test_flect.Student");//获取 类对象
-		    Object o =c.newInstance();//类的对象
+3. Class中常用方法：
+① 通过 类对象获取 类的对象：
+	Class c = Class.forName("test_flect.Student");//获取 类对象
+	Object o =c.newInstance();//类的对象
+注意：Class中的newInstance()方法获取类的对象默认的调用无参数的构造方法。
+② 通过反射技术 利用有参数的构造方法获取 类的对象：
 
-		    注意：Class中的newInstance()方法获取类的对象默认的调用无参数的构造方法。
-		② 通过反射技术 利用有参数的构造方法获取 类的对象：
-		
-			Class c = Class.forName("test_flect.Student");//获取 类对象
-			Constructor ct = c.getConstructor(String.class,int.class);//获取有参数的构造方法
-			Object o = ct.newInstance("小彬",58);//基于有参数的构造方法创建对象
+Class c = Class.forName("test_flect.Student");//获取 类对象
+Constructor ct = c.getConstructor(String.class,int.class);//获取有参数的构造方法
+Object o = ct.newInstance("小彬",58);//基于有参数的构造方法创建对象
 
-    4. 反射的优缺点：
-    	① 缺点：可读性差，实现比较繁琐； 打破封装。
-    	② 优点：让代码更加灵活、通用，通常用于底层设计，例如框架的搭建等。 
-		
-二、设计模式(23种)
-	1. 设计模式：一套被反复使用、多人知晓、并且经过分门别类的一套代码经验总结。
-	2. 单例模式：常见的一种设计模式，在Java程序应用中，JVM中只有该类的一个实例对象。	
-		① 饿汉式
-			class ClassA{
-				private static final ClassA ca = new ClassA();
-				private ClassA(){}	
-				public static ClassA getInstance(){
-					return ca;
-				}
+4. 反射的优缺点：
+① 缺点：可读性差，实现比较繁琐； 打破封装。
+② 优点：让代码更加灵活、通用，通常用于底层设计，例如框架的搭建等。 
+
+### 设计模式(23种)
+1.设计模式：一套被反复使用、多人知晓、并且经过分门别类的一套代码经验总结。
+2.单例模式：常见的一种设计模式，在Java程序应用中，JVM中只有该类的一个实例对象。	
+① 饿汉式
+	class ClassA{
+		private static final ClassA ca = new ClassA();
+		private ClassA(){}	
+		public static ClassA getInstance(){
+			return ca;
+		}
+	}
+	优点：多线程并发时，效率高。
+	缺点：空间利用低
+② 懒汉式
+	class ClassB{
+		private static ClassB cb;
+		private ClassB(){}
+		public synchronized static ClassB getInstance(){
+			if(cb==null){
+				cb=new ClassB();
 			}
-			优点：多线程并发时，效率高。
-			缺点：空间利用低
-		② 懒汉式
-			class ClassB{
-				private static ClassB cb;
-				private ClassB(){}
-				public synchronized static ClassB getInstance(){
-					if(cb==null){
-						cb=new ClassB();
-					}
-					return cb;
-				}
-			}	
-			优点：空间利用率高
-			缺点：多线程并发时，效率底。
-		③ 基于饿汉式和懒汉式的优点，扩展的一种实现方式
-			class ClassC{
-				private ClassC(){}
-				private static class Inner{
-					static final ClassC cc = new ClassC();
-				}
-				public static ClassC getInstance(){
-					return Inner.cc;
-				}
-			}
-	3.工厂设计模式：程序中工厂设计模式解决的是对象创建问题。
-		① 在设计工厂模式时，通常会利用反射技术，让程序更通用和灵活。
-		② 知识扩充：
-			Properties通常用于读取配置文件，利用的load方法：
-				load(InputStream)/load(Reader)：对输入流读取的文件内容按行进行拆分，
-				    拆分时分割内容为"="或是":"，"="或是":"左侧内容为键，右侧内容为值。
+			return cb;
+		}
+	}	
+	优点：空间利用率高
+	缺点：多线程并发时，效率底。
+③ 基于饿汉式和懒汉式的优点，扩展的一种实现方式
+	class ClassC{
+		private ClassC(){}
+		private static class Inner{
+			static final ClassC cc = new ClassC();
+		}
+		public static ClassC getInstance(){
+			return Inner.cc;
+		}
+	}
+3.工厂设计模式：程序中工厂设计模式解决的是对象创建问题。
+① 在设计工厂模式时，通常会利用反射技术，让程序更通用和灵活。
+② 知识扩充：
+	Properties通常用于读取配置文件，利用的load方法：
+		load(InputStream)/load(Reader)：对输入流读取的文件内容按行进行拆分，
+			拆分时分割内容为"="或是":"，"="或是":"左侧内容为键，右侧内容为值。
 
-				getProperty(key):根据键获取对应的值，返回值类型为String类型。
-	 		                                
+getProperty(key):根据键获取对应的值，返回值类型为String类型。
