@@ -1,8 +1,9 @@
 ---
-title: Oracle数据库笔记
+title: Oracle
 tags: oracle
 grammar_cjkRuby: true
 ---
 [TOC]
-
-欢迎使用 **{小书匠}(xiaoshujiang)编辑器**，您可以通过 `小书匠主按钮>模板` 里的模板管理来改变新建文章的内容。
+# 子查询
+where子查询
+子查询：将一条SQL语句的执行结果嵌套入另一套SQL语句中成为其执行查询语句
