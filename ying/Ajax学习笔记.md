@@ -72,3 +72,23 @@ c.处理响应 并刷新页面局部
 			xhr.responseText;//获取后台字符串request.getWriter.print(“字符串”)
 	}
 ```
+3.ajax的数据传递机制之JSON
+ 例子：异步展示一个人的信息
+ 编程思路：
+ a.按钮绑定click事件
+ 获取指定id
+ 发送ajax请求
+ 1）创建xhr
+ 2)发送请求传递id
+ 3)处理响应，更新页面布局
+ 
+ ```java
+ //编程步骤
+ $(function(){
+ 	//1.绑定单击事件
+	$("#btn").click(function(){
+		var id=21;
+		//ajax的get请求思路
+	})
+ })
+ ```
