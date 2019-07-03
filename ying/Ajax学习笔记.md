@@ -92,3 +92,11 @@ c.处理响应 并刷新页面局部
 	})
  })
  ```
+4.将java对象转为json格式字符串
+
+阿里 fastjson
+对象转json Strign  json=JSONObject.toJSONString(User);
+json格式字符串转成js对象   var js = eval("("+json+")");
+
+goole gson
+spring jackson
