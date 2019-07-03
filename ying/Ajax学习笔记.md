@@ -6,12 +6,15 @@ grammar_cjkRuby: true
 [TOC]
 
 # 一.Ajax
-## 1.Ajax的核心对象
+## Ajax的核心对象
 
-   XMLHttpRequest对象是一个javaScrip对象，存在浏览器差异，简称xhr对象
+  XMLHttpRequest对象是一个javaScrip对象，存在浏览器差异，简称xhr对象
 
-## 2.Ajax核心编程思路
+## Ajax核心编程思路
 
+ajax异步请求 特点：请求之后页面不动 响应回来刷新页面局部
+
+1.Ajax的GET方式编程思路
 ① 绑定用户名失去焦点事件
 
 a.获取用户输入的用户名
@@ -46,3 +49,4 @@ d.处理响应并更新页面局部
 			xhr.responseText;//获取后台字符串request.getWriter.print(“字符串”)
 	}
 ```
+
