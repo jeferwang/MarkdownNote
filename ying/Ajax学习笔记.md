@@ -57,7 +57,7 @@ var xhr;
 if(XMLhttpResquest){
 	xhr=new XMLhttpRequest();
 }else{
-	xhr=new ActiveObject("Microsoft.XMLHTTP");
+	xhr=new ActiveXObject("Microsoft.XMLHTTP");
 }
 ```
 b.发送请求并传递参数
