@@ -5,18 +5,18 @@ grammar_cjkRuby: true
 ---
 [TOC]
 
-# 一.Ajax
+# Ajax
 ## Ajax的核心对象
 
-  XMLHttpRequest对象是一个javaScrip对象，存在浏览器差异，简称xhr对象
+XMLHttpRequest对象是一个javaScrip对象，存在浏览器差异，简称xhr对象
 
 ## Ajax核心编程思路
 
 ajax异步请求 特点：请求之后页面不动 响应回来刷新页面局部
 
 1.Ajax的GET方式编程思路
-① 绑定用户名失去焦点事件
 
+① 绑定用户名失去焦点事件
 a.获取用户输入的用户名
 b.创建xhr对象，屏蔽浏览器差异  IE  |  WebKit chrome 火狐 欧朋 
  ``` java 
@@ -35,7 +35,7 @@ c.发送请求，并传递参数
 			xhr.send();//发送请求
  ```
 d.处理响应并更新页面局部
-```javascript?linenums
+```javascript
 	xhr.onreadystatechange=function(){
 		xhr.readyState  
 		0 xhr未初始化
@@ -49,4 +49,26 @@ d.处理响应并更新页面局部
 			xhr.responseText;//获取后台字符串request.getWriter.print(“字符串”)
 	}
 ```
+2.Ajax的post请求编程思路
 
+a.创建xhr
+```javascript
+var xhr;
+if(XMLhttpResquest){
+	xhr=new XMLhttpRequest();
+}else{
+	xhr=new ActiveObject("Microsoft.XMLHTTP");
+}
+```
+b.发送请求并传递参数
+```javascript
+xhr.open("POST","URL");
+xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+xhr.send("name=z&&psw=123456");
+```
+c.处理响应 并刷新页面局部
+```javascript
+	if(xhr.readState==4 &&xhr.status==200){
+			xhr.responseText;//获取后台字符串request.getWriter.print(“字符串”)
+	}
+```
