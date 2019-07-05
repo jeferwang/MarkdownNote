@@ -25,7 +25,7 @@ Spring 框架就是一个项目管理框架，Spring框架就是用来管理项�
 创建组件对象
 bean:用来管理组件对象的创建
 class:用来书写要创建组件对象的全限定名 包.类
-name:用来创建对象在工厂的唯一标识
+name或者id:用来创建对象在工厂的唯一标识
 <bean name= "bb"  class="day1.UserDAOimpl"></bean>
 ```java
 //启动工厂
