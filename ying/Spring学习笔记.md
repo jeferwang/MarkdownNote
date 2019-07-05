@@ -33,5 +33,7 @@ ApplicationContext context =new ClassPathXmlApplicationContext("day1/spring.xml"
 //获取组件对象
 //参数1：获取组件对象的唯一标识
 UserDAO  userDAO=(UserDAO)context.getBean(“bb”);
+//调用方法
+userDAO.save("小明");
 ```
   
