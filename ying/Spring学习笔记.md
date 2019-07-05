@@ -61,6 +61,7 @@ userDAO.save("小明");
 autowire ；用来给组件中成员变量自动赋值 
 byName: 根据名字赋值 工厂中组件名字与成员变量名一致自动赋值，找不到不赋值
 byType : 根据类型赋值 根据成员变量的类型类型一致时自动赋值 不一致不赋值
+<bean id="deptService" class="autodi.DeptServceImpl" autowrite="byType"> </bean>
 注意：当工厂中存在类型两个一样时，byType会报错也就是说  当根据类型自动注入时，如果工厂存在多个类型一致的组件对象会报错
 
 注入通用语法：
