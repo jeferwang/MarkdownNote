@@ -51,6 +51,17 @@ userDAO.save("小明");
 ```
 
 
+
+## Spring核心思想（重点）
+1.IOC（Inversion of Controll） 控制权力的反转
+  控制反转：将原来手动通过new关键字创建对象的权力交出来，交给Spring，交给工厂由工厂创建对象过程
+  依赖注入（Dependency Injection）:Spring框架不仅创建组件对象，还要在创建对象的同时帮助我们维护类与类|组件与组件之间依赖关系，因此 在IOC基础上提出DI即依赖注入概念。
+  
+  依赖注入的语法：
+  1.需要哪个组件就将哪个组件声明为成员变量并提供公开的SET方法  这个过程称之为依赖‘
+  2.在配置文件中使用property标签为组件中的成员变量赋值的过程       这个过程称之为注入’
+
+2.AOP
 ## 	Spring框架中注入方式
 1.SET 方式注入
  定义：使用SET方法形式为成员变量赋值
@@ -72,16 +83,6 @@ byType : 根据类型赋值 根据成员变量的类型类型一致时自动赋�
 2.对象|引用|组件类型使用ref属性
 3.数组使用array标签 list使用list标签 set使用set map使用map properties使用props
 
-## Spring核心思想（重点）
-1.IOC（Inversion of Controll） 控制权力的反转
-  控制反转：将原来手动通过new关键字创建对象的权力交出来，交给Spring，交给工厂由工厂创建对象过程
-  依赖注入（Dependency Injection）:Spring框架不仅创建组件对象，还要在创建对象的同时帮助我们维护类与类|组件与组件之间依赖关系，因此 在IOC基础上提出DI即依赖注入概念。
-  
-  依赖注入的语法：
-  1.需要哪个组件就将哪个组件声明为成员变量并提供公开的SET方法  这个过程称之为依赖‘
-  2.在配置文件中使用property标签为组件中的成员变量赋值的过程       这个过程称之为注入’
-
-2.AOP
 ## 工厂创建对象
 1.工厂原理：xml解析技术+反射+类中构造方法    //工厂中对象存储模型Map<String.Object> map
 `PersonDAO O=(PersonDAO)Class.forName("scope.PersinDAOImpl").newInstance();`
