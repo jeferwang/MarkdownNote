@@ -47,6 +47,27 @@ UserDAO  userDAO=(UserDAO)context.getBean(“bb”);
 userDAO.save("小明");
 
 ```
+
+## 	Spring框架中注入方式
+1.SET 方式注入
+ 定义：使用SET方法形式为成员变量赋值
+ 语法：将需要的组件声明为成员变量，并提供set方法，在配置文件中使用property标签进行赋值
+ 2.构造注入
+ 定义：使用构造方法形式为成员变量赋值
+ 语法：将需要的组件声明为成员变量，并提供构造方法，在配置文件中使用constryctor-agr标签进行赋值
+3.自动注入
+ 定义：使用bean标签 autowrite进行自动赋值
+ 语法：将需要的组件声明成员变量并提供set方法
+autowire ；用来给组件中成员变量自动赋值 
+byName: 根据名字赋值 工厂中组件名字与成员变量名一致自动赋值，找不到不赋值
+byType : 根据类型赋值 根据成员变量的类型类型一致时自动赋值 不一致不赋值
+注意：当工厂中存在类型两个一样时，byType会报错也就是说  当根据类型自动注入时，如果工厂存在多个类型一致的组件对象会报错
+
+注入通用语法：
+1.基本类型+String+日期类型注入使用value属性
+2.对象|引用|组件类型使用ref属性
+3.数组使用array标签 list使用list标签 set使用set map使用map properties使用props
+
 ## Spring核心思想
 1.IOC（Inversion of Controll） 控制权力的反转
   控制反转：将原来手动通过new关键字创建对象的权力交出来，交给Spring，交给工厂由工厂创建对象过程
@@ -57,4 +78,6 @@ userDAO.save("小明");
   2.在配置文件中使用property标签为组件中的成员变量赋值的过程       这个过程称之为注入’
 
 2.AOP
+
+
   
