@@ -48,11 +48,6 @@ userDAO.save("小明");
 
 ```
 
-工厂中对象的创建次数：
-总结：默认工厂在创建对象时使用单例模式进行创建
-dao service 可以是单例  servlet默认就是单例
-
-struts2的action一定是多例
 
 ## 	Spring框架中注入方式
 1.SET 方式注入
@@ -85,6 +80,23 @@ byType : 根据类型赋值 根据成员变量的类型类型一致时自动赋�
   2.在配置文件中使用property标签为组件中的成员变量赋值的过程       这个过程称之为注入’
 
 2.AOP
+## 工厂创建对象
+1.工厂原理：xml解析技术+反射+类中构造方法    //工厂中对象存储模型Map<String.Object> map
+`PersonDAO O=(PersonDAO)Class.forName("scope.PersinDAOImpl").newInstance();`
 
+2.工厂中对象的创建次数：
+总结：默认工厂在创建对象时使用单例模式进行创建
+dao service 可以是单例  servlet默认就是单例
+struts2的action一定是多例
 
-  
+scope:作用用来决定工厂创建组件对象的次数
+	singleton:默认值 单例
+	protoytype:多例
+	
+init-method:指定组件中的初始化方法
+destroy-method:指定组件中的销毁方法
+	
+  3.工厂的生命周期
+  指的是工厂中的组件什么时候创建 什么时候销毁
+  工厂启动：工厂中所有的单例bean会创建，工厂正常关闭，工厂中所有单例bean随之销毁 ------context.close()//工厂的正常的关闭
+  对于工厂中的多里bean在每次使用时随之创建，spring工厂不负责多例bean的销毁
