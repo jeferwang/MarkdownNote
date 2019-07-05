@@ -49,9 +49,6 @@ UserDAO  userDAO=(UserDAO)context.getBean(“bb”);
 userDAO.save("小明");
 
 ```
-
-
-
 ## Spring核心思想（重点）
 1.IOC（Inversion of Controll） 控制权力的反转
   控制反转：将原来手动通过new关键字创建对象的权力交出来，交给Spring，交给工厂由工厂创建对象过程
