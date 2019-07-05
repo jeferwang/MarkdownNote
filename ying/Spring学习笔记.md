@@ -72,7 +72,7 @@ byType : 根据类型赋值 根据成员变量的类型类型一致时自动赋�
 2.对象|引用|组件类型使用ref属性
 3.数组使用array标签 list使用list标签 set使用set map使用map properties使用props
 
-## Spring核心思想
+## Spring核心思想（重点）
 1.IOC（Inversion of Controll） 控制权力的反转
   控制反转：将原来手动通过new关键字创建对象的权力交出来，交给Spring，交给工厂由工厂创建对象过程
   依赖注入（Dependency Injection）:Spring框架不仅创建组件对象，还要在创建对象的同时帮助我们维护类与类|组件与组件之间依赖关系，因此 在IOC基础上提出DI即依赖注入概念。
