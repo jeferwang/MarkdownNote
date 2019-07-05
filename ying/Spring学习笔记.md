@@ -82,12 +82,13 @@ byType : 根据类型赋值 根据成员变量的类型类型一致时自动赋�
 2.对象|引用|组件类型使用ref属性
 3.数组使用array标签 list使用list标签 set使用set map使用map properties使用props
 
-## 工厂创建对象
+## 工厂创建对象（重点）
 1.工厂原理：xml解析技术+反射+类中构造方法    //工厂中对象存储模型Map<String.Object> map
 `PersonDAO O=(PersonDAO)Class.forName("scope.PersinDAOImpl").newInstance();`
 
-2.工厂中对象的创建次数：
+2.工厂中对象的创建次数：（重点）
 总结：默认工厂在创建对象时使用单例模式进行创建，可以通过bean标签中的scrop属性修改为多例
+<bean id="xx" class="xxx" scope="singleton|prototype">  </bean>
 dao service 可以是单例  servlet默认就是单例
 struts2的action一定是多例
 
@@ -98,7 +99,7 @@ scope:作用用来决定工厂创建组件对象的次数
 init-method:指定组件中的初始化方法
 destroy-method:指定组件中的销毁方法
 	
-  3.工厂的生命周期
+  3.工厂的生命周期（重点）
   指的是工厂中的组件什么时候创建 什么时候销毁
   工厂启动：工厂中所有的单例bean会创建，工厂正常关闭，工厂中所有单例bean随之销毁 ------context.close()//工厂的正常的关闭
   对于工厂中的多里bean在每次使用时随之创建，spring工厂不负责多例bean的销毁
