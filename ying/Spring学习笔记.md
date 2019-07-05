@@ -87,7 +87,7 @@ byType : 根据类型赋值 根据成员变量的类型类型一致时自动赋�
 `PersonDAO O=(PersonDAO)Class.forName("scope.PersinDAOImpl").newInstance();`
 
 2.工厂中对象的创建次数：
-总结：默认工厂在创建对象时使用单例模式进行创建
+总结：默认工厂在创建对象时使用单例模式进行创建，可以通过bean标签中的scrop属性修改为多例
 dao service 可以是单例  servlet默认就是单例
 struts2的action一定是多例
 
