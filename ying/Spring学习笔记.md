@@ -48,6 +48,12 @@ userDAO.save("小明");
 
 ```
 
+工厂中对象的创建次数：
+总结：默认工厂在创建对象时使用单例模式进行创建
+dao service 可以是单例  servlet默认就是单例
+
+struts2的action一定是多例
+
 ## 	Spring框架中注入方式
 1.SET 方式注入
  定义：使用SET方法形式为成员变量赋值
