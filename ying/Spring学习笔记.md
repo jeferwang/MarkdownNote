@@ -5,7 +5,7 @@ grammar_cjkRuby: true
 ---
 [TOC]
 
-# Spring引言
+# Spring框架引言
 ## Spring定义
 Spring 框架是一个集众多设计模式于一身的开源的，轻量级的项目管理框架，致力于JAVAEE轻量级解决方案。
 java 23种设计模式：工厂模式 代理设计模式 单例设计模式 适配器设计模式 策略设计模式等
@@ -16,4 +16,6 @@ Spring 框架就是一个项目管理框架，Spring框架就是用来管理项�
   
   注意：Spring框架一般不接管entity组件的创建
   
-  #
+  ## Spring环境搭建
+  1.引入依赖 
+  
