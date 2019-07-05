@@ -8,6 +8,8 @@ grammar_cjkRuby: true
 # Spring框架
 ## Spring定义
 Spring 框架是一个集众多设计模式于一身的开源的，轻量级的项目管理框架，致力于JAVAEE轻量级解决方案。
+项目管理：spring框架负责对项目中组件的创建，销毁，使用
+Spring不同于之前Struts2 mybatis 对之前项目中框架进行整合和管理
 java 23种设计模式：工厂模式 代理设计模式 单例设计模式 适配器设计模式 策略设计模式等
 ## Spring框架核心作用
 Spring 框架就是一个项目管理框架，Spring框架就是用来管理项目中组件的
@@ -19,8 +21,8 @@ Spring 框架就是一个项目管理框架，Spring框架就是用来管理项�
   ## Spring环境搭建
   1.引入依赖
   2.生成Spring框架的配置文件
-  3.创建组件
-  4.通过工厂管理组件
+  3.创建组件 如UserDAO UserDAOImpl
+  4.通过工厂管理组件创建
 
 创建组件对象
 bean:用来管理组件对象的创建
@@ -29,7 +31,7 @@ name或者id:用来创建对象在工厂的唯一标识
 
 当一个组件需要组件②就把组件②设置成成员变量 并设置set方法 并在配置文件中通过property依赖注入 
 ```java
-<bean name= "bb"  class="day1.UserDAOimpl">
+<bean id= "bb"  class="day1.UserDAOimpl">
 //为类中成员变量赋值的过程称之为注入（Injection）
 
 property:用来为类中声明的成员变量赋值
