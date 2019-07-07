@@ -103,3 +103,27 @@ each静态方法不支持在回调函数中对遍历的函数进行处理 map静
 	})
 	
 ## 其他静态方法
+ var str=" inj  ";
+     //去除空格会返回一个新的字符串
+     var trim = $.trim(str);
+
+ //真数组
+ var attr=[0,1,2,3,4]
+ //伪数组
+ var arrlike={0:1,1:2,2:3,length:3};
+ //对象
+ var obj={"name":"inj","age":"33"};
+ //方法
+ var fn=function(){}
+ //window对象
+ var w = window;
+ //判断传入的对象是否为window false|true
+ var res = $.isWindow(w);
+ //判断是否为真数组 false|true
+ var res=$.isArray(obj);
+ //判断是否为函数 false|true
+ //注意：jQuery本质上是一个函数
+ var res=$.isFunction(fn);
+ 
+ 
+
