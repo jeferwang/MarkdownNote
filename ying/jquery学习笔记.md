@@ -125,5 +125,19 @@ each静态方法不支持在回调函数中对遍历的函数进行处理 map静
  //注意：jQuery本质上是一个函数
  var res=$.isFunction(fn);
  
+ var  btn = document.getElementsByTagName("button")[0];
+       btn.Onclick=function () {
+           $.holdReady(false);
+           alert("btn")
+       }
+
+   //暂停入口函数的执行
+   $.holdReady(true);
+   $(document).ready(function () {
+	   //恢复入口函数的执行
+	   alert("ready")
+
+   })
+ 
  
 
