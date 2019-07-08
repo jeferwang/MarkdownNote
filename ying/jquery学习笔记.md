@@ -138,6 +138,10 @@ each静态方法不支持在回调函数中对遍历的函数进行处理 map静
 	   alert("ready")
 
    })
- 
+ ## 内容选择器
+ //empty作用：找到既没有文本内容也没有子元素的指定元素
+ //parent：找到有文本内容或有子元素的指定元素
+ //contains(text):包含text内容的指定元素
+ //has(selector):包含子元素selector如span的指定元素
  
 
