@@ -172,14 +172,17 @@ e.启动工厂从工厂获取指定对象 注意：被切入点切中组件获�
 9.切入点表达式
 方法级别切入点表达式：execution(返回值类型 包.类名.方法名（参数类型）)
 类别级别切入点表达式： within(包.类名)
-10.多个切面的执行顺序
+10.多个切面的执行顺序（重点）
 a.多个aop切面的执行顺序默认是配置顺序
 b.在标签<aop:advisor order="">  order int 整数  数字越小优先执行 一旦执行order属性配置顺序失效 order 值相同 配置顺序优先
-11.spring框架中有几种创建代理对象的方式 分别是什么 有什么区别
+11.spring框架中有几种创建代理对象的方式 分别是什么 有什么区别(重点)
 2种 
-JDK：提供Proxy  根据接口生成代理对象
+JDK：提供Proxy  根据接口生成代理对象  默认使用jdk中的Proxy
 
 Spring ：提供CGLIB 根据实现类生成代理对象
+
+修改spring框架默认生成代理对象为CGLIB
+<aop:config proxy-traget-class="false(Proxy)|true(CGLIB)">
 ### AOP编程之环绕
 
 ## 代理对象
