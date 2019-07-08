@@ -164,3 +164,16 @@ span.setAttribute("name","666")
 console.log(span.getAttribute("name"));
 - 属性和属性节点有什么区别*/
 任何对象都有属性，但是只有DOM元素有属性节
+# 操作属性节点的方法
+## attr 方法
+attr(name|pro|key,val|fn)
+作用：获取或者设置属性节点的值
+可以传递一个参数，也可以传递两个参数
+如果传递一个参数，代表获取属性节点的值
+如果传递两个参数，代表设置属性节点的值
+注意点：无论找到多少个元素，都只会返回第一个元素的属性节点的值
+如果是设置：找到多少个元素就会设置多少个元素
+$("span").attr("class")
+$("span").attr("class"，“box”)
+## removeAttr
+remove(name)
