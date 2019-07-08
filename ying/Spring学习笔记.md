@@ -50,7 +50,7 @@ userDAO.save("小明");
 
 ```
 ## Spring核心思想（重点）
-1.IOC（Inversion of Controll） 控制权力的反转
+### 1.IOC（Inversion of Controll） 控制权力的反转
   控制反转：将原来手动通过new关键字创建对象的权力交出来，交给Spring，交给工厂由工厂创建对象过程
   依赖注入（Dependency Injection）:Spring框架不仅创建组件对象，还要在创建对象的同时帮助我们维护类与类|组件与组件之间依赖关系，因此 在IOC基础上提出DI即依赖注入概念。
   
@@ -58,7 +58,26 @@ userDAO.save("小明");
   1.需要哪个组件就将哪个组件声明为成员变量并提供公开的SET方法  这个过程称之为依赖‘
   2.在配置文件中使用property标签为组件中的成员变量赋值的过程       这个过程称之为注入’
 
-2.AOP
+### 2.AOP
+
+Advice （通知，额外，附加操作）:除了目标以外的操作都称之为通知 事务 日志 性能
+PointCut(切入点);用来告诉项目中哪些类中哪些方法需要加入通知
+Aspect(切面)：Advice(通知)+PointCut(切入点)
+AOP:Aspect Oriented Programming 面向切面的编程
+AOP的编程思路
+1.引入AOP的相关jar
+2.开发通知类
+MethodBeforeAdvice 前置通知
+AfterReturningAdvice 后置通知
+ThroesAdvice 异常通知
+MethodInterceptor 环绕通知
+3.工厂管理通知
+bean id-="" class="xxxx.xxxadvice"
+4.配置切面
+a.配置切入点
+<aop:pointCut...>
+b.配置
+5.启动工厂测试即可
 
 ## 	Spring框架中注入方式
 1.SET 方式注入（重点）
@@ -66,7 +85,7 @@ userDAO.save("小明");
  语法：将需要的组件声明为成员变量，并提供set方法，在配置文件中使用property标签进行赋值
  2.构造注入
  定义：使用类中构造方法形式为类中成员变量赋值
- 语法：将需要的组件声明为成员变量，并提供构造方法，在配置文件中使用constructor-agr标签进行赋值
+ 语法：将需要的组件声明为成员变量，并提供构造方法，在配置文件中使用constructor-arg标签进行赋值
  注意：构造注入不能自己注入自己
 3.自动注入
  定义：使用bean标签 autowrite进行自动赋值，根据类型或者名称自动为类中成员变量赋值
@@ -103,3 +122,42 @@ destroy-method:指定组件中的销毁方法
   指的是工厂中的组件什么时候创建 什么时候销毁
     单例bean:工厂启动,工厂中所有的单例bean会创建，工厂正常关闭，工厂中所有单例bean随之销毁 ------context.close()//工厂的正常的关闭
   多例bean:在每次使用工程时才会进行创建，即对于工厂中的多里bean在每次使用时随之创建，spring工厂不负责多例bean的销毁
+# 代理引言
+代理指的是java的一种设计模式
+## 代理对象
+作用：起到了传话作用，增强业务逻辑对象的功能，中断原始的业务逻辑
+如何开发一个代理对象：
+1.代理对象和业务逻辑对象（目标对象）实现相同的接口
+2.代理对象中依赖于真正的业务逻辑对象（目标对象）
+
+### 静态代理 
+静态代理：为现有业务层对象手动的开发一个代理对象过程，静态代理对象
+问题：为每一个业务层组件手动开发一个代理对象不仅会增加我们的工作量还会使我们程序维护更加困难
+### 动态代理
+动态代理：指的是在程序运行过程中由JVM自动根据指定对象去动态生成代理对象
+目标对象（Target）：被代理的对象称之为目标对象 也就是真正的业务逻辑对象
+创建代理对象：
+```java
+//Proxy:用来创建代理对象  
+//返回值：为当前创建的代理对象
+//参数1：类加载对象
+//参数2：创建代理对象的目标对象的接口的类型
+//参数3：当使用创建代理对象调用代理对象中方法时会优先执行InvocationHandler类中的invoke方法
+ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
+Class[] classes=new Class[]{UserService.class};
+Object o = Proxy.newProxyInstance(classLoader.classes,new InvocationHandler{
+
+//参数1：Proxy当前代理对象‘
+//参数2：Method 当前代理对象调用的方法对象
+//参数3：agrs:当前代理对象调用的方法传递的参数
+@override
+public Obiect invoke(参数1.2.3）{
+
+参数1：调用哪个类中当前方法
+参数2：调用方法时的参数
+method.invoke(Obiect,Object...);
+method.invoke(userService,args);
+return invoke;
+}
+]);
+```
