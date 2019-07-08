@@ -138,10 +138,29 @@ each静态方法不支持在回调函数中对遍历的函数进行处理 map静
 	   alert("ready")
 
    })
- ## 内容选择器
+ # 内容选择器
  //empty作用：找到既没有文本内容也没有子元素的指定元素
  //parent：找到有文本内容或有子元素的指定元素
  //contains(text):包含text内容的指定元素
  //has(selector):包含子元素selector如span的指定元素
  
+# 属性和属性节点
+- 什么是属性
+对象身上保存的变量就是属性
+如何操作属性
+            对象.属性名称=值
+            对象.属性名称
+            对象["属性名称"]=值
+            对象["属性名称"]
+- 什么是属性节点
+<span name="666"></span>
+在编写HTML代码时，在HTML标签中添加的属性就是属性节点
+在浏览器中找到span这个dom元素之后展开看到的都是属性，在attributes属性中保存的所有内容都是属性节点
 
+ - 如何操作属性节点
+dom元素.setAttribute("属性名称"，"值")
+var span=document.getElementsByTagName("span")[0];
+span.setAttribute("name","666")
+console.log(span.getAttribute("name"));
+- 属性和属性节点有什么区别*/
+任何对象都有属性，但是只有DOM元素有属性节
