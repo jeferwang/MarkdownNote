@@ -164,12 +164,11 @@ c.配置通知，工厂管理通知
 bean id-="" class="xxxx.xxxadvice"
 d.配置切面
 <aop:config>
-
+<aop:pointcut>
+<aop:advosor>
 </aop:config>
-
-
 e.启动工厂从工厂获取指定对象 注意：被切入点切中组件获取的是代理对象而不是原始对象
-
+8.
 9.切入点表达式
 方法级别切入点表达式：execution(返回值类型 包.类名.方法名（参数类型）)
 类别级别切入点表达式： within(包.类名)
