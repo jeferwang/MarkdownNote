@@ -246,7 +246,7 @@ isSingleton            是否是单例，否为多例
 
 # Spring + mybatis==>SM整合
 1.引入依赖
-Spring  mybatis  Mysql
+Spring  mybatis  Mysql  mybatis-spring
 
 2.SM整合====》如何整合？
 Spring 项目管理框架  主要用来负责项目中组件对象的创建 使用 销毁
@@ -259,7 +259,16 @@ Mybatis 持久层框架    主要用来简化jdbc对数据库访问操作
 2.sqlSession对象
 3.sqlSessionFactory 对象 核心对象 最先创建
 直接依赖于mybatis-config.xml文件
-
 - 一定依赖于数据源对象
 - 一定依赖于mapper文件注册
+
+4.SM整合实际上就是通过工厂管理sqlSessionFactory对象的创建
+
+结论：通过查询SqlsessionFactory源码得知其为一个接口类型 ，复杂对象
+- 工厂管理复杂对象
+```java
+SqlsessionFactoryBean implements FactoryBean<bean>
+```
+- 工厂管理
+
 
