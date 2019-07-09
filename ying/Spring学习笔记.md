@@ -275,3 +275,14 @@ SqlsessionFactoryBean implements FactoryBean<bean>
   5.上述整合不需要手动创建mybatis官方提供
   a.引入jar druid mybatis-config
   b.编写spring.xml配置文件
+  
+ ##  SM整合DAO开发
+ 1.引入jar Spring mybatis druid mybatis-spring
+ 2.建表
+ 3.开发实体类
+ 4.开发DAO接口
+ 5.开发mapper文件
+ 6.编写sm整合的配置文件
+ 	核心思路：通过spring接管mybatis中 SqlsessionFactory DAO的创建
+	分析一：创建SqlSessionFactory时需要依赖数据源对象 ，mapper配置文件的位置
+	分析二：创建DAO对象时需要依赖SqlSessionFactory和DAO接口的类型
