@@ -286,3 +286,4 @@ SqlsessionFactoryBean implements FactoryBean<bean>
  	核心思路：通过spring接管mybatis中 SqlsessionFactory DAO的创建
 	分析一：创建SqlSessionFactory时需要依赖数据源对象 ，mapper配置文件的位置
 	分析二：创建DAO对象时需要依赖SqlSessionFactory和DAO接口的类型
+7.启动工厂测试
