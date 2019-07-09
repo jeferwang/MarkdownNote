@@ -313,4 +313,9 @@ sqlSession 对原有jdbc中Connection对象的封装   connection.commit |rollba
 7.通过向现有业务中注入事务管理缺失是能控制事务
 
 8.手动后开发一个事务环绕通知
-9.
+9.spring框架自动提供一个tx命名空间可以将事务管理器自动化转为环绕通知对象
+id:根据事务管理器转换的通知对象早工厂的唯一标识
+tx：advice 作用：将事务管理器走动宅女微一个通知对象
+transaction-manager:用来指定外部事务管理器是谁
+<tx:advice transaction-manager="transacition" id=""></tx:advice> 
+配置切面...
