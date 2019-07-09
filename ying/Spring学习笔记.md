@@ -319,3 +319,24 @@ tx：advice 作用：将事务管理器走动宅女微一个通知对象
 transaction-manager:用来指定外部事务管理器是谁
 <tx:advice transaction-manager="transacition" id=""></tx:advice> 
 10.配置切面...
+- 总结：
+SM整合 Spring+myBatis
+1.引入依赖jar
+Spring mybatis mybatis-spring mysql|Oracle druid log1j fastjson
+2.建表
+3.开发实体类
+4.开发DAO接口
+5.开发mapper文件
+6.开发service接口
+7.开发service实现类，注入DAO相关依赖
+8.编写Spring于myBatis的整合配置文件
+          a.创建数据源对象 DruidDataSource 注入driverClassName url username passwotrd
+		  b.创建sqlsessionFactory  sqlsessionFactoryBean注入dataSource mapperLocations
+		  c.创建DAO对象 MapperScannerConfigurer  注入SqlSessionFactoryBeanName 和DAO所在包
+		  			注意：使用通用方式创建有一个默认的名字 接口首字母小写
+		  d.事务管理器 DataSourceTransactionManager 注入DataSources
+		  e.将事务管理器转为环绕通知并对业务层方法事务配置细粒度
+		  d.配置切面
+		  f.管理Service组件的创建
+9.启动工厂测试
+		  
