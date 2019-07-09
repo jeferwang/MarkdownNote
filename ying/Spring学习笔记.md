@@ -287,3 +287,30 @@ SqlsessionFactoryBean implements FactoryBean<bean>
 	分析一：创建SqlSessionFactory时需要依赖数据源对象 ，mapper配置文件的位置
 	分析二：创建DAO对象时需要依赖SqlSessionFactory和DAO接口的类型
 7.启动工厂测试
+
+## SM整合业务添加事务
+1.在现有DAO中存在一个事务 这个事务仅仅为了方便测试而提供事务
+注意：一旦业务层控制事务之后DAP中事务自动消失
+
+2.如何给现有业务加入事务
+原来mybatis框架如何控制事务 ：sqlSession.commit()提交 sqlSession.rollback() 回滚
+
+3.mybatis框架是对jdbc技术封装
+sqlSession 对原有jdbc中Connection对象的封装   connection.commit |rollback方法
+
+4.SM整合给业务加入事务
+思路：可以直接获取数据库中连接对象 通过连接对象取控制事务
+
+5.在现有的工厂中是否存在连接对象
+一定存在的：在数据源中 DataSource.getConnection();获取连接
+为了保证业务层使用连接对象和DAO中连接对象一致
+
+6.spring框架提供类：DataSourceTransactionManager 数据源事务管理器 一定依赖于数据源
+作用：
+1.保证连接线程安全问题
+2.封装了一下事务提交和回滚方法
+
+7.通过向现有业务中注入事务管理缺失是能控制事务
+
+8.手动后开发一个事务环绕通知
+9.
