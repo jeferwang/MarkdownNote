@@ -270,5 +270,8 @@ Mybatis 持久层框架    主要用来简化jdbc对数据库访问操作
 SqlsessionFactoryBean implements FactoryBean<bean>
 ```
 - 工厂管理
-
-
+  cpm.mysql.jdbc.Driver
+  jabc:mysql://localhost
+  5.上述整合不需要手动创建mybatis官方提供
+  a.引入jar druid mybatis-config
+  b.编写spring.xml配置文件
