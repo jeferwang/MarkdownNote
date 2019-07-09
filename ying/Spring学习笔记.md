@@ -259,6 +259,7 @@ Mybatis 持久层框架    主要用来简化jdbc对数据库访问操作
 2.sqlSession对象
 3.sqlSessionFactory 对象 核心对象 最先创建
 直接依赖于mybatis-config.xml文件
+
 - 一定依赖于数据源对象
 - 一定依赖于mapper文件注册
 
