@@ -339,4 +339,13 @@ Spring mybatis mybatis-spring mysql|Oracle druid log1j fastjson
 		  d.配置切面
 		  f.管理Service组件的创建
 9.启动工厂测试
-		  
+
+# Spring MVC
+
+## 三大组件
+1.Request Mapping Handler Mapping  处理器映射器 解析请求
+2.RequestMappingHaddlerAdapter 处理器适配器 用来帮助控制器接收请求参数
+3.Internal ResourvceViewResolver 视图解析器
+注入  prefinx前缀
+suffix后缀.jsp
+解析结果=前缀+页面逻辑名+后缀=user/kogin.jsp
