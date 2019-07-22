@@ -1,5 +1,5 @@
 ---
-title: java学习笔记
+title: Java学习笔记
 tags: Java学习笔记
 grammar_cjkRuby: true
 ---
