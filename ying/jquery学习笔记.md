@@ -15,7 +15,7 @@ grammar_cjkRuby: true
             console.log(("onload", width));
         }
         
-        
+       
    //jquery入口function中可以取到html中元
         $(document).ready(function () {
             //1.通过jquery入口函数可以拿到DOM元素
