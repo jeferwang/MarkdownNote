@@ -89,3 +89,4 @@ IOC(Inversion of Controll) 控制反转 控制权力的反转
  1.基本类型+string+日期类型的注入使用value属性
  2.对象|引用|组件类型使用的ref属性
  3.数组使用array标签  list使用list   set使用set  map使用map  properties使用props标签
+
